@@ -1,0 +1,18 @@
+Error.stackTraceLimit = 100;
+global.self = global;
+require("./chunks/ssr/_1f5eb3._.js");
+require("./chunks/ssr/[next]_ipc_index.ts._.js");
+require("./chunks/ssr/[next]_polyfill_async-local-storage.js");
+require("./chunks/ssr/[next]_internal_http.ts._.js");
+require("./chunks/ssr/[next]_internal_headers.ts._.js");
+require("./chunks/ssr/[next]_compiled_stacktrace-parser_index.js");
+require("./chunks/ssr/[next]_entry_app_hydrate.tsx_32104e._.js");
+require("./chunks/rsc/_0dff00._.js");
+require("./chunks/rsc/[next]_entry_app_server-to-client-ssr.tsx_78b38b._.js");
+require("./chunks/rsc/[next]_entry_app_server-to-client-ssr.tsx_40a66f._.js");
+require("./chunks/rsc/[next]_entry_app_server-to-client-ssr.tsx_cd8283._.js");
+require("./chunks/rsc/[next]_entry_app_server-to-client-ssr.tsx_560292._.js");
+require("./chunks/rsc/[next]_entry_app_layout-entry.tsx_c71197._.js");
+require("./chunks/rsc/[next]_entry_app_server-to-client-ssr.tsx_2f166c._.js");
+require("./chunks/rsc/[next]_entry_app_layout-entry.tsx_067297._.js");
+require("./chunks/rsc/[next]_internal_font_google_inter_4617584a.js");

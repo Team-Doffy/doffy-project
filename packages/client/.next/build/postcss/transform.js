@@ -1,0 +1,11 @@
+Error.stackTraceLimit = 100;
+global.self = global;
+require("./chunks/postcss.config.cjs._.js");
+require("./chunks/postcss.config.cjs_transform_8088f7.js");
+require("./chunks/node_modules_source-map-js_source-map.js");
+require("./chunks/node_modules_picocolors_picocolors.js");
+require("./chunks/node_modules_nanoid_non-secure_index.cjs._.js");
+require("./chunks/node_modules_postcss_lib_postcss.mjs._.js");
+require("./chunks/[turbopack-node]__2ac58d._.js");
+require("./chunks/[turbopack-node]_ipc_evaluate.ts._.js");
+require("./chunks/[turbopack-node]_compiled_stacktrace-parser_index.js");
