@@ -1,3 +1,0 @@
-MODE = "development"
-PUBLIC_ENV_HOST = http://localhost
-PUBLIC_ENV_PORT = 3000
