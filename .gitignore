@@ -1,3 +1,4 @@
 node_modules/
 # misc
 .DS_Store
+packages/client/yarn-error.log
