@@ -7,7 +7,7 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "/community",
+        destination: "/main",
       },
     ];
   },
