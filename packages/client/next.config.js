@@ -1,11 +1,17 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-
-    experimental: {
-        appDir: true,
-    },
-}
-
+  experimental: {
+    appDir: true,
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/main",
+      },
+    ];
+  },
+};
 
 // /**
 //  * 터보팩에서 아래 옵션 추가 시 동작하지 않아
