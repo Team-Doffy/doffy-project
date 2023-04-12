@@ -1,9 +1,12 @@
+import Image from "next/image";
+import user from '../../public/111.svg';
+
 function Community() {
   return (
     <div className="h-[calc(100vh_-_16.563rem)] w-full flex justify-center items-center">
       <div className="w-full h-full pt-10 pb-40 pl-180 pr-180">
         <div className="grid grid-cols-community-main grid-rows-community-main w-full h-full gap-x-10">
-          <div>
+          <div className="flex flex-col gap-6 h-full">
             <div className="h-220 bg-white border rounded-lg p-5 flex flex-col gap-y-4">
               <h3 className="font-pretendard not-italic font-bold text-18 leading-21 text-text-color">
                 인기 태그
@@ -66,7 +69,26 @@ function Community() {
                 </div>
               </div>
             </div>
-            <div>22</div>
+            <div className="h-359">
+              <div className="bg-white border rounded-lg p-5 flex flex-col gap-y-4">
+                <h3 className="font-pretendard not-italic font-bold text-18 leading-21 text-text-color">사용자 랭킹</h3>
+				<div className="border border-border-color" />
+				<div className="flex flex-col w-full">
+					<div className="flex justify-between w-full">
+						<div>
+							1
+						</div>
+						<Image src={user} alt="img"/>
+						<div>
+							코린이
+						</div>
+						<div>
+							5600
+						</div>
+					</div>
+				</div>
+              </div>
+            </div>
           </div>
           <div>33</div>
         </div>
