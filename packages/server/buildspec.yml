@@ -4,13 +4,10 @@ phases:
   install:
     runtime-versions:
       java: corretto11
-  pre_build:
-    commands:
-      - cd packages
   build:
     commands:
       - echo Build Starting on `date`
-      - cd server
+      - cd doffy-project/packages/server
       - chmod +x ./gradlew
       - ./gradlew build
   post_build:
@@ -18,7 +15,7 @@ phases:
       - echo $(basename ./build/libs/*.jar)
 artifacts:
   files:
-    - server/build/libs/*.jar
-    - server/scripts/**
-    - server/appspec.yml
+    - doffy-project/packages/server/build/libs/*.jar
+    - doffy-project/packages/server/scripts/**
+    - doffy-project/packages/server/appspec.yml
   discard-paths: yes
