@@ -15,7 +15,7 @@ phases:
       - echo $(basename ./build/libs/*.jar)
 artifacts:
   files:
-    - server/build/libs/*.jar
-    - ../../script/**
-    - ../../appspec.yml
+    - doffy-project/packages/server/build/libs/*.jar
+    - doffy-project/script/**
+    - doffy-project/appspec.yml
   discard-paths: yes
