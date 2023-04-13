@@ -7,7 +7,7 @@ phases:
   build:
     commands:
       - echo Build Starting on `date`
-      - cd doffy-project/packages/server
+      - cd server
       - chmod +x ./gradlew
       - ./gradlew build
   post_build:
@@ -15,7 +15,7 @@ phases:
       - echo $(basename ./build/libs/*.jar)
 artifacts:
   files:
-    - doffy-project/packages/server/build/libs/*.jar
-    - doffy-project/packages/server/scripts/**
-    - doffy-project/packages/server/appspec.yml
+    - server/build/libs/*.jar
+    - server/scripts/**
+    - server/appspec.yml
   discard-paths: yes
