@@ -9,16 +9,16 @@ hooks:
   BeforeInstall:
     - location: server_clear.sh
       timeout: 3000
-      runas: root
+      runas: packages/server
   AfterInstall:
     - location: initialize.sh
       timeout: 3000
-      runas: root
+      runas: packages/server
   ApplicationStart:
     - location: server_start.sh
       timeout: 3000
-      runas: root
+      runas: packages/server
   ApplicationStop:
     - location: server_stop.sh
       timeout: 3000
-      runas: root
+      runas: packages/server
