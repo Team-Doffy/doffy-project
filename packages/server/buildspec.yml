@@ -17,5 +17,5 @@ artifacts:
   files:
     - packages/server/build/libs/*.jar
     - packages/server/scripts/**
-    - packages/server/appspec.yml
+    - appspec.yml
   discard-paths: yes
