@@ -16,6 +16,6 @@ phases:
 artifacts:
   files:
     - packages/server/build/libs/*.jar
-    - packages/server/scripts/**
-    - appspec.yml
+    - doffy-project/script/**
+    - doffy-project/appspec.yml
   discard-paths: yes
