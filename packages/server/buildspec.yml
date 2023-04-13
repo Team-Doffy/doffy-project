@@ -4,10 +4,13 @@ phases:
   install:
     runtime-versions:
       java: corretto11
+  pre_build:
+    commands:
+      - cd packages
   build:
     commands:
       - echo Build Starting on `date`
-      - cd packages/server
+      - cd server
       - chmod +x ./gradlew
       - ./gradlew build
   post_build:
@@ -15,7 +18,7 @@ phases:
       - echo $(basename ./build/libs/*.jar)
 artifacts:
   files:
-    - packages/server/build/libs/*.jar
-    - packages/server/scripts/**
-    - packages/server/appspec.yml
+    - server/build/libs/*.jar
+    - server/scripts/**
+    - server/appspec.yml
   discard-paths: yes
