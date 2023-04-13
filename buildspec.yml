@@ -13,6 +13,7 @@ phases:
   post_build:
     commands:
       - echo $(basename ./build/libs/*.jar)
+      - cd ../../
 artifacts:
   files:
     - doffy-project/packages/server/build/libs/*.jar
