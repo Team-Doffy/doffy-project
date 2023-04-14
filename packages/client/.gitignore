@@ -1,1 +1,17 @@
+# dependencies
 node_modules/
+
+# misc
+.DS_Store
+.vscode
+packages/client/yarn-error.log
+packages/client/node_modules/
+packages/client/.next/
+
+# debug
+yarn-debug.log*
+yarn-error.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
