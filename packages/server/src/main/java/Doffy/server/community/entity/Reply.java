@@ -18,7 +18,7 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
-    private int replyId;
+    private long replyId;
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
