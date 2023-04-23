@@ -1,27 +1,28 @@
 package Doffy.server.community.service;
 
+import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.entity.Board;
+import Doffy.server.community.mapper.BoardMapper;
 import Doffy.server.community.repository.BoardRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import reactor.util.annotation.Nullable;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final BoardMapper boardMapper;
 
-    public BoardService(BoardRepository boardRepository) {
+    public BoardService(BoardRepository boardRepository, BoardMapper boardMapper) {
         this.boardRepository = boardRepository;
+        this.boardMapper = boardMapper;
     }
 
-    public Board createBoard(Board board){
-        Board savedBoard = boardRepository.save(board);
-
-        return savedBoard;
+    public Board createBoard(BoardPostDto boardPostDto) {
+        Board board = boardMapper.toBoard(boardPostDto);
+        return boardRepository.save(board);
     }
 
     public Board findBoard(long boardId){

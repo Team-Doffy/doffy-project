@@ -12,17 +12,16 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class BoardMapper {
-    public BoardPostDto boardPostDto(Board board){
-        BoardPostDto request = BoardPostDto.builder()
-//                .userId(board.getUserId)
-                .boardId(board.getBoardId())
-                .title(board.getTitle())
-                .boardBody(board.getBoardBody())
+    public Board toBoard(BoardPostDto boardPostDto){
+        return Board.builder()
+                //.userId(board.getUserId())
+//                .boardId(boardPostDto.getBoardId())
+                .title(boardPostDto.getTitle())
+                .boardBody(boardPostDto.getBoardBody())
                 .build();
-        return request;
     }
 
-    public BoardResponseDto boardResponseDto(Board board){
+    public BoardResponseDto toBoardResponseDto(Board board){
         BoardResponseDto response = BoardResponseDto.builder()
                 .boardId(board.getBoardId())
                 .title(board.getTitle())
@@ -30,8 +29,8 @@ public class BoardMapper {
                 .boardLikes(board.getBoardLikes())
                 .createdAt(board.getCreatedAt())
                 .modifiedAt(board.getModifiedAt())
-//                .comments(List<commentResponseDto>)
-//                .replies(List<replyResponseDto>)
+//                .comments(List<CommentResponseDto>)
+//                .replies(List<ReplyResponseDto>)
                 .build();
         return response;
     }

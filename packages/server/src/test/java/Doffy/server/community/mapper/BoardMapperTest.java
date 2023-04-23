@@ -16,19 +16,15 @@ public class BoardMapperTest {
     @Test
     public void shouldMapBoardToBoardPostDto() {
         // given
-        Board board = new Board();
-        board.setBoardId(1L);
-        board.setTitle("Test Board");
-        board.setBoardBody("Test Content");
-        board.setCreatedAt(LocalDateTime.now());
-        board.setModifiedAt(LocalDateTime.now());
+        BoardPostDto boardPostDto = BoardPostDto.builder()
+                .title("Test Board")
+                .boardBody("Test Content")
+                .build();
 
-        // when
-        BoardPostDto boardPostDto = boardMapper.boardPostDto(board);
+        Board board = boardMapper.toBoard(boardPostDto);
 
         // then
         assertNotNull(boardPostDto);
-        assertEquals(board.getBoardId(), boardPostDto.getBoardId());
         assertEquals(board.getTitle(), boardPostDto.getTitle());
         assertEquals(board.getBoardBody(), boardPostDto.getBoardBody());
     }
@@ -45,7 +41,7 @@ public class BoardMapperTest {
         board.setModifiedAt(LocalDateTime.now());
 
         // when
-        BoardResponseDto boardResponseDto = boardMapper.boardResponseDto(board);
+        BoardResponseDto boardResponseDto = boardMapper.toBoardResponseDto(board);
 
         // then
         assertNotNull(boardResponseDto);

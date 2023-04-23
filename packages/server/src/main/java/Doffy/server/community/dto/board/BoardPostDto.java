@@ -11,7 +11,7 @@ public class BoardPostDto {
 
     private long userId;
 
-    private Long boardId;
+//    private Long boardId;
 
     private String title;
 

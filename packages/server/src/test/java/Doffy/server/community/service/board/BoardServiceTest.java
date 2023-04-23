@@ -2,7 +2,9 @@ package Doffy.server.community.service.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.entity.Board;
+import Doffy.server.community.mapper.BoardMapper;
 import Doffy.server.community.repository.BoardRepository;
 import Doffy.server.community.service.BoardService;
 import org.junit.jupiter.api.Test;
@@ -18,24 +20,35 @@ public class BoardServiceTest {
 
     @Mock
     private BoardRepository boardRepository;
+    @Mock
+    private BoardMapper boardMapper;
 
     @Test
     public void testCreateBoard() {
+        // given
+        BoardPostDto boardPostDto = BoardPostDto.builder()
+                .title("Test Board")
+                .boardBody("Test Content")
+                .build();
 
-        //given
-        Board board = new Board();
-        board.setTitle("Test Board");
-        board.setBoardBody("Test Content");
+        Board board = Board.builder()
+                .boardId(1L)
+                .title("Test Board")
+                .boardBody("Test Content")
+                .build();
 
-        //when
+        BoardService boardService = new BoardService(boardRepository, boardMapper);
+
+        when(boardMapper.toBoard(boardPostDto)).thenReturn(board);
         when(boardRepository.save(board)).thenReturn(board);
 
-        BoardService boardService = new BoardService(boardRepository);
-        Board savedBoard = boardService.createBoard(board);
+        // when
+        Board createdBoard = boardService.createBoard(boardPostDto);
 
-        //then
-        assertEquals(board.getTitle(), savedBoard.getTitle());
-        assertEquals(board.getBoardBody(), savedBoard.getBoardBody());
+        // then
+        assertEquals(board, createdBoard);
+        verify(boardMapper).toBoard(boardPostDto);
+        verify(boardRepository).save(board);
     }
 
     @Test
@@ -50,7 +63,7 @@ public class BoardServiceTest {
         //when
         when(boardRepository.findById(1L)).thenReturn(java.util.Optional.of(board));
 
-        BoardService boardService = new BoardService(boardRepository);
+        BoardService boardService = new BoardService(boardRepository, boardMapper);
         Board foundBoard = boardService.findBoard(1L);
 
         //then
@@ -63,7 +76,7 @@ public class BoardServiceTest {
     public void testFindVerifiedBoardNotFound() {
 
         //given
-        BoardService boardService = new BoardService(boardRepository);
+        BoardService boardService = new BoardService(boardRepository, boardMapper);
 
         //when
         when(boardRepository.findById(1L)).thenReturn(java.util.Optional.empty());
