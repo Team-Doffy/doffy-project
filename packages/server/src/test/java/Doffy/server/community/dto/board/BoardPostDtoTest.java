@@ -18,10 +18,6 @@ class BoardPostDtoTest {
         boardPostDto.setBoardId(boardId);
         assertThat(boardPostDto.getBoardId()).isEqualTo(boardId);
 
-        Long commentId = 3L;
-        boardPostDto.setCommentId(commentId);
-        assertThat(boardPostDto.getCommentId()).isEqualTo(commentId);
-
         String title = "Test Title";
         boardPostDto.setTitle(title);
         assertThat(boardPostDto.getTitle()).isEqualTo(title);

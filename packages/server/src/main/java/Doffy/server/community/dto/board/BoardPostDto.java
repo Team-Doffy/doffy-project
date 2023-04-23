@@ -1,19 +1,17 @@
 package Doffy.server.community.dto.board;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class BoardPostDto {
 
     private long userId;
 
     private Long boardId;
-
-    private Long commentId;
 
     private String title;
 

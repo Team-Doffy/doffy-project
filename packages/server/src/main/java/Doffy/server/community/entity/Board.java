@@ -39,5 +39,8 @@ public class Board {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "modified_at")
+    private LocalDateTime modifiedAt;
 }
 

@@ -1,4 +1,4 @@
-package Doffy.server.community.service.board;
+package Doffy.server.community.service;
 
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.repository.BoardRepository;
