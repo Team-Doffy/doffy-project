@@ -51,7 +51,7 @@ export const Step1: React.FC = () => {
       </div>
 
       <div className="w-[310px] h-[64px] mx-auto bg-[#DDDDDD] rounded">
-        <button className="m-auto text-[18px]">
+        <button className="w-full h-full m-auto text-[18px]">
           <p>다음</p>
         </button>
       </div>
