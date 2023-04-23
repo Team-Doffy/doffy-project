@@ -1,7 +1,7 @@
 import React from "react";
 import Step3Logo from "../../../assets/images/step3.svg";
 
-export const Step1: React.FC = () => {
+export const Step3: React.FC = () => {
   return (
     <div className="w-full h-full flex flex-col">
       <span className="mx-auto mb-[60px] mt-[120px] text-[48px] font-[700]">
@@ -75,4 +75,4 @@ export const Step1: React.FC = () => {
   );
 };
 
-export default Step1;
+export default Step3;
