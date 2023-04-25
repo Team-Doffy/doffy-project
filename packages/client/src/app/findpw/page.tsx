@@ -19,6 +19,7 @@ const FindPw: React.FC = () => {
         <span className="mb-[8px]">이메일</span>
         <input
           type="text"
+          placeholder="이메일을 입력해주세요."
           className="h-[40px] mb-[40px] border-x-2 border-y-2 rounded focus:outline-none p-[12px]"
         />
       </div>

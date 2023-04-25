@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import Logo from "../../assets/images/logo_AI.svg";
@@ -6,8 +8,7 @@ import Image from "next/image";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 const Header: React.FC = () => {
-  // const queryClient = useQueryClient();
-  // const [isSignin, setIsSignin] = useState(queryClient.getQueryData(""));
+  const [isSignin, setIsSignin] = useState<boolean>(false);
 
   return (
     <header className="w-full h-[70px] p04 sticky items-center bg-white dark:bg-gray-800 border-b-2 drop-shadow-md">

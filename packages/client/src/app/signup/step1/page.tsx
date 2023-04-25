@@ -1,7 +1,40 @@
-import React from "react";
+"use client";
+
+import { useRouter } from "next/router";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Step1Logo from "../../../assets/images/step1.svg";
 
 export const Step1: React.FC = () => {
+  const router = useRouter();
+  const [checkList, setCheckList] = useState<string[]>([]);
+  const [buttonColor, setButtonColor] = useState<boolean>(false);
+
+  const handleCheckAll = (e: ChangeEvent<HTMLInputElement>) => {
+    e.target.checked ? setCheckList(["terms", "collect"]) : setCheckList([]);
+  };
+
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    e.target.checked
+      ? setCheckList([...checkList, e.target.name])
+      : setCheckList(checkList.filter((choice) => choice !== e.target.name));
+  };
+
+  const handleNextPage = () => {
+    if (buttonColor) {
+      router.push("/step2");
+    } else if (!buttonColor) {
+      alert("동의사항에 체크해주세요.");
+    }
+  };
+
+  useEffect(() => {
+    if (checkList.length === 2) {
+      setButtonColor(true);
+    } else {
+      setButtonColor(false);
+    }
+  }, [checkList]);
+
   return (
     <div className="w-full h-full flex flex-col">
       <span className="mx-auto mb-[60px] mt-[120px] text-[48px] font-[700]">
@@ -18,6 +51,9 @@ export const Step1: React.FC = () => {
         <div>
           <input
             type="checkbox"
+            name="terms"
+            onChange={handleCheck}
+            checked={checkList.includes("terms") ? true : false}
             className="w-[16px] h-[16px] mt-[4px] mr-[8px]"
           />
           <label id="checkbox" className="text-[15px] font-400 text-[#666666]">
@@ -32,6 +68,9 @@ export const Step1: React.FC = () => {
         <div>
           <input
             type="checkbox"
+            name="collect"
+            onChange={handleCheck}
+            checked={checkList.includes("collect") ? true : false}
             className="w-[16px] h-[16px] mt-[4px] mr-[8px]"
           />
           <label id="checkbox" className="text-[15px] font-400 text-[#666666]">
@@ -43,6 +82,9 @@ export const Step1: React.FC = () => {
       <div className="mx-auto mb-[60px]">
         <input
           type="checkbox"
+          name="all"
+          onChange={handleCheckAll}
+          checked={checkList.length === 2 ? true : false}
           className="w-[16px] h-[16px] mt-[4px] mr-[8px]"
         />
         <label id="checkbox" className="text-[15px] font-400 text-[#666666]">
@@ -50,10 +92,21 @@ export const Step1: React.FC = () => {
         </label>
       </div>
 
-      <div className="w-[310px] h-[64px] mx-auto bg-[#DDDDDD] rounded">
-        <button className="w-full h-full m-auto text-[18px]">
-          <p>다음</p>
-        </button>
+      <div className="w-[310px] h-[64px] mx-auto">
+        <div
+          className={`w-full h-full m-auto text-[18px] rounded ${
+            buttonColor ? "bg-[#057FEF]" : "bg-[#DDDDDD]"
+          }`}
+          onClick={handleNextPage}
+        >
+          <p
+            className={`text-center leading-[64px] ${
+              buttonColor ? "text-white" : "text-black"
+            }`}
+          >
+            다음
+          </p>
+        </div>
       </div>
     </div>
   );

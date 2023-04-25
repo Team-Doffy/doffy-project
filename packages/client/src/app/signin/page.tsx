@@ -1,18 +1,22 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/images/logo_AI.svg";
 import Warnning from "../../assets/images/warnning.svg";
+import ShowInput from "../../assets/images/showinput.svg";
+import HideInput from "../../assets/images/hideinput.svg";
 
 const signin: React.FC = () => {
-  // const [isShowPw, setIsShowPW] = useState<boolean>(false);
-  // const [isPwMatch, setIsPwMatch]= useState<boolean>(false);
+  const [isShowPw, setIsShowPW] = useState<boolean>(false);
+  const [isPwMatch, setIsPwMatch] = useState<boolean>(false);
 
-  // const handleShowPw = () => {
-  //   setIsShowPW(!isShowPw);
-  // };
+  const handleShowPw = () => {
+    setIsShowPW(!isShowPw);
+  };
 
-  // useEffect(() => {
-  //   setIsShowPW(true);
-  // }, []);
+  useEffect(() => {
+    setIsShowPW(true);
+  }, []);
 
   const handleMatchPw = () => {
     //백이랑 통신해서 state와 비교하기
@@ -34,23 +38,26 @@ const signin: React.FC = () => {
             />
           </div>
 
-          <div className="w-[400px] mx-auto mb-[20px] flex flex-col">
+          <div className="w-[400px] mx-auto mb-[20px] flex flex-col relative">
             <label className="mb-[8px]">비밀번호</label>
             <input
-              type="password"
-              // type={isShowPw ? "text" : "password"}
-              className="h-[40px] mb-[40px] border-x-2 border-y-2 rounded focus:outline-none p-[12px]"
+              type={isShowPw ? "password" : "text"}
+              className="h-[40px] mb-[40px] border-x-2 border-y-2 rounded focus:outline-none p-[12px] minLength={8}
+              maxLength={12}"
             />
-            {/* <button onClick={handleShowPw}>
-              {isShowPw ? "Hide" : "Show"} 보기
-            </button> */}
+            <div
+              className="absolute top-[45px] left-[360px] cursor-pointer"
+              onClick={handleShowPw}
+            >
+              {isShowPw ? <img src={HideInput} /> : <img src={ShowInput} />}
+            </div>
           </div>
-          <span>* </span>
+          {/* <span>* </span> */}
 
           <div className="w-[400px] mx-auto">
-            <button className="w-full h-[52px] m-auto mb-[16px] text-white bg-[#057FEF] rounded">
-              <p className="">로그인</p>
-            </button>
+            <div className="w-full h-[52px] m-auto mb-[16px] text-white bg-[#057FEF] leading-[52px] rounded">
+              <p className="text-center ">로그인</p>
+            </div>
           </div>
 
           <div className="w-[400px] h-[60px] mx-auto  mb-[40px] flex justify-between border-b-2">
@@ -63,15 +70,15 @@ const signin: React.FC = () => {
             </div>
 
             <div className="flex justify-around]">
-              <a href="" className="mr-[5px]">
+              <a href="/findid" className="mr-[5px]">
                 아이디 찾기
               </a>{" "}
               |{" "}
-              <a href="" className="ml-[5px] mr-[5px]">
+              <a href="/findpw" className="ml-[5px] mr-[5px]">
                 비밀번호 찾기
               </a>{" "}
               |{" "}
-              <a href="" className="ml-[5px]">
+              <a href="/signup/step1" className="ml-[5px]">
                 회원가입
               </a>
             </div>
