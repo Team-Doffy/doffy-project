@@ -38,7 +38,7 @@ dependencies {
 	runtimeOnly    'io.jsonwebtoken:jjwt-jackson:0.11.5' //토큰 파싱,검증 라이브러리
 	implementation 'org.springframework.retry:spring-retry:2.0.0'  //실패시 자동실행
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis' //레디스 라이브러리
-	implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config' // AWS 파라미터 스토어 환경변수
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config:2.2.6.RELEASE' // AWS 파라미터 스토어 환경변수
 
 }
 
