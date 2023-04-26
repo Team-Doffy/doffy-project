@@ -1,4 +1,4 @@
-package Doffy.server.test.controller;
+package Doffy.server.api_test.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
