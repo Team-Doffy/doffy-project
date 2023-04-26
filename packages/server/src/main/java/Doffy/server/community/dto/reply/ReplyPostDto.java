@@ -8,12 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ReplyPostDto {
-
-    private Long userId;
-
-    private Long replyId;
-
-    private Long commentId;
-
+    private Long boardId;
     private String replyBody;
 }

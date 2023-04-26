@@ -18,11 +18,9 @@ public class CommentTest {
         // when
         comment.setCommentId(commentId);
         comment.setCommentBody(commentBody);
-        comment.setCommentLikes(commentLikes);
 
         // then
         assertThat(comment.getCommentId()).isEqualTo(commentId);
         assertThat(comment.getCommentBody()).isEqualTo(commentBody);
-        assertThat(comment.getCommentLikes()).isEqualTo(commentLikes);
     }
 }

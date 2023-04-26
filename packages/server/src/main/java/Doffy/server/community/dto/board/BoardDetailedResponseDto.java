@@ -4,7 +4,6 @@ import Doffy.server.community.dto.comment.CommentResponseDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
 import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,10 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BoardResponseDto implements Serializable {
+public class BoardDetailedResponseDto {
+
     private Long boardId;
     private String title;
+    private String boardBody;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
+    private List<CommentResponseDto> comments;
+    private List<ReplyResponseDto> replies;
 }

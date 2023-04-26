@@ -19,13 +19,11 @@ public class BoardTest {
         board.setBoardId(boardId);
         board.setTitle(title);
         board.setBoardBody(boardBody);
-        board.setBoardLikes(boardLikes);
 
         // then
         assertThat(board.getBoardId()).isEqualTo(boardId);
         assertThat(board.getTitle()).isEqualTo(title);
         assertThat(board.getBoardBody()).isEqualTo(boardBody);
-        assertThat(board.getBoardLikes()).isEqualTo(boardLikes);
     }
 
 }

@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Builder
 public class CommentResponseDto {
     private Long commentId;
+    private Long parentId;
+    private String commentType;
     private String commentBody;
-    private Integer commentLikes;
     private LocalDateTime createdAt;
 }

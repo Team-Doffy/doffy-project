@@ -1,9 +1,6 @@
 package Doffy.server.community.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,21 +8,32 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "comment")
+@Builder
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private long commentId;
 
-    @Column(name = "comment_body")
+    private long parentId;
+
+    @Enumerated(EnumType.STRING)
+    private CommentType commentType;
+
+    @Column(columnDefinition = "TEXT")
     private String commentBody;
 
-    @Column(name = "comment_likes")
-    private int commentLikes;
-
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    public enum CommentType {
+        BOARD, REPLY
+    }
+
+    public static CommentType getCommentTypeFromString(String commentTypeString) {
+        return CommentType.valueOf(commentTypeString.toUpperCase());
+    }
 
 }

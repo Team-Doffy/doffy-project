@@ -29,7 +29,7 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final' //mapstruct library
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final' //mapstruct library
 	implementation 'org.springframework.boot:spring-boot-starter-validation' // validation library
-	runtimeOnly 'mysql:mysql-connector-java' //추후 aws rds 연동시 사용
+//	runtimeOnly 'mysql:mysql-connector-java' //추후 aws rds 연동시 사용
 	implementation 'com.auth0:java-jwt:4.3.0' // jwt 라이브러리
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // oauth2.0 라이브러리
 //	implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 시큐리티 라이브러리

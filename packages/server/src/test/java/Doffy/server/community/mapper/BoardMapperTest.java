@@ -1,55 +1,64 @@
 package Doffy.server.community.mapper;
 
-import Doffy.server.community.dto.board.BoardPostDto;
-import Doffy.server.community.dto.board.BoardResponseDto;
+import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.entity.Board;
+import Doffy.server.community.entity.Comment;
+import Doffy.server.community.entity.Reply;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 public class BoardMapperTest {
 
-    private final BoardMapper boardMapper = new BoardMapper();
+    @Autowired
+    private BoardMapper boardMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Autowired
+    private ReplyMapper replyMapper;
 
     @Test
-    public void shouldMapBoardToBoardPostDto() {
-        // given
-        BoardPostDto boardPostDto = BoardPostDto.builder()
-                .title("Test Board")
-                .boardBody("Test Content")
+    public void toBoardDetailedResponseDtoTest() {
+        // Given
+        Board board = Board.builder()
+                .boardId(1L)
+                .title("Test title")
+                .boardBody("Test board body")
+                .createdAt(LocalDateTime.now())
+                .modifiedAt(LocalDateTime.now())
                 .build();
 
-        Board board = boardMapper.toBoard(boardPostDto);
+        List<Comment> comments = new ArrayList<>();
+        comments.add(Comment.builder().commentId(1L).commentBody("Test comment 1").createdAt(LocalDateTime.now()).build());
+        comments.add(Comment.builder().commentId(2L).commentBody("Test comment 2").createdAt(LocalDateTime.now()).build());
+        board.setComments(comments);
 
-        // then
-        assertNotNull(boardPostDto);
-        assertEquals(board.getTitle(), boardPostDto.getTitle());
-        assertEquals(board.getBoardBody(), boardPostDto.getBoardBody());
-    }
+        List<Reply> replies = new ArrayList<>();
+        Reply reply = Reply.builder().replyId(1L).replyBody("Test reply").createdAt(LocalDateTime.now()).build();
+        reply.setComments(comments);
+        replies.add(reply);
+        board.setReplies(replies);
 
-    @Test
-    public void shouldMapBoardToBoardResponseDto() {
-        // given
-        Board board = new Board();
-        board.setBoardId(1L);
-        board.setTitle("Test Board");
-        board.setBoardBody("Test Content");
-        board.setBoardLikes(10);
-        board.setCreatedAt(LocalDateTime.now());
-        board.setModifiedAt(LocalDateTime.now());
+        // When
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board, commentMapper, replyMapper);
 
-        // when
-        BoardResponseDto boardResponseDto = boardMapper.toBoardResponseDto(board);
-
-        // then
-        assertNotNull(boardResponseDto);
-        assertEquals(board.getBoardId(), boardResponseDto.getBoardId());
-        assertEquals(board.getTitle(), boardResponseDto.getTitle());
-        assertEquals(board.getBoardBody(), boardResponseDto.getBoardBody());
-        assertEquals(board.getBoardLikes(), boardResponseDto.getBoardLikes());
-        assertEquals(board.getCreatedAt(), boardResponseDto.getCreatedAt());
-        assertEquals(board.getModifiedAt(), boardResponseDto.getModifiedAt());
+        // Then
+        assertEquals(board.getBoardId(), response.getBoardId());
+        assertEquals(board.getTitle(), response.getTitle());
+        assertEquals(board.getBoardBody(), response.getBoardBody());
+        assertEquals(board.getCreatedAt(), response.getCreatedAt());
+        assertEquals(board.getModifiedAt(), response.getModifiedAt());
+        assertEquals(comments.size(), response.getComments().size());
+        assertEquals(replies.size(), response.getReplies().size());
+        assertEquals(reply.getComments().size(), response.getReplies().get(0).getComments().size());
     }
 }

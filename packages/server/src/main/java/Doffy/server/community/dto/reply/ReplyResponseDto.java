@@ -14,10 +14,8 @@ import java.util.List;
 public class ReplyResponseDto {
     private Long replyId;
     private String replyBody;
-    private Integer replyLikes;
     private Boolean isAccepted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-
     private List<CommentResponseDto> comments;
 }

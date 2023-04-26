@@ -1,19 +1,19 @@
 package Doffy.server.community.entity;
 
 import Doffy.server.community.entity.Comment;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "reply")
+@Builder
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,18 +21,21 @@ public class Reply {
     private long replyId;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
+    private Board board;
 
     @Column(name = "reply_body")
     private String replyBody;
-
-    @Column(name = "reply_likes")
-    private int replyLikes;
 
     @Column(name = "is_accepted")
     private boolean isAccepted;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "modified_at")
+    private LocalDateTime modifiedAt;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
 }

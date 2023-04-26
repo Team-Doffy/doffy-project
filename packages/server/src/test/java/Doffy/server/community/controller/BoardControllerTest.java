@@ -49,7 +49,6 @@ public class BoardControllerTest {
         boardResponseDto = BoardResponseDto.builder()
                 .boardId(1L)
                 .title("Test Board")
-                .boardBody("Test Content")
                 .build();
     }
 
