@@ -5,6 +5,7 @@ packages/client/yarn-error.log
 packages/client/node_modules/
 packages/client/.next/
 
+<<<<<<< HEAD
 ### Server ###
 HELP.md
 .gradle
@@ -53,3 +54,9 @@ packages/server/*.yml
 packages/server/gradlew
 packages/server/gradlew.bat
 packages/server/src/main/resources/*.yml
+
+
+### server ignore ###
+packages/server/src/main/resources/application.yml
+packages/server/src/main/resources/application.properties
+
