@@ -28,6 +28,10 @@ public class Comment {
 
     private LocalDateTime createdAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
+
     public enum CommentType {
         BOARD, REPLY
     }
