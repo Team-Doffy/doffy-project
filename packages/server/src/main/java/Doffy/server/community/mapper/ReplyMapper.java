@@ -22,6 +22,8 @@ public class ReplyMapper {
     public ReplyResponseDto toReplyResponseDto(Reply reply, List<CommentResponseDto> comments){
         ReplyResponseDto response = ReplyResponseDto.builder()
                 .replyId(reply.getReplyId())
+                .userId(reply.getUser().getUserId())
+                .nickname(reply.getUser().getNickname())
                 .replyBody(reply.getReplyBody())
                 .isAccepted(reply.isAccepted())
                 .createdAt(reply.getCreatedAt())

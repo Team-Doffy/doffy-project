@@ -23,6 +23,8 @@ public class BoardMapper {
     public BoardResponseDto toBoardResponseDto(Board board){
         BoardResponseDto response = BoardResponseDto.builder()
                 .boardId(board.getBoardId())
+                .userId(board.getUser().getUserId())
+                .nickname(board.getUser().getNickname())
                 .title(board.getTitle())
                 .createdAt(board.getCreatedAt())
                 .modifiedAt(board.getModifiedAt())
@@ -46,6 +48,8 @@ public class BoardMapper {
 
         BoardDetailedResponseDto response = BoardDetailedResponseDto.builder()
                 .boardId(board.getBoardId())
+                .userId(board.getUser().getUserId())
+                .nickname(board.getUser().getNickname())
                 .title(board.getTitle())
                 .boardBody(board.getBoardBody())
                 .createdAt(board.getCreatedAt())

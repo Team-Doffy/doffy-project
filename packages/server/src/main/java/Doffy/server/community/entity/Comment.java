@@ -1,5 +1,7 @@
 package Doffy.server.community.entity;
 
+import Doffy.server.global.audit.BaseEntity;
+import Doffy.server.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,11 +14,15 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comment")
 @Builder
-public class Comment {
+public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private long commentId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private long parentId;
 

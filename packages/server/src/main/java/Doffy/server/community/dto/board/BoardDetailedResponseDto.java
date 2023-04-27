@@ -15,6 +15,8 @@ import java.util.List;
 public class BoardDetailedResponseDto {
 
     private Long boardId;
+    private int userId;
+    private String nickname;
     private String title;
     private String boardBody;
     private LocalDateTime createdAt;

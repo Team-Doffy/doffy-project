@@ -13,17 +13,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/api/v1/community")
+@RequestMapping("/api/v1/community/boards")
 @Slf4j
 @RequiredArgsConstructor
-@Api(value = "Community API")
+@Api(value = "Community Board API")
 public class BoardController {
     private final BoardService boardService;
     private final BoardMapper boardMapper;
@@ -35,5 +34,41 @@ public class BoardController {
         Board board = boardService.createBoard(boardPostDto);
         BoardResponseDto response = boardMapper.toBoardResponseDto(board);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @ApiOperation(value = "Get all boards with pagination", response = List.class)
+    @GetMapping
+    public ResponseEntity<List<BoardResponseDto>> getAllBoards(
+            @ApiParam(value = "Page number (0-based)", defaultValue = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @ApiParam(value = "Number of items per page", defaultValue = "20") @RequestParam(required = false, defaultValue = "20") int size) {
+        List<BoardResponseDto> boards = boardService.findAll(page, size);
+        return ResponseEntity.ok(boards);
+    }
+
+    @ApiOperation(value = "Get a board by ID", response = BoardResponseDto.class)
+    @GetMapping("/{boardId}")
+    public ResponseEntity<BoardResponseDto> getBoard(
+            @ApiParam(value = "Board ID", required = true) @PathVariable long boardId) {
+        Board board = boardService.findBoard(boardId);
+        BoardResponseDto response = boardMapper.toBoardResponseDto(board);
+        return ResponseEntity.ok(response);
+    }
+
+    @ApiOperation(value = "Update a board by ID", response = BoardResponseDto.class)
+    @PutMapping("/{boardId}")
+    public ResponseEntity<BoardResponseDto> updateBoard(
+            @ApiParam(value = "Board ID", required = true) @PathVariable long boardId,
+            @ApiParam(value = "Board information", required = true) @RequestBody BoardPostDto boardPostDto) {
+        Board board = boardService.updateBoard(boardId, boardPostDto);
+        BoardResponseDto response = boardMapper.toBoardResponseDto(board);
+        return ResponseEntity.ok(response);
+    }
+
+    @ApiOperation(value = "Delete a board by ID")
+    @DeleteMapping("/{boardId}")
+    public ResponseEntity<Void> deleteBoard(
+            @ApiParam(value = "Board ID", required = true) @PathVariable long boardId) {
+        boardService.deleteBoard(boardId);
+        return ResponseEntity.noContent().build();
     }
 }

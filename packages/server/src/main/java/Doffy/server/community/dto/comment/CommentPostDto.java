@@ -11,6 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class CommentPostDto implements Serializable {
     private long parentId;
+    private int userId;
     private String  commentType;
     private String commentBody;
 }

@@ -15,8 +15,12 @@ import java.util.List;
 @Builder
 public class BoardResponseDto implements Serializable {
     private Long boardId;
+    private int userId;
+    private String nickname;
     private String title;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private int likeCount;
+    private int replyCount;
 
 }

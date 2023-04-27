@@ -6,6 +6,7 @@ packages/client/node_modules/
 packages/client/.next/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Server ###
 HELP.md
 .gradle
@@ -60,3 +61,9 @@ packages/server/src/main/resources/*.yml
 packages/server/src/main/resources/application.yml
 packages/server/src/main/resources/application.properties
 
+=======
+
+### server ignore ###
+packages/server/src/main/resources/application.yml
+packages/server/src/main/resources/application.properties
+>>>>>>> 427bbd8a7620f26f33ba6b1768f9ff3a1d062114

@@ -9,5 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ReplyPostDto {
     private Long boardId;
+    private int userId;
     private String replyBody;
 }

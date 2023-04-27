@@ -1,6 +1,8 @@
 package Doffy.server.community.entity;
 
 import Doffy.server.community.entity.Comment;
+import Doffy.server.global.audit.BaseEntity;
+import Doffy.server.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,11 +16,15 @@ import java.util.List;
 @Entity
 @Table(name = "reply")
 @Builder
-public class Reply {
+public class Reply extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
     private long replyId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "board_id", referencedColumnName = "board_id")

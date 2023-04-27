@@ -17,6 +17,8 @@ public class CommentMapper {
     public CommentResponseDto toCommentResponseDto(Comment comment){
         CommentResponseDto response = CommentResponseDto.builder()
                 .commentId(comment.getCommentId())
+                .userId(comment.getUser().getUserId())
+                .nickname(comment.getUser().getNickname())
                 .parentId(comment.getParentId())
                 .commentType(comment.getCommentType().toString())
                 .commentBody(comment.getCommentBody())

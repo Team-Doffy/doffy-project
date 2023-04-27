@@ -1,5 +1,7 @@
 package Doffy.server.community.entity;
 
+import Doffy.server.global.audit.BaseEntity;
+import Doffy.server.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,12 +15,16 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name = "Board")
-public class Board {
+public class Board extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private long boardId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "title")
     private String title;
@@ -37,5 +43,6 @@ public class Board {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;
+
 }
 

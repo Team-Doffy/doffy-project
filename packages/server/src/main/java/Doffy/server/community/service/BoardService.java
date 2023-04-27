@@ -1,28 +1,52 @@
 package Doffy.server.community.service;
 
 import Doffy.server.community.dto.board.BoardPostDto;
+import Doffy.server.community.dto.board.BoardResponseDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.mapper.BoardMapper;
 import Doffy.server.community.repository.BoardRepository;
+import Doffy.server.global.exception.BusinessLogicException;
+import Doffy.server.global.exception.ExceptionCode;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
 
-    public BoardService(BoardRepository boardRepository, BoardMapper boardMapper) {
-        this.boardRepository = boardRepository;
-        this.boardMapper = boardMapper;
-    }
-
     public Board createBoard(BoardPostDto boardPostDto) {
         Board board = boardMapper.toBoard(boardPostDto);
         return boardRepository.save(board);
+    }
+
+    public Board updateBoard(long boardId, BoardPostDto boardPostDto) {
+        Board board = findVerifiedBoard(boardId);
+        board.setBoardBody(boardPostDto.getBoardBody());
+        board.setModifiedAt(LocalDateTime.now());
+        return boardRepository.save(board);
+    }
+
+    public void deleteBoard(long boardId) {
+        Board board = findVerifiedBoard(boardId);
+        boardRepository.delete(board);
+    }
+
+    public List<BoardResponseDto> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return boardRepository.findAll(pageable)
+                .stream()
+                .map(boardMapper::toBoardResponseDto)
+                .collect(Collectors.toList());
     }
 
     public Board findBoard(long boardId){
@@ -31,6 +55,6 @@ public class BoardService {
 
     public Board findVerifiedBoard(long boardId){
         return boardRepository.findById(boardId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Board not found with ID " + boardId));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND));
     }
 }
