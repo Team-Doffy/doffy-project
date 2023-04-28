@@ -19,5 +19,5 @@ public class ReplyResponseDto {
     private Boolean isAccepted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    private List<CommentResponseDto> comments;
+    private List<CommentResponseDto> replyComments;
 }

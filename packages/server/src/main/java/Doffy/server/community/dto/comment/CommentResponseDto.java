@@ -1,8 +1,10 @@
 package Doffy.server.community.dto.comment;
 
+import Doffy.server.community.dto.reply.ReplyResponseDto;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +19,6 @@ public class CommentResponseDto {
     private String commentType;
     private String commentBody;
     private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+    private List<ReplyResponseDto> replies;
 }

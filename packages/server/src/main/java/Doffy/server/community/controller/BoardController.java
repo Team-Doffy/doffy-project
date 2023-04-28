@@ -1,10 +1,16 @@
 package Doffy.server.community.controller;
 
+import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
 import Doffy.server.community.entity.Board;
+import Doffy.server.community.entity.Reply;
 import Doffy.server.community.mapper.BoardMapper;
+import Doffy.server.community.mapper.CommentMapper;
+import Doffy.server.community.mapper.ReplyMapper;
 import Doffy.server.community.service.BoardService;
+import Doffy.server.user.entity.User;
+import Doffy.server.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,6 +32,10 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final BoardMapper boardMapper;
+    private final CommentMapper commentMapper;
+    private final ReplyMapper replyMapper;
+    private final User user;
+    private final UserService userService;
 
     @ApiOperation(value = "Create a new board", response = BoardResponseDto.class)
     @PostMapping
@@ -53,6 +63,32 @@ public class BoardController {
         BoardResponseDto response = boardMapper.toBoardResponseDto(board);
         return ResponseEntity.ok(response);
     }
+
+    @ApiOperation(value = "Get a board with comments, replies, and reply comments by ID", response = BoardDetailedResponseDto.class)
+    @GetMapping("/{boardId}/detailed")
+    public ResponseEntity<BoardDetailedResponseDto> getBoardWithCommentsAndReplies(
+            @ApiParam(value = "Board ID", required = true) @PathVariable long boardId) {
+        Board board = boardService.findBoardWithCommentsAndReplies(boardId);
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDtoWithCommentsAndReplies(board, commentMapper, replyMapper);
+        return ResponseEntity.ok(response);
+    }
+
+//    @ApiOperation(value = "Get all boards by user ID or nickname", response = List.class)
+//    @GetMapping("/user")
+//    public ResponseEntity<List<BoardResponseDto>> getAllBoardsByUser(
+//            @ApiParam(value = "User ID") @RequestParam(required = false) Long userId,
+//            @ApiParam(value = "User nickname") @RequestParam(required = false) String nickname) {
+//        List<BoardResponseDto> boards;
+//        if (userId != null) {
+//            User user = userService.findUser(userId);
+//            boards = boardService.findBoardsByUser(user);
+//        } else if (nickname != null) {
+//            boards = boardService.findBoardsByUserNickname(nickname);
+//        } else {
+//            throw new IllegalArgumentException("Either user ID or nickname must be provided");
+//        }
+//        return ResponseEntity.ok(boards);
+//    }
 
     @ApiOperation(value = "Update a board by ID", response = BoardResponseDto.class)
     @PutMapping("/{boardId}")

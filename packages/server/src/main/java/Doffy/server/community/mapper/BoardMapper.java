@@ -32,7 +32,7 @@ public class BoardMapper {
         return response;
     }
 
-    public BoardDetailedResponseDto toBoardDetailedResponseDto(Board board, CommentMapper commentMapper, ReplyMapper replyMapper){
+    public BoardDetailedResponseDto toBoardDetailedResponseDtoWithCommentsAndReplies(Board board, CommentMapper commentMapper, ReplyMapper replyMapper) {
         List<CommentResponseDto> comments = board.getComments().stream()
                 .map(commentMapper::toCommentResponseDto)
                 .collect(Collectors.toList());

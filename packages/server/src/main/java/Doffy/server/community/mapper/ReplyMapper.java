@@ -28,7 +28,7 @@ public class ReplyMapper {
                 .isAccepted(reply.isAccepted())
                 .createdAt(reply.getCreatedAt())
                 .modifiedAt(reply.getModifiedAt())
-                .comments(comments)
+                .replyComments(comments)
                 .build();
         return response;
     }

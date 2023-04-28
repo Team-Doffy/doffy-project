@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
-    List<Reply> findByUser(User user);
+    List<Reply> findByUserId(long userId);
     Page<Reply> findAll(Pageable pageable);
+    List<Reply> findByBoardId(long boardId);
 }

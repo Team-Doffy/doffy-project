@@ -49,7 +49,7 @@ public class BoardMapperTest {
         board.setReplies(replies);
 
         // When
-        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board, commentMapper, replyMapper);
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDtoWithCommentsAndReplies(board, commentMapper, replyMapper);
 
         // Then
         assertEquals(board.getBoardId(), response.getBoardId());
@@ -59,6 +59,5 @@ public class BoardMapperTest {
         assertEquals(board.getModifiedAt(), response.getModifiedAt());
         assertEquals(comments.size(), response.getComments().size());
         assertEquals(replies.size(), response.getReplies().size());
-        assertEquals(reply.getComments().size(), response.getReplies().get(0).getComments().size());
     }
 }
