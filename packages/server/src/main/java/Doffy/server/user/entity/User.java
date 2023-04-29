@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
 
     @Column
     @Email(message = "올바른 이메일이 아닙니다.")
@@ -25,6 +25,8 @@ public class User {
     private String password;
 
     @Column
+    private String name;
+    @Column
     private String nickname;
 
     @Column
@@ -32,4 +34,10 @@ public class User {
 
     @Column
     private int score;
+
+    public User(String username, String name, String nickname){
+        this.username = username;
+        this.name = name;
+        this.nickname = nickname;
+    }
 }
