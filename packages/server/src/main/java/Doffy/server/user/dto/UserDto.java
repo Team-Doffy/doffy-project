@@ -30,11 +30,17 @@ public class UserDto {
         @Email(message = "올바른 이메일이 아닙니다.")
         @NotBlank(message = "이메일은 공백이 아니여야 합니다.")
         String username;
+
         @NotBlank(message = "비밀번호는 공백이 아니여야 합니다.")
         String password;
+
+        @NotBlank(message = "이름은 공백이 아니여야 합니다.")
+        String name;
+
         @NotBlank(message = "닉네임은 공백이 아니여야 합니다.")
         String nickname;
-        boolean terms;
+
+//        boolean terms;
     }
 
 }

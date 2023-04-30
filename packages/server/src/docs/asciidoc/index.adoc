@@ -1,0 +1,30 @@
+= Doffy API 문서    // (1)
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+Hyun Hwa Cho <gusghk115@gmail.com>   // (2)
+
+v1.0.0, 2023.04.28    // (3)
+
+// (4)
+***
+== UserController
+=== 회원 등록
+.curl-request
+include::{snippets}/signup-user/curl-request.adoc[]
+
+.http-request
+include::{snippets}/signup-user/http-request.adoc[]
+
+.request-fields
+include::{snippets}/signup-user/request-fields.adoc[]
+
+.http-response
+include::{snippets}/signup-user/http-response.adoc[]
+
+.response-headers
+include::{snippets}/signup-user/response-headers.adoc[]
+
