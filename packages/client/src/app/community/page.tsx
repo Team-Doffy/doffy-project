@@ -1,5 +1,7 @@
 import Image from "next/image";
-import user from '../../public/111.svg';
+import user from "../../public/111.svg";
+import info from "../../public/icons/Vector.svg";
+import rightArrow from "../../public/icons/rightArrow.svg";
 
 function Community() {
   return (
@@ -70,23 +72,103 @@ function Community() {
               </div>
             </div>
             <div className="h-359">
-              <div className="bg-white border rounded-lg p-5 flex flex-col gap-y-4">
-                <h3 className="font-pretendard not-italic font-bold text-18 leading-21 text-text-color">사용자 랭킹</h3>
-				<div className="border border-border-color" />
-				<div className="flex flex-col w-full">
-					<div className="flex justify-between w-full">
-						<div>
-							1
-						</div>
-						<Image src={user} alt="img"/>
-						<div>
-							코린이
-						</div>
-						<div>
-							5600
-						</div>
-					</div>
-				</div>
+              <div className="bg-white border rounded-t-lg p-5 flex flex-col gap-y-4 relative">
+                <div className="flex justify-between items-center">
+                  <h3 className="font-pretendard not-italic font-bold text-18 leading-21 text-text-color">
+                    사용자 랭킹
+                  </h3>
+                  <div className="flex gap-1">
+                    <Image src={info} width={10} height={10} alt="info" />
+                    <h4 className="font-pretendard not-italic font-normal text-13 leading-16 text-score-color">
+                      점수 산정 방식
+                    </h4>
+                  </div>
+                </div>
+                <div className="border border-border-color" />
+                <div className="flex flex-col w-full gap-y-4">
+                  <div className="flex w-full items-center h-8">
+                    <div className="font-pretended not-italic font-medium text-16 leading-19">
+                      <h4>1</h4>
+                    </div>
+                    <div className="w-12 h-10 flex justify-center items-center px-2">
+                      <div className="bg-user-default-color border rounded-2xl w-8 h-8" />
+                    </div>
+                    <div className="grow font-pretendard not-italic font-medium text-15 leading-18">
+                      <h4>코린이1</h4>
+                    </div>
+                    <div className="font-pretendard not-italic font-normal text-15 leading-18 text-score-color">
+                      <h4>5600</h4>
+                    </div>
+                  </div>
+
+                  <div className="flex w-full items-center h-8">
+                    <div className="font-pretended not-italic font-medium text-16 leading-19">
+                      <h4>2</h4>
+                    </div>
+                    <div className="w-12 h-10 flex justify-center items-center px-2">
+                      <div className="bg-user-default-color border rounded-2xl w-8 h-8" />
+                    </div>
+                    <div className="grow font-pretendard not-italic font-medium text-15 leading-18">
+                      <h4>코린이2</h4>
+                    </div>
+                    <div className="font-pretendard not-italic font-normal text-15 leading-18 text-score-color">
+                      <h4>4600</h4>
+                    </div>
+                  </div>
+
+                  <div className="flex w-full items-center h-8">
+                    <div className="font-pretended not-italic font-medium text-16 leading-19">
+                      <h4>3</h4>
+                    </div>
+                    <div className="w-12 h-10 flex justify-center items-center px-2">
+                      <div className="bg-user-default-color border rounded-2xl w-8 h-8" />
+                    </div>
+                    <div className="grow font-pretendard not-italic font-medium text-15 leading-18">
+                      <h4>코린이3</h4>
+                    </div>
+                    <div className="font-pretendard not-italic font-normal text-15 leading-18 text-score-color">
+                      <h4>4400</h4>
+                    </div>
+                  </div>
+
+                  <div className="flex w-full items-center h-8">
+                    <div className="font-pretended not-italic font-medium text-16 leading-19">
+                      <h4>4</h4>
+                    </div>
+                    <div className="w-12 h-10 flex justify-center items-center px-2">
+                      <div className="bg-user-default-color border rounded-2xl w-8 h-8" />
+                    </div>
+                    <div className="grow font-pretendard not-italic font-medium text-15 leading-18">
+                      <h4>코린이4</h4>
+                    </div>
+                    <div className="font-pretendard not-italic font-normal text-15 leading-18 text-score-color">
+                      <h4>3800</h4>
+                    </div>
+                  </div>
+
+                  <div className="flex w-full items-center h-8">
+                    <div className="font-pretended not-italic font-medium text-16 leading-19">
+                      <h4>5</h4>
+                    </div>
+                    <div className="w-12 h-10 flex justify-center items-center px-2">
+                      <div className="bg-user-default-color border rounded-2xl w-8 h-8" />
+                    </div>
+                    <div className="grow font-pretendard not-italic font-medium text-15 leading-18">
+                      <h4>코린이5</h4>
+                    </div>
+                    <div className="font-pretendard not-italic font-normal text-15 leading-18 text-score-color">
+                      <h4>2900</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center h-42 border rounded-b-lg">
+                <div className="flex gap-1 items-center">
+                  <h3 className="font-pretendard not-italic font-medium text-15 leading-18 text-score-color">
+                    전체 랭킹
+                  </h3>
+                  <Image src={rightArrow} alt="right" className="pb-0.5" />
+                </div>
               </div>
             </div>
           </div>
