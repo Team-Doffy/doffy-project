@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommentResponseDto {
-    private Long commentId;
-    private Long parentId;
-    private int userId;
+public class BoardCommentResponseDto {
+    private Long boardCommentId;
+    private Long boardId;
+    private Long userId;
     private String nickname;
-    private String commentType;
-    private String commentBody;
+    private String boardCommentBody;
     private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 }

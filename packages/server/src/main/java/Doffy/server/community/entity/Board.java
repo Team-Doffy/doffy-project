@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name = "Board")
+@Table(name = "board")
 public class Board extends BaseEntity {
 
     @Id
@@ -39,7 +39,7 @@ public class Board extends BaseEntity {
     private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    private List<BoardComment> boardComments;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;

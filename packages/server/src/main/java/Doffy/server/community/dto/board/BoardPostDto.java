@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 public class BoardPostDto implements Serializable {
 
-    private int userId;
+    private Long userId;
 
     private String title;
 

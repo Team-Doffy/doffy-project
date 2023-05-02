@@ -1,11 +1,9 @@
 package Doffy.server.community.mapper;
 
-import Doffy.server.community.dto.comment.CommentPostDto;
-import Doffy.server.community.dto.comment.CommentResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentResponseDto;
 import Doffy.server.community.dto.reply.ReplyPostDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
 import Doffy.server.community.entity.Board;
-import Doffy.server.community.entity.Comment;
 import Doffy.server.community.entity.Reply;
 import org.springframework.stereotype.Component;
 
@@ -19,16 +17,19 @@ public class ReplyMapper {
                 .replyBody(replyPostDto.getReplyBody())
                 .build();
     }
-    public ReplyResponseDto toReplyResponseDto(Reply reply, List<CommentResponseDto> comments){
+
+    public ReplyResponseDto toReplyResponseDto(Reply reply){
+        Long userId = reply.getUser() != null ? reply.getUser().getUserId() : null;
+        String nickname = reply.getUser() != null ? reply.getUser().getNickname() : null;
+
         ReplyResponseDto response = ReplyResponseDto.builder()
                 .replyId(reply.getReplyId())
-                .userId(reply.getUser().getUserId())
-                .nickname(reply.getUser().getNickname())
+                .userId(userId)
+                .nickname(nickname)
                 .replyBody(reply.getReplyBody())
                 .isAccepted(reply.isAccepted())
                 .createdAt(reply.getCreatedAt())
                 .modifiedAt(reply.getModifiedAt())
-                .comments(comments)
                 .build();
         return response;
     }

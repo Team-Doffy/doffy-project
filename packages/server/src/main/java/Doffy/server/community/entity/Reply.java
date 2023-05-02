@@ -1,6 +1,5 @@
 package Doffy.server.community.entity;
 
-import Doffy.server.community.entity.Comment;
 import Doffy.server.global.audit.BaseEntity;
 import Doffy.server.user.entity.User;
 import lombok.*;
@@ -43,5 +42,5 @@ public class Reply extends BaseEntity {
     private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    private List<BoardComment> boardComments;
 }

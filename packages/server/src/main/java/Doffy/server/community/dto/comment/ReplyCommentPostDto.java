@@ -9,9 +9,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommentPostDto implements Serializable {
-    private long parentId;
-    private int userId;
-    private String  commentType;
-    private String commentBody;
+public class ReplyCommentPostDto implements Serializable {
+    private Long replyId;
+    private Long userId;
+    private String replyCommentBody;
 }

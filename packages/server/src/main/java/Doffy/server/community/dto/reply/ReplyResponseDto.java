@@ -1,6 +1,6 @@
 package Doffy.server.community.dto.reply;
 
-import Doffy.server.community.dto.comment.CommentResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentResponseDto;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,11 +13,10 @@ import java.util.List;
 @Builder
 public class ReplyResponseDto {
     private Long replyId;
-    private int userId;
+    private Long userId;
     private String nickname;
     private String replyBody;
     private Boolean isAccepted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    private List<CommentResponseDto> comments;
 }

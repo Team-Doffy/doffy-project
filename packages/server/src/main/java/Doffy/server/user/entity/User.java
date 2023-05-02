@@ -1,10 +1,14 @@
 package Doffy.server.user.entity;
 
+import Doffy.server.community.entity.Board;
+import Doffy.server.community.entity.BoardComment;
+import Doffy.server.community.entity.Reply;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Builder
@@ -34,6 +38,16 @@ public class User {
 
     @Column
     private int score;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Board> boards;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BoardComment> boardComments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reply> replies;
 
     public User(String username, String name, String nickname){
         this.username = username;

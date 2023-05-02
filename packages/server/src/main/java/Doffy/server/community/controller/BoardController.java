@@ -55,7 +55,7 @@ public class BoardController {
     }
 
     @ApiOperation(value = "Update a board by ID", response = BoardResponseDto.class)
-    @PutMapping("/{boardId}")
+    @PatchMapping("/{boardId}")
     public ResponseEntity<BoardResponseDto> updateBoard(
             @ApiParam(value = "Board ID", required = true) @PathVariable long boardId,
             @ApiParam(value = "Board information", required = true) @RequestBody BoardPostDto boardPostDto) {
