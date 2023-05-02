@@ -1,5 +1,6 @@
 package Doffy.server.community.repository;
 
+import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.user.entity.User;
 import org.springframework.data.domain.Page;
@@ -13,4 +14,5 @@ import java.util.List;
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
     List<Reply> findByUser(User user);
     Page<Reply> findAll(Pageable pageable);
+    List<Reply> findByBoard(Board board);
 }

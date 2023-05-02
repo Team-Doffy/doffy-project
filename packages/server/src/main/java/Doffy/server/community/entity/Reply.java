@@ -26,7 +26,7 @@ public class Reply extends BaseEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
+    @JoinColumn(name = "board_id")
     private Board board;
 
     @Column(name = "reply_body")

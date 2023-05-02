@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findByUser(User user);
     Page<Board> findAll(Pageable pageable);
+
 }

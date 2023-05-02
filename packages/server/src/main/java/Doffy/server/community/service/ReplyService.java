@@ -11,12 +11,13 @@ import Doffy.server.global.exception.BusinessLogicException;
 import Doffy.server.global.exception.ExceptionCode;
 import Doffy.server.user.entity.User;
 import Doffy.server.user.repository.UserRepository;
+import Doffy.server.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,9 @@ public class  ReplyService {
     private final ReplyRepository replyRepository;
     private final UserRepository userRepository;
     private final ReplyMapper replyMapper;
+    private final BoardService boardService;
+    private final UserService userService;
+
     public Reply createReply(ReplyPostDto replyPostDto) {
         User user = userRepository.findById(replyPostDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
         Board board = new Board();
@@ -38,7 +42,6 @@ public class  ReplyService {
     public Reply updateReply(long replyId, ReplyPostDto replyPostDto) {
         Reply reply = findVerifiedReply(replyId);
         reply.setReplyBody(replyPostDto.getReplyBody());
-        reply.setModifiedAt(LocalDateTime.now());
         return replyRepository.save(reply);
     }
 
@@ -54,6 +57,25 @@ public class  ReplyService {
                 .map(reply -> replyMapper.toReplyResponseDto(reply))
                 .collect(Collectors.toList());
     }
+
+    public List<ReplyResponseDto> findRepliesByBoard(long boardId) {
+        Board getBoard = boardService.findBoard(boardId);
+        List<Reply> replies = replyRepository.findByBoard(getBoard);
+        List<ReplyResponseDto> responseDtos = replies.stream()
+                .map(reply -> replyMapper.toReplyResponseDto(reply))
+                .collect(Collectors.toList());
+        return responseDtos;
+    }
+
+//    public List<ReplyResponseDto> findRepliesByUser(String username) {
+//        User getUser = userService.verifyExistsUsername(username);
+//        List<Reply> replies = replyRepository.findByUser(getUser);
+//        List<ReplyResponseDto> responseDtos = replies.stream()
+//                .map(reply -> replyMapper.toReplyResponseDto(reply))
+//                .collect(Collectors.toList());
+//        return responseDtos;
+//    }
+
 
     public Reply findReply(long replyId) {
         return findVerifiedReply(replyId);

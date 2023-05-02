@@ -3,6 +3,7 @@ package Doffy.server.community.mapper;
 import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentResponseDto;
 import Doffy.server.community.entity.Board;
 import org.springframework.stereotype.Component;
 
@@ -27,20 +28,8 @@ public class BoardMapper {
         return response;
     }
 
-    public BoardDetailedResponseDto toBoardDetailedResponseDto(Board board){
-//        List<CommentResponseDto> comments = board.getComments().stream()
-//                .map(commentMapper::toCommentResponseDto)
-//                .collect(Collectors.toList());
-//
-//        List<ReplyResponseDto> replies = board.getReplies().stream()
-//                .map(reply -> {
-//                    List<CommentResponseDto> replyComments = reply.getComments().stream()
-//                            .map(commentMapper::toCommentResponseDto)
-//                            .collect(Collectors.toList());
-//                    return replyMapper.toReplyResponseDto(reply, replyComments);
-//                })
-//                .collect(Collectors.toList());
 
+    public BoardDetailedResponseDto toBoardDetailedResponseDtoWithCommentsAndReplies(Board board) {
         BoardDetailedResponseDto response = BoardDetailedResponseDto.builder()
                 .boardId(board.getBoardId())
                 .userId(board.getUser().getUserId())
@@ -49,7 +38,6 @@ public class BoardMapper {
                 .boardBody(board.getBoardBody())
                 .createdAt(board.getCreatedAt())
                 .modifiedAt(board.getModifiedAt())
-
                 .build();
 
         return response;

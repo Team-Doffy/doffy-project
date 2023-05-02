@@ -1,10 +1,14 @@
 package Doffy.server.community.controller;
 
+import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
 import Doffy.server.community.entity.Board;
+
 import Doffy.server.community.mapper.BoardMapper;
+
 import Doffy.server.community.service.BoardService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

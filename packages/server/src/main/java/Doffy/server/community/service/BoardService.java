@@ -7,6 +7,7 @@ import Doffy.server.community.mapper.BoardMapper;
 import Doffy.server.community.repository.BoardRepository;
 import Doffy.server.global.exception.BusinessLogicException;
 import Doffy.server.global.exception.ExceptionCode;
+import Doffy.server.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -47,6 +48,14 @@ public class BoardService {
                 .stream()
                 .map(boardMapper::toBoardResponseDto)
                 .collect(Collectors.toList());
+    }
+
+    public List<BoardResponseDto> findBoardsByUser(User user) {
+        List<Board> boards = boardRepository.findByUser(user);
+        List<BoardResponseDto> responseDtos = boards.stream()
+                .map(board -> boardMapper.toBoardResponseDto(board))
+                .collect(Collectors.toList());
+        return responseDtos;
     }
 
     public Board findBoard(long boardId){
