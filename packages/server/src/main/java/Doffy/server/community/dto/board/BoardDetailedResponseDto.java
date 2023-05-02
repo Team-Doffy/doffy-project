@@ -18,7 +18,4 @@ public class BoardDetailedResponseDto {
     private String boardBody;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-
-//    private List<CommentResponseDto> comments;
-//    private List<ReplyResponseDto> replies;
 }

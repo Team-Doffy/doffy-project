@@ -1,9 +1,7 @@
 package Doffy.server.community.mapper;
 
-import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
-import Doffy.server.community.dto.comment.BoardCommentResponseDto;
 import Doffy.server.community.entity.Board;
 import org.springframework.stereotype.Component;
 
@@ -27,20 +25,4 @@ public class BoardMapper {
                 .build();
         return response;
     }
-
-
-    public BoardDetailedResponseDto toBoardDetailedResponseDtoWithCommentsAndReplies(Board board) {
-        BoardDetailedResponseDto response = BoardDetailedResponseDto.builder()
-                .boardId(board.getBoardId())
-                .userId(board.getUser().getUserId())
-                .nickname(board.getUser().getNickname())
-                .title(board.getTitle())
-                .boardBody(board.getBoardBody())
-                .createdAt(board.getCreatedAt())
-                .modifiedAt(board.getModifiedAt())
-                .build();
-
-        return response;
-    }
-
 }
