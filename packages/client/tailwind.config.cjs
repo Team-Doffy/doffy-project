@@ -4,7 +4,9 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        27: "1.688rem"
+        27: "1.688rem",
+        120: "7.5rem",
+        352: "22rem"
       },
       height: {
         18: "1.125rem",
@@ -21,7 +23,8 @@ module.exports = {
         "community-main": "14.75rem 82.2%"
       },
       gridTemplateRows: {
-        "community-main": "100%"
+        "community-main": "100%",
+        "content-area": "minmax(0, 13.563rem)"
       },
       fontFamily: {
         pretendard: "Pretendard"

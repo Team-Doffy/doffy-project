@@ -172,7 +172,19 @@ function Community() {
               </div>
             </div>
           </div>
-          <div>33</div>
+
+          <div className="flex flex-col">
+            <div className="flex h-10 gap-2.5">
+              <div className="border w-40">드롭다운1</div>
+              <div className="border w-40">드롭다운2</div>
+              <div className="h-full grow">
+                <input type="text" className="border h-full w-352" />
+                <button className="border w-12 h-full">11</button>
+              </div>
+              <button className="border w-120">11</button>
+            </div>
+            <div className="grid"></div>
+          </div>
         </div>
       </div>
     </div>
