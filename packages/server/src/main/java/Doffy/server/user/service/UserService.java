@@ -1,5 +1,6 @@
 package Doffy.server.user.service;
 
+import Doffy.server.security.auth.utils.DoffyAuthorityUtils;
 import Doffy.server.user.entity.User;
 import Doffy.server.global.exception.BusinessLogicException;
 import Doffy.server.global.exception.ExceptionCode;
@@ -9,13 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
+    private final DoffyAuthorityUtils doffyAuthorityUtils;
 
 
     //회원가입
@@ -26,6 +29,8 @@ public class UserService {
         String encPassword = passwordEncoder.encode(rawPassword); // rawPassword 인코딩
         user.setPassword(encPassword); // 인코딩된 패스워드 user에 저장
         user.setTerms(true); //약관 동의 True로 변경
+        List<String> roles = doffyAuthorityUtils.createRoles(user.getUsername());
+        user.setRoles(roles);
         User savedUser = userRepository.save(user);  // 회원정보 db 저장
         return savedUser;
     }

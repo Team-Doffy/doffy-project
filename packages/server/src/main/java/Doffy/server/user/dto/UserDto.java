@@ -40,7 +40,6 @@ public class UserDto {
         @NotBlank(message = "닉네임은 공백이 아니여야 합니다.")
         String nickname;
 
-//        boolean terms;
+        boolean terms;
     }
-
 }

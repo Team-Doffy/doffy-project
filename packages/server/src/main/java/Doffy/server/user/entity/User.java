@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -34,6 +36,9 @@ public class User {
 
     @Column
     private int score;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<String>();
 
     public User(String username, String name, String nickname){
         this.username = username;
