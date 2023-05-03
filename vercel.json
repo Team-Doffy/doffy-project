@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "name": "client",
+      "rootDirectory": "packages/client",
+      "builds": [
+        {
+          "src": "packages/client/package.json",
+          "use": "@vercel/next"
+        }
+      ],
+      "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "packages/client/$1"
+        }
+      ]
+    }
+  ]
+}
+
