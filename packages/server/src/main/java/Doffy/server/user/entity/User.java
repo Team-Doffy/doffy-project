@@ -45,4 +45,10 @@ public class User {
         this.name = name;
         this.nickname = nickname;
     }
+    public User(String username, String password, String name, String nickname) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+    }
 }
