@@ -41,6 +41,6 @@ public class Reply extends BaseEntity {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<BoardComment> boardComments;
+    @OneToMany(mappedBy = "reply", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ReplyComment> replyComments;
 }
