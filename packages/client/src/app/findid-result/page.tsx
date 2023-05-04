@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import FindIdResultLogo from "../../assets/images/findidresult.svg";
 
-const FindIdResult: React.FC = () => {
+const FindIdResult: FC = () => {
   return (
     <div className="w-[640px] h-[486px] mt-[100px] mx-auto flex flex-col border-x-2 border-y-2 border-gray rounded">
       <div className="w-[80px] h-[80px] mt-[80px] mx-auto mb-[40px] rounded-[50%] bg-[#9BC9FF]">

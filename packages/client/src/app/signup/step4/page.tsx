@@ -1,8 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { ChangeEvent, useState, FC } from "react";
 import Step4Logo from "../../../assets/images/step4.svg";
 import CompleteSignup from "../../../assets/images/completesignup.svg";
 
-export const Step4: React.FC = () => {
+export const Step4: FC = () => {
   return (
     <div className="w-full h-full flex flex-col">
       <span className="mx-auto mb-[60px] mt-[120px] text-[48px] font-[700]">

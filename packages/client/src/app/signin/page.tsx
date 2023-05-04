@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Logo from "../../assets/images/logo_AI.svg";
+import React, { useEffect, useState, FC } from "react";
+import Logo from "../../assets/images/doffylogo.svg";
 import Warnning from "../../assets/images/warnning.svg";
 import ShowInput from "../../assets/images/showinput.svg";
 import HideInput from "../../assets/images/hideinput.svg";
+import axios from "axios";
 
-const signin: React.FC = () => {
+const Signin: FC = () => {
   const [isShowPw, setIsShowPW] = useState<boolean>(false);
   const [isPwMatch, setIsPwMatch] = useState<boolean>(false);
+  const [testState, setTestState] = useState("");
 
   const handleShowPw = () => {
     setIsShowPW(!isShowPw);
@@ -18,13 +20,26 @@ const signin: React.FC = () => {
     setIsShowPW(true);
   }, []);
 
-  const handleMatchPw = () => {
-    //백이랑 통신해서 state와 비교하기
-  };
+  // const handleTest = () => {
+  //   try {
+  //     axios.get(
+  //       "http://ec2-13-209-70-86.ap-northeast-2.compute.amazonaws.com:8080/test",
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     setTestState("성공");
+  //   } catch (error) {
+  //     console.log("axios error: " + error);
+  //   }
+  // };
+
   return (
     <>
       {/* <div className="w-full h-full bg-[#F8F8F8]"> */}
-      <div className="w-[640px] h-[669px] mx-auto mt-[100px] top-28 flex flex-col border-x-2 border-y-2 border-gray rounded">
+      <div className="w-[640px] h-[669px] mx-auto mt-[100px] top-28 flex flex-col border-x-2 border-y-2 border-gray rounded shadow-md">
         <form>
           <div className="w-[165px] h-[40px] mx-auto mt-20 mb-20">
             <img src={Logo} alt="logo" />
@@ -55,7 +70,7 @@ const signin: React.FC = () => {
           {/* <span>* </span> */}
 
           <div className="w-[400px] mx-auto">
-            <div className="w-full h-[52px] m-auto mb-[16px] text-white bg-[#057FEF] leading-[52px] rounded">
+            <div className="w-full h-[52px] m-auto mb-[16px] text-white bg-[#057FEF] leading-[52px] rounded cursor-pointer">
               <p className="text-center ">로그인</p>
             </div>
           </div>
@@ -97,4 +112,4 @@ const signin: React.FC = () => {
   );
 };
 
-export default signin;
+export default Signin;

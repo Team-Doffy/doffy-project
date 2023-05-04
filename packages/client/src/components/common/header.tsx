@@ -2,32 +2,27 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Logo from "../../assets/images/logo_AI.svg";
+import Logo from "../../assets/images/doffylogo.svg";
 import noti from "../../assets/images/notification.svg";
 import Image from "next/image";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 const Header: React.FC = () => {
   const [isSignin, setIsSignin] = useState<boolean>(false);
 
   return (
-    <header className="w-full h-[70px] p04 sticky items-center bg-white dark:bg-gray-800 border-b-2 drop-shadow-md">
-      <div className="w-4/5 flex sticky justify-between mx-auto mt-[20px] border-t-1 border-b-1">
+    <header className="w-full h-[70px] sticky items-center bg-white dark:bg-gray-800 drop-shadow-md">
+      <div className="w-4/5 flex sticky justify-between mx-auto mt-[20px]">
         {/* 헤더 왼측에는 로고, 공식문서, 커뮤니티 */}
         <div className="flex items-center">
           <Link href="/">
-            <img
-              src={Logo}
-              alt="logo"
-              className="w-[136px] h-[40px] rounded-full mr-10"
-            />
+            <img src={Logo} alt="logo" className="rounded-full mr-[8px]" />
           </Link>
           <Link href="/">
             <span className="text-base font-bold text-lg ml-4 hover:text-blue-500">
               공식문서
             </span>
           </Link>
-          <Link href="/">
+          <Link href="/community">
             <span className="text-base font-bold text-lg ml-4 hover:text-blue-500">
               커뮤니티
             </span>
@@ -71,12 +66,12 @@ const Header: React.FC = () => {
             />
           </Link> */}
 
-          <Link href="/">
+          <Link href="/signin">
             <span className="px-4 py-2 hover:text-blue-500 font-bold text-lg">
               로그인
             </span>
           </Link>
-          <Link href="/">
+          <Link href="/signup/step1">
             <span className="px-4 py-2 hover:text-blue-500 font-bold text-lg">
               회원가입
             </span>

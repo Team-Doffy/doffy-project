@@ -1,10 +1,11 @@
 "use client";
 
-import { useRouter } from "next/router";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, useEffect, useState, FC } from "react";
 import Step1Logo from "../../../assets/images/step1.svg";
 
-export const Step1: React.FC = () => {
+export const Step1: FC = () => {
   const router = useRouter();
   const [checkList, setCheckList] = useState<string[]>([]);
   const [buttonColor, setButtonColor] = useState<boolean>(false);
@@ -21,7 +22,7 @@ export const Step1: React.FC = () => {
 
   const handleNextPage = () => {
     if (buttonColor) {
-      router.push("/step2");
+      router.push("signup/step2");
     } else if (!buttonColor) {
       alert("동의사항에 체크해주세요.");
     }
@@ -99,13 +100,15 @@ export const Step1: React.FC = () => {
           }`}
           onClick={handleNextPage}
         >
-          <p
-            className={`text-center leading-[64px] ${
-              buttonColor ? "text-white" : "text-black"
-            }`}
-          >
-            다음
-          </p>
+          <Link href="signup/step2">
+            <p
+              className={`text-center leading-[64px] ${
+                buttonColor ? "text-white" : "text-black"
+              }`}
+            >
+              다음
+            </p>
+          </Link>
         </div>
       </div>
     </div>
