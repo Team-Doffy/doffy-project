@@ -1,8 +1,31 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = {
+  skyblue: "#057FEF",
+  deepblue: "#003192",
+  aliceblue: "#F0F8FF",
+  whitesmoke: "#FAFDFF",
+  mintgreen: "#08E8C2",
+  burntorange: "#F4440C",
+  charcoal: "#222222",
+  grayish: "#666666",
+  lightgray: "#999999",
+  softgray: "#DDDDDD",
+  offwhite: "#F4F4F4",
+  snow: "#F8F8F8",
+  midnight: "#00102F",
+  navyblue: "#0A1D44",
+  slateblue: "#1F3562",
+  royalblue: "#324F8D",
+  paleblue: "#A8BBD4",
+  coolgray: "#C8CFDA"
+};
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors,
       width: {
         27: "1.688rem",
         120: "7.5rem",
@@ -42,14 +65,6 @@ module.exports = {
         18: "1.125rem",
         19: "1.188rem",
         21: "1.313rem"
-      },
-      colors: {
-        "text-color": "#222222",
-        "border-color": "#DDDDDD",
-        "number-grey": "#999999",
-        "number-real-grey": "F8F8F8",
-        "user-default-color": "#D9D9D9",
-        "score-color": "#666666"
       },
       borderRadius: {
         40: "2.5rem"
