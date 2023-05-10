@@ -4,6 +4,7 @@ import Doffy.server.community.dto.comment.BoardCommentPostDto;
 import Doffy.server.community.dto.comment.BoardCommentResponseDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
+import Doffy.server.user.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class BoardCommentMapperTest {
                 .boardId(1L)
                 .boardCommentBody("This is a test comment.")
                 .build();
+
         Board board = Board.builder()
                 .boardId(1L)
                 .title("Test Board")
@@ -33,7 +35,7 @@ public class BoardCommentMapperTest {
                 .build();
 
         // when
-        BoardComment comment = boardCommentMapper.toComment(commentPostDto);
+        BoardComment comment = boardCommentMapper.toComment(commentPostDto, board);
         comment.setBoard(board);
 
         // then
@@ -51,6 +53,7 @@ public class BoardCommentMapperTest {
                 .createdAt(LocalDateTime.now())
                 .modifiedAt(LocalDateTime.now())
                 .build();
+
         Board board = Board.builder()
                 .boardId(1L)
                 .title("Test Board")
@@ -58,7 +61,14 @@ public class BoardCommentMapperTest {
                 .createdAt(LocalDateTime.now())
                 .modifiedAt(LocalDateTime.now())
                 .build();
+
+        User user = User.builder()
+                .userId(1L)
+                .nickname("Test User")
+                .build();
+
         comment.setBoard(board);
+        comment.setUser(user);
 
         // when
         BoardCommentResponseDto responseDto = boardCommentMapper.toCommentResponseDto(comment);

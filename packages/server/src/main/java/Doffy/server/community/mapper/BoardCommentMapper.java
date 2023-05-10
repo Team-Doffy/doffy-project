@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BoardCommentMapper {
-    Board board = new Board();
-    User user = new User();
-    public BoardComment toComment(BoardCommentPostDto commentPostDto){
+    public BoardComment toComment(BoardCommentPostDto commentPostDto, Board board){
         return BoardComment.builder()
                 .boardCommentId(commentPostDto.getBoardId())
                 .boardCommentBody(commentPostDto.getBoardCommentBody())
@@ -19,6 +17,8 @@ public class BoardCommentMapper {
                 .build();
     }
     public BoardCommentResponseDto toCommentResponseDto(BoardComment boardComment){
+        Board board = boardComment.getBoard();
+        User user = boardComment.getUser();
 
         BoardCommentResponseDto response = BoardCommentResponseDto.builder()
                 .boardCommentId(boardComment.getBoardCommentId())

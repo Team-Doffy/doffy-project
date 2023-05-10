@@ -5,6 +5,7 @@ import Doffy.server.community.dto.reply.ReplyPostDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.Reply;
+import Doffy.server.user.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,15 @@ public class ReplyMapperTest {
     @Test
     public void testToReplyResponseDto() {
         // given
+        User user = User.builder()
+                .userId(1L)
+                .username("testName")
+                .build();
+
         Reply reply = Reply.builder()
                 .replyId(1L)
                 .replyBody("This is a test reply.")
+                .user(user)
                 .isAccepted(false)
                 .createdAt(LocalDateTime.now())
                 .modifiedAt(LocalDateTime.now())

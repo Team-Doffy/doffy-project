@@ -23,8 +23,8 @@ public class BoardCommentService {
     private final BoardCommentMapper boardCommentMapper;
     private final BoardService boardService;
 
-    public BoardComment createComment(BoardCommentPostDto commentPostDto) {
-        BoardComment boardComment = boardCommentMapper.toComment(commentPostDto);
+    public BoardComment createComment(BoardCommentPostDto commentPostDto, Board board) {
+        BoardComment boardComment = boardCommentMapper.toComment(commentPostDto, board);
         return boardCommentRepository.save(boardComment);
     }
 

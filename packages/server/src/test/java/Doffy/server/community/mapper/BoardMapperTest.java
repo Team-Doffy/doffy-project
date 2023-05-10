@@ -3,6 +3,7 @@ package Doffy.server.community.mapper;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
 import Doffy.server.community.entity.Board;
+import Doffy.server.user.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,17 @@ public class BoardMapperTest {
     @Test
     public void testToBoardResponseDto() {
         // given
+
+        User user = User.builder()
+                .userId(1L)
+                .name("testName")
+                .nickname("testNick")
+                .username("s@gmail.com")
+                .build();
+
         Board board = Board.builder()
                 .boardId(1L)
+                .user(user)
                 .title("Test Board")
                 .boardBody("This is a test board.")
                 .createdAt(LocalDateTime.now())

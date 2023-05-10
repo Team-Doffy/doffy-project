@@ -2,9 +2,11 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.comment.BoardCommentPostDto;
 import Doffy.server.community.dto.comment.BoardCommentResponseDto;
+import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.mapper.BoardCommentMapper;
 import Doffy.server.community.service.BoardCommentService;
+import Doffy.server.community.service.BoardService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,11 +29,14 @@ public class BoardCommentController {
     private final BoardCommentService commentService;
     private final BoardCommentMapper boardCommentMapper;
 
+    private final BoardService boardService;
+
     @ApiOperation(value = "Create a new comment", response = BoardCommentResponseDto.class)
     @PostMapping
     public ResponseEntity<BoardCommentResponseDto> createComment(
-            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentPostDto commentPostDto) {
-        BoardComment boardComment = commentService.createComment(commentPostDto);
+            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentPostDto commentPostDto, Long boardId) {
+        Board board = boardService.findBoard(boardId);
+        BoardComment boardComment = commentService.createComment(commentPostDto, board);
         BoardCommentResponseDto response = boardCommentMapper.toCommentResponseDto(boardComment);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
