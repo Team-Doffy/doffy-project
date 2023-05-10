@@ -19,4 +19,7 @@ public class ReplyResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
+    public boolean isAccepted() {
+        return isAccepted;
+    }
 }
