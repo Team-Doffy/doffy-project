@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         {/* 헤더 왼측에는 로고, 공식문서, 커뮤니티 */}
         <div className="flex items-center">
           <Link href="/">
-            <img src={Logo} alt="logo" className="rounded-full mr-[8px]" />
+            <img src={Logo.src} alt="logo" className="mr-[8px]" />
           </Link>
           <Link href="/">
             <span className="text-base font-bold text-lg ml-4 hover:text-blue-500">
@@ -32,11 +32,11 @@ const Header: React.FC = () => {
         {/* 헤더 오른쪽에는 알림버튼, 다크모드 토글, 로그인, 회원가입 */}
         <div className="flex items-center space-x-4">
           <button className="mr-6">
-            <img src={noti} alt="noti" />
+            <img src={noti.src} alt="noti" />
           </button>
-          <button
+          {/* <button
             className="w-20 h-10 rounded-full bg-white flex items-center transition duration-300 focus:outline-none shadow"
-            // onclick="toggleTheme()"
+            onclick="toggleTheme()"
           >
             <div
               id="switch-toggle"
@@ -49,22 +49,21 @@ const Header: React.FC = () => {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                 />
+                <Link href="/">
+                  <img
+                    src="profile.png"
+                    alt="profile"
+                    className="w-20 h-20 rounded-full hover: scale-50"
+                  />
+                </Link>
               </svg>
             </div>
-          </button>
-
-          {/* <Link href="/">
-            <img
-              src="profile.png"
-              alt="profile"
-              className="w-20 h-20 rounded-full hover: scale-50"
-            />
-          </Link> */}
+          </button> */}
 
           <Link href="/signin">
             <span className="px-4 py-2 hover:text-blue-500 font-bold text-lg">

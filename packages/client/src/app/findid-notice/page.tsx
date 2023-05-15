@@ -5,7 +5,11 @@ const FindIdNotice: FC = () => {
   return (
     <div className="w-[640px] h-[558px] mt-[100px] mx-auto flex flex-col border-x-2 border-y-2 border-gray rounded">
       <div className="w-[80px] h-[80px] mt-[80px] mx-auto mb-[40px] rounded-[50%] bg-[#9BC9FF]">
-        <img src={FindIdLogo} alt="findidimg" className="mt-[22px] ml-[25px]" />
+        <img
+          src={FindIdLogo.src}
+          alt="findidimg"
+          className="mt-[22px] ml-[25px]"
+        />
       </div>
 
       <span className="text-[28px] mx-auto mb-[40px]">아이디 찾기 결과</span>

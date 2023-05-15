@@ -5,7 +5,11 @@ const FindPwResult: FC = () => {
   return (
     <div className="w-[640px] h-[486px] mt-[100px] mx-auto flex flex-col border-x-2 border-y-2 border-gray rounded">
       <div className="w-[80px] h-[80px] mt-[80px] mx-auto mb-[40px] rounded-[50%] bg-[#9BC9FF]">
-        <img src={FindPwLogo} alt="findpwimg" className="mt-[22px] ml-[22px]" />
+        <img
+          src={FindPwLogo.src}
+          alt="findpwimg"
+          className="mt-[22px] ml-[22px]"
+        />
       </div>
 
       <span className="text-[28px] mx-auto mb-[16px]">결과 안내</span>

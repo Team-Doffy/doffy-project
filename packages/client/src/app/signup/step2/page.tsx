@@ -21,7 +21,7 @@ export const Step2: FC = () => {
       </span>
 
       <div className="mx-auto mb-[80px]">
-        <img src={Step2Logo} alt="signupstep1img" />
+        <img src={Step2Logo.src} alt="signupstep1img" />
       </div>
 
       <div className="w-[640px] h-[430px] mx-auto mb-[60px] flex flex-col shadow-[0px 4px 24px gba(175, 175, 175, 0.25)] border-x-2 border-y-2 rounded">
@@ -52,7 +52,11 @@ export const Step2: FC = () => {
               placeholder="인증번호를 입력해주세요."
               className="w-[290px] h-[40px] p-[12px] border-x-2 border-y-2"
             />
-            <button className="w-[100px] h-[40px] bg-[#DDDDDD] text-white rounded">
+            <button
+              className={`w-[100px] h-[40px] ${
+                buttonColor ? "bg-[#057FEF]" : "bg-[#DDDDDD]"
+              } text-white rounded`}
+            >
               <p>확인</p>
             </button>
           </div>
@@ -63,7 +67,11 @@ export const Step2: FC = () => {
         <button className="w-[310px] h-[64px] m-auto mb-[16px] bg-white rounded border-x-2 border-y-2">
           <p>이전</p>
         </button>
-        <button className="w-[310px] h-[64px] m-auto mb-[16px] text-white bg-[#057FEF] rounded">
+        <button
+          className={`w-[310px] h-[64px] m-auto mb-[16px] text-white ${
+            buttonColor ? "bg-[#057FEF]" : "bg-[#DDDDDD]"
+          } rounded`}
+        >
           <p>다음</p>
         </button>
       </div>

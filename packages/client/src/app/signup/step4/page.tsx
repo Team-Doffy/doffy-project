@@ -12,12 +12,12 @@ export const Step4: FC = () => {
       </span>
 
       <div className="mx-auto mb-[80px]">
-        <img src={Step4Logo} alt="signupstep1img" />
+        <img src={Step4Logo.src} alt="signupstep1img" />
       </div>
 
       <div className="w-[640px] h-[532px] mx-auto mb-[60px] flex flex-col shadow-[0px 4px 24px gba(175, 175, 175, 0.25)] border-x-2 border-y-2 rounded">
         <div className="w-[120px] h-[129px mx-auto mt-[80px] mb-[31px]">
-          <img src={CompleteSignup} alt="signupstep4" />
+          <img src={CompleteSignup.src} alt="signupstep4" />
         </div>
 
         <span className="w-[400px] mx-auto mb-[60px] text-[28px] text-center">

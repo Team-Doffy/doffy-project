@@ -43,7 +43,7 @@ export const Step1: FC = () => {
       </span>
 
       <div className="mx-auto mb-[60px]">
-        <img src={Step1Logo} alt="signupstep1img" />
+        <img src={Step1Logo.src} alt="signupstep1img" />
       </div>
 
       <div className="w-[1320px] h-[399px] mx-auto mb-[60px] flex flex-col">

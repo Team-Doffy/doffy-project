@@ -5,15 +5,19 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useEffect, useRef, useState, FC } from "react";
 import Step3Logo from "../../../assets/images/step3.svg";
 import defaultUserImg from "../../../assets/images/defaultUserImg.svg";
+import ShowInput from "../../../assets/images/showinput.svg";
+import HideInput from "../../../assets/images/hideinput.svg";
 
 export const Step3: FC = () => {
   const router = useRouter();
   const [nameInput, setNameInput] = useState<string>();
   const [nickNameInput, setNickNameInput] = useState<string>();
   const [pwInput, setPwInput] = useState<string>();
+  const [isShowPw, setIsShowPw] = useState<boolean>(false);
   const [pwCheckInput, setPwCheckInput] = useState<string>();
+  const [isShowPwCheck, setIsShowPwCheck] = useState<boolean>(false);
   const [buttonColor, setButtonColor] = useState<boolean>(false);
-  const [userImg, setUserImg] = useState<string>(defaultUserImg);
+  const [userImg, setUserImg] = useState<string>(defaultUserImg.src);
   const [userImgCancel, setUserImgCancel] = useState<boolean>(false);
   const fileInput = useRef(null);
 
@@ -34,6 +38,14 @@ export const Step3: FC = () => {
 
   const handlePw = (e: ChangeEvent<HTMLInputElement>) => {
     setPwInput(e.target.value);
+  };
+
+  const handleShowPw = () => {
+    setIsShowPw(!isShowPw);
+  };
+
+  const handleShowPwCheck = () => {
+    setIsShowPwCheck(!isShowPwCheck);
   };
 
   const handlePwCheck = (e: ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +92,7 @@ export const Step3: FC = () => {
       </span>
 
       <div className="mx-auto mb-[80px]">
-        <img src={Step3Logo} alt="signupstep1img" />
+        <img src={Step3Logo.src} alt="signupstep1img" />
       </div>
 
       <div className="w-[640px] h-[784px] mx-auto mb-[60px] flex flex-col shadow-[0px 4px 24px gba(175, 175, 175, 0.25)] border-x-2 border-y-2 rounded">
@@ -89,19 +101,23 @@ export const Step3: FC = () => {
         <div className="w-[40px] h-[2px] mx-auto mb-[40px] border-b-2"></div>
 
         {/* 프로필이미지 */}
-        <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD]">
+        <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD] ring-[2px]">
           <input
             type="file"
             ref={fileInput}
-            // style={{ display: "none" }}
+            style={{ display: "none" }}
             onChange={handleFileInput}
+            className="w-[100px] h-[100px]"
           />
           <img
             src={userImg}
             alt="userprofileimg"
-            onClick={() => {}}
             style={{ width: "100px", height: "100px" }}
+            className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] ring"
           />
+          <div className="w-[24px] h-[24px] absolute bg-[#DDDDDD] rounded-[50%]">
+            {/* <img src={} alt="fileInputCancel" /> */}sdfads
+          </div>
         </div>
 
         <div className="w-[400px] mb-[40px] mx-auto flex flex-col relative">
@@ -129,24 +145,48 @@ export const Step3: FC = () => {
           </div>
         </div>
 
-        <div className="w-[400px] mb-[40px] mx-auto flex flex-col">
+        <div className="w-[400px] mb-[40px] mx-auto flex flex-col relative">
           <label className="mb-[8px]">비밀번호 *</label>
-          <input
-            type="password"
-            placeholder="영문, 숫자, 특수문자 포함 8~20자를 입력해주세요"
-            onChange={handlePw}
-            className="w-[400px] h-[40px] p-[12px] rounded border-x-2 border-y-2"
-          />
+          <div className="flex  border-x-2 border-y-2 rounded">
+            <input
+              type={isShowPw ? "password" : "text"}
+              placeholder="영문, 숫자, 특수문자 포함 8~20자를 입력해주세요"
+              onChange={handlePw}
+              className="w-[350px] h-[40px] p-[12px]"
+            />
+            <div
+              className="absolute top-[45px] left-[360px] cursor-pointer"
+              onClick={handleShowPw}
+            >
+              {isShowPw ? (
+                <img src={HideInput.src} />
+              ) : (
+                <img src={ShowInput.src} />
+              )}
+            </div>
+          </div>
         </div>
 
-        <div className="w-[400px] mx-auto flex flex-col">
-          <label className="mb-[8px]">비밀번호 *</label>
-          <input
-            type="password"
-            placeholder="비밀번호를 다시 입력해주세요"
-            onChange={handlePwCheck}
-            className="w-[400px] h-[40px] p-[12px] rounded border-x-2 border-y-2"
-          />
+        <div className="w-[400px] mx-auto flex flex-col relative">
+          <label className="mb-[8px]">비밀번호 확인 *</label>
+          <div className="flex  border-x-2 border-y-2 rounded">
+            <input
+              type={isShowPwCheck ? "password" : "text"}
+              placeholder="비밀번호를 다시 입력해주세요"
+              onChange={handlePwCheck}
+              className="w-[350px] h-[40px] p-[12px]"
+            />
+            <div
+              className="absolute top-[45px] left-[360px] cursor-pointer"
+              onClick={handleShowPwCheck}
+            >
+              {isShowPw ? (
+                <img src={HideInput.src} />
+              ) : (
+                <img src={ShowInput.src} />
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
