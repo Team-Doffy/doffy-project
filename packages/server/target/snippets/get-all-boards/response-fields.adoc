@@ -1,0 +1,36 @@
+|===
+|Path|Type|Description
+
+|`+[].boardId+`
+|`+Null+`
+|The id of the board
+
+|`+[].userId+`
+|`+Null+`
+|The id of the user
+
+|`+[].nickname+`
+|`+Null+`
+|The nickname of the user
+
+|`+[].title+`
+|`+Null+`
+|The title of the board
+
+|`+[].createdAt+`
+|`+Null+`
+|The creation timestamp of the board
+
+|`+[].modifiedAt+`
+|`+Null+`
+|The modification timestamp of the board
+
+|`+[].likeCount+`
+|`+Number+`
+|The number of likes for the board
+
+|`+[].replyCount+`
+|`+Number+`
+|The number of replies for the board
+
+|===

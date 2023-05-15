@@ -38,7 +38,7 @@ public class BoardCommentController {
         Board board = boardService.findBoard(boardId);
         BoardComment boardComment = commentService.createComment(commentPostDto, board);
         BoardCommentResponseDto response = boardCommentMapper.toCommentResponseDto(boardComment);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Get a comment by ID", response = BoardCommentResponseDto.class)

@@ -1,0 +1,8 @@
+.+/api/v1/community/boards/{boardId}+
+|===
+|Parameter|Description
+
+|`+boardId+`
+|The id of the board
+
+|===

@@ -51,10 +51,10 @@ public class BoardController {
 
     @ApiOperation(value = "Get a board by ID", response = BoardResponseDto.class)
     @GetMapping("/{boardId}")
-    public ResponseEntity<BoardResponseDto> getBoard(
+    public ResponseEntity<BoardDetailedResponseDto> getBoard(
             @ApiParam(value = "Board ID", required = true) @PathVariable long boardId) {
         Board board = boardService.findBoard(boardId);
-        BoardResponseDto response = boardMapper.toBoardResponseDto(board);
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board);
         return ResponseEntity.ok(response);
     }
 

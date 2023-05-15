@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 public class BoardCommentMapper {
     public BoardComment toComment(BoardCommentPostDto commentPostDto, Board board){
         return BoardComment.builder()
-                .boardCommentId(commentPostDto.getBoardId())
                 .boardCommentBody(commentPostDto.getBoardCommentBody())
                 .board(board)
                 .build();

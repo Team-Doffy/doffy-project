@@ -1,0 +1,11 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Content-Length: 249
+
+[{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0},{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0}]
+----

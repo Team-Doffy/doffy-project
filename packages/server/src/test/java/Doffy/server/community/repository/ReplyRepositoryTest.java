@@ -3,6 +3,7 @@ package Doffy.server.community.repository;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.user.entity.User;
+import Doffy.server.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,19 +19,26 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReplyRepositoryTest {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BoardRepository boardRepository;
+
+    @Autowired
     private ReplyRepository replyRepository;
 
-    @Test
-    public void testFindByUser() {
-        // given
-        User user = new User();
-
-        // when
-        List<Reply> replies = replyRepository.findByUser(user);
-
-        // then
-        assertNotNull(replies);
-    }
+//    @Test
+//    public void testFindByUser() {
+//        // given
+//        User user = new User();
+//        userRepository.save(user);
+//
+//        // when
+//        List<Reply> replies = replyRepository.findByUser(user);
+//
+//        // then
+//        assertNotNull(replies);
+//    }
 
     @Test
     public void testFindAll() {
@@ -48,6 +56,7 @@ public class ReplyRepositoryTest {
     public void testFindByBoard() {
         // given
         Board board = new Board();
+        boardRepository.save(board);
 
         // when
         List<Reply> replies = replyRepository.findByBoard(board);

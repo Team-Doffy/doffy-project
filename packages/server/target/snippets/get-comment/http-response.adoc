@@ -1,0 +1,11 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Content-Length: 183
+
+{"boardCommentId":1,"boardId":1,"userId":1,"nickname":"Test User","boardCommentBody":"Test content","createdAt":"2023-05-15T23:22:48.876908","modifiedAt":"2023-05-15T23:22:48.876908"}
+----

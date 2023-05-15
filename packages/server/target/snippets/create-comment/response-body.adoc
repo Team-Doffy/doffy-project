@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"boardCommentId":1,"boardId":1,"userId":1,"nickname":"Test User","boardCommentBody":"Test content","createdAt":"2023-05-15T23:22:48.806911","modifiedAt":"2023-05-15T23:22:48.806911"}
+----

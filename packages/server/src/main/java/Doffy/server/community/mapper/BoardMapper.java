@@ -1,5 +1,6 @@
 package Doffy.server.community.mapper;
 
+import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
 import Doffy.server.community.entity.Board;
@@ -20,6 +21,20 @@ public class BoardMapper {
                 .userId(board.getUser().getUserId())
                 .nickname(board.getUser().getNickname())
                 .title(board.getTitle())
+                .replyCount(board.getReplies().size())
+                .createdAt(board.getCreatedAt())
+                .modifiedAt(board.getModifiedAt())
+                .build();
+        return response;
+    }
+
+    public BoardDetailedResponseDto toBoardDetailedResponseDto(Board board){
+        BoardDetailedResponseDto response = BoardDetailedResponseDto.builder()
+                .boardId(board.getBoardId())
+                .userId(board.getUser().getUserId())
+                .nickname(board.getUser().getNickname())
+                .title(board.getTitle())
+                .boardBody(board.getBoardBody())
                 .createdAt(board.getCreatedAt())
                 .modifiedAt(board.getModifiedAt())
                 .build();

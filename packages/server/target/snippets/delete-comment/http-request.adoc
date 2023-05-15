@@ -1,0 +1,6 @@
+[source,http,options="nowrap"]
+----
+DELETE /api/v1/community/board-comments/1 HTTP/1.1
+Host: localhost:8080
+
+----

@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+[].boardCommentId+`
+|`+Number+`
+|The id of the comment
+
+|`+[].boardId+`
+|`+Number+`
+|The id of the board
+
+|`+[].userId+`
+|`+Number+`
+|The id of the user
+
+|`+[].nickname+`
+|`+String+`
+|The nickname of the user
+
+|`+[].boardCommentBody+`
+|`+String+`
+|The body of the comment
+
+|`+[].createdAt+`
+|`+String+`
+|The creation timestamp of the comment
+
+|`+[].modifiedAt+`
+|`+String+`
+|The last modified timestamp of the comment
+
+|===

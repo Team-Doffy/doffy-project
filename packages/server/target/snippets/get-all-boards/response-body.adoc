@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0},{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0}]
+----
