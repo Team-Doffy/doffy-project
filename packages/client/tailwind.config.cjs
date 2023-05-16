@@ -14,7 +14,11 @@ module.exports = {
         359: "22.438rem",
       },
       padding: {
+        40: "2.5rem",
         180: "11.25rem",
+      },
+      margin: {
+        26: "1.6rem",
       },
       gridTemplateColumns: {
         "community-main": "14.75rem 82.2%",
@@ -23,7 +27,7 @@ module.exports = {
         "community-main": "100%",
       },
       fontFamily: {
-        pretendard: "Pretendard",
+        sans: ["Pretendard-Regular", "sans-serif"],
       },
       fontSize: {
         12: "0.75rem",
