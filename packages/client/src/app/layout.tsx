@@ -6,6 +6,7 @@ import "../styles/globals.css";
 import { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 
+
 export default function RootLayout({
   children,
   pageProps,
@@ -14,10 +15,9 @@ export default function RootLayout({
   pageProps: AppProps;
 }) {
   return (
-    // <SessionProvider session={pageProps.session}>
     <html>
       <head></head>
-      <body>
+      <body className="h-full">
         <Header />
         {children}
         <Footer />
