@@ -1,4 +1,4 @@
 [source,options="nowrap"]
 ----
-{"boardId":1,"userId":1,"boardCommentBody":"Test content","createdAt":[2023,5,15,23,22,48,806911000],"modifiedAt":[2023,5,15,23,22,48,806911000]}
+{"boardId":1,"userId":1,"boardCommentBody":"Test content","createdAt":[2023,5,16,21,13,12,452599400],"modifiedAt":[2023,5,16,21,13,12,452599400]}
 ----

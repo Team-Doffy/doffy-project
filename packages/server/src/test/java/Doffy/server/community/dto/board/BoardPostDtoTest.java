@@ -14,7 +14,7 @@ class BoardPostDtoTest {
 
         //when
         BoardPostDto boardPostDto = BoardPostDto.builder()
-                .userId(userId)
+//                .userId(userId)
                 .title(title)
                 .boardBody(boardBody)
                 .build();

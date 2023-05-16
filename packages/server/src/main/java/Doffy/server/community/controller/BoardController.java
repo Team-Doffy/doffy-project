@@ -22,21 +22,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Validated
-@RestController
 @RequestMapping("/api/v1/community/boards")
 @Slf4j
 @RequiredArgsConstructor
 @Api(value = "Community Board API")
+@RestController
 public class BoardController {
     private final BoardService boardService;
     private final BoardMapper boardMapper;
 
     @ApiOperation(value = "Create a new board", response = BoardResponseDto.class)
     @PostMapping
-    public ResponseEntity<BoardResponseDto> createBoard(
+    public ResponseEntity<BoardDetailedResponseDto> createBoard(
             @ApiParam(value = "Board information", required = true) @RequestBody BoardPostDto boardPostDto) {
         Board board = boardService.createBoard(boardPostDto);
-        BoardResponseDto response = boardMapper.toBoardResponseDto(board);
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -59,12 +59,12 @@ public class BoardController {
     }
 
     @ApiOperation(value = "Update a board by ID", response = BoardResponseDto.class)
-    @PatchMapping("/{boardId}")
-    public ResponseEntity<BoardResponseDto> updateBoard(
+    @PutMapping("/{boardId}")
+    public ResponseEntity<BoardDetailedResponseDto> updateBoard(
             @ApiParam(value = "Board ID", required = true) @PathVariable long boardId,
             @ApiParam(value = "Board information", required = true) @RequestBody BoardPostDto boardPostDto) {
         Board board = boardService.updateBoard(boardId, boardPostDto);
-        BoardResponseDto response = boardMapper.toBoardResponseDto(board);
+        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board);
         return ResponseEntity.ok(response);
     }
 

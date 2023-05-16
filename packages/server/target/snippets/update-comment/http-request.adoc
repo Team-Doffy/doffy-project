@@ -5,5 +5,5 @@ Content-Type: application/json;charset=UTF-8
 Content-Length: 148
 Host: localhost:8080
 
-{"boardId":1,"userId":1,"boardCommentBody":"Updated content","createdAt":[2023,5,15,23,22,48,901430300],"modifiedAt":[2023,5,15,23,22,48,901430300]}
+{"boardId":1,"userId":1,"boardCommentBody":"Updated content","createdAt":[2023,5,16,21,13,12,538600100],"modifiedAt":[2023,5,16,21,13,12,538600100]}
 ----

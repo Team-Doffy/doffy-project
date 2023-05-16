@@ -3,6 +3,6 @@
 |Parameter|Description
 
 |`+id+`
-|The id of the board to delete
+|The id of the board to retrieve
 
 |===

@@ -2,28 +2,28 @@
 |Path|Type|Description
 
 |`+[].boardId+`
-|`+Null+`
+|`+Number+`
 |The id of the board
 
 |`+[].userId+`
-|`+Null+`
-|The id of the user
-
-|`+[].nickname+`
-|`+Null+`
-|The nickname of the user
+|`+Number+`
+|The id of the user who created the board
 
 |`+[].title+`
-|`+Null+`
+|`+String+`
 |The title of the board
 
+|`+[].nickname+`
+|`+String+`
+|The nickname of the user who created the board
+
 |`+[].createdAt+`
-|`+Null+`
-|The creation timestamp of the board
+|`+String+`
+|The creation time of the board
 
 |`+[].modifiedAt+`
-|`+Null+`
-|The modification timestamp of the board
+|`+String+`
+|The modification time of the board
 
 |`+[].likeCount+`
 |`+Number+`

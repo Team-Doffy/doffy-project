@@ -1,5 +1,5 @@
 [source,bash]
 ----
-$ echo '{"boardId":1,"userId":1,"boardCommentBody":"Test content","createdAt":[2023,5,15,23,22,48,806911000],"modifiedAt":[2023,5,15,23,22,48,806911000]}' | http POST 'http://localhost:8080/api/v1/community/board-comments?boardId=1' \
+$ echo '{"boardId":1,"userId":1,"boardCommentBody":"Test content","createdAt":[2023,5,16,21,13,12,452599400],"modifiedAt":[2023,5,16,21,13,12,452599400]}' | http POST 'http://localhost:8080/api/v1/community/board-comments?boardId=1' \
     'Content-Type:application/json;charset=UTF-8'
 ----

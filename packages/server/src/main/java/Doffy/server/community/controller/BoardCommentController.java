@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Validated
-@RestController
 @RequestMapping("/api/v1/community/board-comments")
 @Slf4j
 @RequiredArgsConstructor
 @Api(value = "Community Comment API")
+@RestController
 public class BoardCommentController {
     private final BoardCommentService commentService;
     private final BoardCommentMapper boardCommentMapper;

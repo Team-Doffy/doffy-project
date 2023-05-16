@@ -2,9 +2,9 @@
 |Parameter|Description
 
 |`+page+`
-|Page number (0-based)
+|The page number (0-based)
 
 |`+size+`
-|Number of items per page
+|The number of items per page
 
 |===

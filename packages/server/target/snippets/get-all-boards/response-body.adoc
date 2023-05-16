@@ -1,4 +1,4 @@
 [source,options="nowrap"]
 ----
-[{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0},{"boardId":null,"userId":null,"nickname":null,"title":null,"createdAt":null,"modifiedAt":null,"likeCount":0,"replyCount":0}]
+[{"boardId":1,"userId":1,"nickname":"Test Nickname","title":"Test Title","createdAt":"2023-05-16T23:56:53.2999286","modifiedAt":"2023-05-16T23:56:53.2999286","likeCount":10,"replyCount":20}]
 ----
