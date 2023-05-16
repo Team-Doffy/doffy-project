@@ -121,12 +121,12 @@ const Signin: FC = () => {
               </Link>
               <Link href="">
                 <div className="rounded-[50%] hover:ring">
-                  <img src={Naver.src} alt="naver" />
+                  <img src={Google.src} alt="google" />
                 </div>
               </Link>
               <Link href="">
                 <div className="rounded-[50%] hover:ring">
-                  <img src={Google.src} alt="google" />
+                  <img src={Naver.src} alt="naver" />
                 </div>
               </Link>
             </div>

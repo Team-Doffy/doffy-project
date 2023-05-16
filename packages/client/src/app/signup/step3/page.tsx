@@ -7,6 +7,7 @@ import Step3Logo from "../../../assets/images/step3.svg";
 import defaultUserImg from "../../../assets/images/defaultUserImg.svg";
 import ShowInput from "../../../assets/images/showinput.svg";
 import HideInput from "../../../assets/images/hideinput.svg";
+import Edit from "../../../assets/images/profilebutton.svg";
 
 export const Step3: FC = () => {
   const router = useRouter();
@@ -20,13 +21,6 @@ export const Step3: FC = () => {
   const [userImg, setUserImg] = useState<string>(defaultUserImg.src);
   const [userImgCancel, setUserImgCancel] = useState<boolean>(false);
   const fileInput = useRef(null);
-
-  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files && e.target.files[0];
-  //   if (file) {
-  //     setImgFile(file);
-  //   }
-  // };
 
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
     setNameInput(e.target.value);
@@ -52,17 +46,24 @@ export const Step3: FC = () => {
     setPwCheckInput(e.target.value);
   };
 
+  // const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     const file = new FileReader();
+  //     file.onload = () => {
+  //       if (file.readyState === 2) {
+  //         setUserImg(file.result as string);
+  //       }
+  //     };
+  //     file.readAsDataURL(e.target.files[0]);
+  //   } else {
+  //     setUserImg(defaultUserImg);
+  //   }
+  // };
+
   const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = new FileReader();
-      file.onload = () => {
-        if (file.readyState === 2) {
-          setUserImg(file.result as string);
-        }
-      };
-      file.readAsDataURL(e.target.files[0]);
-    } else {
-      setUserImg(defaultUserImg);
+    if (e.target.files) {
+      const file: File = e.target.files[0];
+      setUserImg(URL.createObjectURL(file));
     }
   };
 
@@ -101,22 +102,23 @@ export const Step3: FC = () => {
         <div className="w-[40px] h-[2px] mx-auto mb-[40px] border-b-2"></div>
 
         {/* 프로필이미지 */}
-        <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD] ring-[2px]">
-          <input
-            type="file"
-            ref={fileInput}
-            style={{ display: "none" }}
-            onChange={handleFileInput}
-            className="w-[100px] h-[100px]"
-          />
-          <img
-            src={userImg}
-            alt="userprofileimg"
-            style={{ width: "100px", height: "100px" }}
-            className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] ring"
-          />
-          <div className="w-[24px] h-[24px] absolute bg-[#DDDDDD] rounded-[50%]">
-            {/* <img src={} alt="fileInputCancel" /> */}sdfads
+        <div className="flex">
+          <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD] ring-[2px] relative">
+            <img
+              src={userImg}
+              alt="userprofileimg"
+              className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] ring"
+            />
+            <input
+              type="file"
+              ref={fileInput}
+              style={{ display: "none" }}
+              onChange={handleFileInput}
+              className="opacity-"
+            />
+            <div className="absolute opacity-1">
+              <img src={Edit.src} alt="fileInputCancel" />
+            </div>
           </div>
         </div>
 
