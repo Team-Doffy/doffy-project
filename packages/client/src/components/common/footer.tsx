@@ -14,7 +14,7 @@ function Footer() {
                 height={41}
               />
             </div>
-            <p className="mb-4">Copyright ⓒ2023 all rights reserved</p>
+            <p className="mb-4">Copyright Doffy. all rights reserved</p>
           </div>
 
           <div className="mb-6 md:mb-0 flex flex-col justify-end">
