@@ -51,6 +51,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String jws = request.getHeader("Authorization").replace("Bearer", "");
         String base64EncodeSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         Map<String, Object> claims = jwtTokenizer.getClaims(jws, base64EncodeSecretKey).getBody();
+        System.out.println(claims);
 
         return claims;
     }

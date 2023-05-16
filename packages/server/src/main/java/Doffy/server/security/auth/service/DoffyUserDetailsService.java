@@ -44,10 +44,10 @@ public class DoffyUserDetailsService implements UserDetailsService {
         public Collection<? extends GrantedAuthority> getAuthorities() {
             return doffyAuthorityUtils.createAuthorities(this.getRoles());
         }
-//        @Override
-//        public String getUsername(){
-//            return getUsername();
-//        }
+        @Override
+        public String getUsername(){
+            return super.getUsername();
+        }
 
         @Override
         public boolean isAccountNonExpired() {

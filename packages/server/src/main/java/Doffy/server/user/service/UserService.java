@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,19 +36,80 @@ public class UserService {
         return savedUser;
     }
 
+    //회원조회
+    public User findUser(String username){
+        return findVerifyUser(username);
+    }
+
+    //회원 수정
+    public User updateUser(User user){
+        User findUser = findVerifyUser(user.getUsername());
+        String rawPassword = user.getPassword();
+        String encPassword = passwordEncoder.encode(rawPassword);;
+        Optional.ofNullable(user.getPassword())
+                .ifPresent(password -> findUser.setPassword(encPassword));
+        Optional.ofNullable(user.getNickname())
+                .ifPresent(nickname -> findUser.setNickname(nickname));
+        return userRepository.save(findUser);
+    }
+
+    //존재하는 회원인지 검증
+    public User findVerifyUser(String username){
+        User verifyUser = userRepository.findByUsername(username);
+        if(verifyUser == null) throw new BusinessLogicException(ExceptionCode.USER_NOT_FOUND);
+        return verifyUser;
+    }
+
     //이메일 중복확인
-    public void verifyExistsUsername(String username){
+    public void verifyExistsUsername(String username) {
         User existUsername = userRepository.findByUsername(username);
-        if(existUsername != null){
+        if (existUsername != null) {
             throw new BusinessLogicException(ExceptionCode.USERNAME_EXISTS);
         }
     }
 
     //닉네임 중복확인
-    public void verifyExistsNickname(String nickname){
+    public void verifyExistsNickname(String nickname) {
         User existNickname = userRepository.findByNickname(nickname);
-        if(existNickname != null){
+        if (existNickname != null) {
             throw new BusinessLogicException(ExceptionCode.NICKNAME_EXISTS);
+        }
+    }
+
+    //회원 삭제
+    public void deleteUser(String username){
+        User findUser = findVerifyUser(username);
+        userRepository.delete(findUser);
+    }
+
+    //이메일 중복 인증
+    public Boolean duplicationCheckUsername(String username){
+        User checkedUsername = userRepository.findByUsername(username);
+        if(checkedUsername == null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //닉네임 중복 인증
+    public Boolean duplicationCheckNickname(String nickname){
+        User checkedNickname = userRepository.findByNickname(nickname);
+        if(checkedNickname == null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //비밀번호 검증
+    public Boolean checkPassword(String username, String password){
+        User findUser = findUser(username);
+        String originPassword = findUser.getPassword();
+        if(passwordEncoder.matches(password,originPassword)){
+            return true;
+        } else {
+            return false;
         }
     }
 }
