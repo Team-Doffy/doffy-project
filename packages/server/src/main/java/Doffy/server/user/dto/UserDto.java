@@ -47,15 +47,15 @@ public class UserDto {
     @Getter
     @Builder
     @AllArgsConstructor
-    public static class Patch{
-        @Email(message = "올바른 이메일이 아닙니다.")
-        @NotBlank(message = "이메일은 공백이 아니여야 합니다.")
+    public static class PatchNickname{
+
         String username;
 
         @NotBlank
         @Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()]*$", message = "비밀번호는 영문 대소문자와 키패드 1~0까지의 특수문자만 가능합니다.")
         @Size(min = 8, max = 20, message = "비밀번호는 8~20자 사이여야 합니다.")
         String password;
+
 
         @NotBlank(message = "닉네임은 공백이 아니여야 합니다.")
         String nickname;
@@ -64,6 +64,7 @@ public class UserDto {
             this.username = username;
         }
     }
+
 
     @Getter
     @Builder

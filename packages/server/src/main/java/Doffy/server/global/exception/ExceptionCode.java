@@ -12,7 +12,10 @@ public enum ExceptionCode {
     USER_NOT_FOUND(404, "User not found"),
 
     //이미 존재하는 닉네임
-    NICKNAME_EXISTS(400, "Nick already exists");
+    NICKNAME_EXISTS(400, "Nick already exists"),
+
+    // 패스워드 불일치
+    PASSWORD_MISMATCH(403, "Password Mismatch");
 
     @Getter
     private final int status;

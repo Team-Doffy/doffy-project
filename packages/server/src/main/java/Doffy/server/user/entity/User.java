@@ -22,10 +22,8 @@ public class User {
     @Email(message = "올바른 이메일이 아닙니다.")
     @NotBlank(message = "이메일은 공백이 아니여야 합니다.")
     private String username;
-
     @Column
     private String password;
-
     @Column
     private String name;
     @Column

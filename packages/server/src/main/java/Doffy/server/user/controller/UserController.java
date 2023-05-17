@@ -41,14 +41,18 @@ public class UserController {
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
-    //회원수정
-    @PutMapping
-    public ResponseEntity updateUser(@AuthenticationPrincipal String username,
-                                     @RequestBody @Valid UserDto.Patch userPatchDto){
-        userPatchDto.setUsername(username);
-        User user = userMapper.patchToUser(userPatchDto);
-        return new ResponseEntity("test",HttpStatus.OK);
+    //회원수정 - 닉네임
+    @PatchMapping
+    public ResponseEntity updateNickname(@AuthenticationPrincipal String username,
+                                     @RequestBody @Valid UserDto.PatchNickname userPatchDto){
+        User findUser = userService.findUser(username);
+        userPatchDto.setUsername(findUser.getUsername());
+        User updatedUser = userMapper.patchNicknameToUser(userPatchDto);
+        userService.updateNickname(updatedUser);
+        return new ResponseEntity(HttpStatus.OK);
     }
+
+    //회원수정 - 비밀번호
 
 
     //회원삭제
@@ -65,13 +69,13 @@ public class UserController {
 //    }
 
     //회원가입 시 이메일 인증 코드 전송
-    @PostMapping("/signup-email")
+    @PostMapping("/signup-send-code")
     public ResponseEntity signupEmail(){
         return new ResponseEntity<>("성공",HttpStatus.CREATED);
     }
 
     //회원가입 시 인증 확인
-    @PostMapping("/signup-code")
+    @GetMapping("/signup-check-code")
     public ResponseEntity signupCheckCode(){
         return new ResponseEntity<>("test",HttpStatus.OK);
     }
@@ -80,22 +84,18 @@ public class UserController {
     @GetMapping("duplication-email")
     public ResponseEntity duplicationCheckEmail(@RequestBody @Valid UserDto.DuplicationCheckUsername checkUsernameDto){
         User user = userMapper.duplicationCheckUsernameToUser(checkUsernameDto);
-        boolean checkedUsername = userService.duplicationCheckUsername(user.getUsername());
-        UserDto.DuplicationCheckUsernameResponse response = userMapper.userToDuplicationCheckUsernameResponse(user);
-        response.setUsernameCheck(checkedUsername);
-
-        return new ResponseEntity(response,HttpStatus.OK);
+        userService.verifyExistsUsername(user.getUsername());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     //닉네임 중복확인
     @GetMapping("duplication-nickname")
     public ResponseEntity duplicationCheckNickname(@RequestBody @Valid UserDto.DuplicationCheckNickname checkNicknameDto){
         User user = userMapper.duplicationCheckNicknameToUser(checkNicknameDto);
-        boolean checkedNickname = userService.duplicationCheckNickname(user.getNickname());
-        UserDto.DuplicationCheckNicknameResponse response = userMapper.userToDuplicationCheckNicknameResponse(user);
-        response.setNicknameCheck(checkedNickname);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        userService.verifyExistsNickname(user.getNickname());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
     //비밀번호 확인
     @GetMapping("check-password")
@@ -103,9 +103,7 @@ public class UserController {
                                         @RequestBody UserDto.CheckPassword checkPasswordDto){
         User originUser = userService.findUser(username);
         User checkPasswordUser = userMapper.checkPasswordToUser(checkPasswordDto);
-        Boolean checkedPassword = userService.checkPassword(originUser.getUsername(), checkPasswordUser.getPassword());
-        UserDto.CheckPasswordResponse response = userMapper.userToCheckPasswordResponse(checkPasswordUser);
-        response.setCheckPassword(checkedPassword);
-        return new ResponseEntity(response, HttpStatus.OK);
+        userService.checkPassword(originUser.getUsername(), checkPasswordUser.getPassword());
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

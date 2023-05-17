@@ -41,18 +41,6 @@ public class UserService {
         return findVerifyUser(username);
     }
 
-    //회원 수정
-    public User updateUser(User user){
-        User findUser = findVerifyUser(user.getUsername());
-        String rawPassword = user.getPassword();
-        String encPassword = passwordEncoder.encode(rawPassword);;
-        Optional.ofNullable(user.getPassword())
-                .ifPresent(password -> findUser.setPassword(encPassword));
-        Optional.ofNullable(user.getNickname())
-                .ifPresent(nickname -> findUser.setNickname(nickname));
-        return userRepository.save(findUser);
-    }
-
     //존재하는 회원인지 검증
     public User findVerifyUser(String username){
         User verifyUser = userRepository.findByUsername(username);
@@ -82,34 +70,28 @@ public class UserService {
         userRepository.delete(findUser);
     }
 
-    //이메일 중복 인증
-    public Boolean duplicationCheckUsername(String username){
-        User checkedUsername = userRepository.findByUsername(username);
-        if(checkedUsername == null){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //닉네임 중복 인증
-    public Boolean duplicationCheckNickname(String nickname){
-        User checkedNickname = userRepository.findByNickname(nickname);
-        if(checkedNickname == null){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     //비밀번호 검증
-    public Boolean checkPassword(String username, String password){
+    public void checkPassword(String username, String password){
         User findUser = findUser(username);
         String originPassword = findUser.getPassword();
-        if(passwordEncoder.matches(password,originPassword)){
-            return true;
-        } else {
-            return false;
+        if(!passwordEncoder.matches(password,originPassword)) {
+            throw new BusinessLogicException(ExceptionCode.PASSWORD_MISMATCH);
         }
+    }
+
+    //닉네임 수정
+    public User updateNickname(User user){
+        User findUser = findVerifyUser(user.getUsername());
+//        checkPassword(findUser.getUsername(),user.getPassword());
+        if(!user.getNickname().equals(findUser.getNickname())) {
+            verifyExistsNickname(user.getNickname());
+        }
+        String rawPassword = user.getPassword();
+        String encPassword = passwordEncoder.encode(rawPassword);
+        Optional.ofNullable(user.getNickname())
+                .ifPresent(nickname -> findUser.setNickname(nickname));
+        Optional.ofNullable(encPassword)
+                .ifPresent(password -> findUser.setPassword(password));
+        return userRepository.save(findUser);
     }
 }
