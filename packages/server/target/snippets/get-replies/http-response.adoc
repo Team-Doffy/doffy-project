@@ -5,7 +5,17 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 212
+Content-Length: 268
 
-[{"replyId":1,"userId":1,"boardId":null,"nickname":"Test Nickname","replyBody":"Test reply","isAccepted":true,"createdAt":"2023-05-17T19:42:56.4615782","modifiedAt":"2023-05-17T19:42:56.4615782","accepted":true}]
+[ {
+  "replyId" : 1,
+  "userId" : 1,
+  "boardId" : null,
+  "nickname" : "Test Nickname",
+  "replyBody" : "Test reply",
+  "isAccepted" : true,
+  "createdAt" : "2023-05-17T19:47:32.200752",
+  "modifiedAt" : "2023-05-17T19:47:32.200752",
+  "accepted" : true
+} ]
 ----

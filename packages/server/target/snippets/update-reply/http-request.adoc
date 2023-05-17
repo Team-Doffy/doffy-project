@@ -2,8 +2,14 @@
 ----
 PUT /api/v1/community/replies/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 101
+Content-Length: 133
 Host: localhost:8080
 
-{"boardId":null,"userId":null,"replyBody":"Updated reply content","createdAt":null,"modifiedAt":null}
+{
+  "boardId" : null,
+  "userId" : null,
+  "replyBody" : "Updated reply content",
+  "createdAt" : null,
+  "modifiedAt" : null
+}
 ----

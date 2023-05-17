@@ -20,6 +20,9 @@ public class BoardMapperTest {
     @Autowired
     private BoardMapper boardMapper;
 
+    @Autowired
+    private BoardCommentMapper boardCommentMapper;
+
     @Test
     public void testToBoard() {
         // given
@@ -40,7 +43,6 @@ public class BoardMapperTest {
     @Test
     public void testToBoardResponseDto() {
         // given
-
         User user = User.builder()
                 .userId(1L)
                 .name("testName")

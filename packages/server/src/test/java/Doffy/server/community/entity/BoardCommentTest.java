@@ -59,8 +59,8 @@ class BoardCommentTest {
     @Test
     public void testCommentAttributes(){
         //then
-        assertEquals(1L, boardComment1);
-        assertEquals(2L, boardComment2);
+        assertEquals(1L, boardComment1.getBoardCommentId());
+        assertEquals(2L, boardComment2.getBoardCommentId());
         assertEquals(2, board.getBoardComments().size());
         assertEquals("test 1", boardComment1.getBoardCommentBody());
         assertEquals(board, boardComment1.getBoard());

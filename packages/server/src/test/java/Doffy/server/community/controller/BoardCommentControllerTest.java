@@ -27,6 +27,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+import static Doffy.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static Doffy.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
@@ -36,7 +38,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 
 @WebMvcTest(BoardCommentController.class)
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
 class BoardCommentControllerTest {
 
     @Autowired
@@ -106,6 +108,8 @@ class BoardCommentControllerTest {
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").value(matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}")))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.modifiedAt").value(matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}")))
                 .andDo(MockMvcRestDocumentation.document("create-comment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("boardId").description("The id of the board where the comment is posted")),
                         PayloadDocumentation.requestFields(
@@ -143,6 +147,8 @@ class BoardCommentControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nickname").value(boardCommentResponseDto.getNickname()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.boardCommentBody").value(boardCommentResponseDto.getBoardCommentBody()))
                 .andDo(MockMvcRestDocumentation.document("get-comment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("commentId").description("The id of the comment")),
                         PayloadDocumentation.responseFields(
@@ -184,6 +190,8 @@ class BoardCommentControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nickname").value(boardCommentResponseDto.getNickname()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.boardCommentBody").value(boardCommentResponseDto.getBoardCommentBody()))
                 .andDo(MockMvcRestDocumentation.document("update-comment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("commentId").description("The id of the comment")),
                         PayloadDocumentation.requestFields(
@@ -212,6 +220,8 @@ class BoardCommentControllerTest {
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/v1/community/board-comments/{commentId}", commentId))
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andDo(MockMvcRestDocumentation.document("delete-comment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("commentId").description("The id of the comment"))))
                 .andDo(MockMvcResultHandlers.print());
@@ -234,6 +244,8 @@ class BoardCommentControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].nickname").value(boardCommentResponseDto.getNickname()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].boardCommentBody").value(boardCommentResponseDto.getBoardCommentBody()))
                 .andDo(MockMvcRestDocumentation.document("get-comments-by-board",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("boardId").description("The id of the board")),
                         PayloadDocumentation.responseFields(

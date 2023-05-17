@@ -1,5 +1,11 @@
 [source,bash]
 ----
-$ echo '{"boardId":1,"userId":1,"replyBody":"Test reply content","createdAt":null,"modifiedAt":null}' | http POST 'http://localhost:8080/api/v1/community/replies' \
+$ echo '{
+  "boardId" : 1,
+  "userId" : 1,
+  "replyBody" : "Test reply content",
+  "createdAt" : null,
+  "modifiedAt" : null
+}' | http POST 'http://localhost:8080/api/v1/community/replies' \
     'Content-Type:application/json;charset=UTF-8'
 ----

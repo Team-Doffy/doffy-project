@@ -27,6 +27,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Doffy.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static Doffy.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -37,7 +39,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(BoardController.class)
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
 class BoardControllerTest {
 
     @Autowired
@@ -95,6 +97,8 @@ class BoardControllerTest {
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").value(boardDetailedResponseDto.getCreatedAt()))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.modifiedAt").value(boardDetailedResponseDto.getModifiedAt()))
                 .andDo(MockMvcRestDocumentation.document("create-board",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         PayloadDocumentation.requestFields(
                                 fieldWithPath("userId").description("The id of the user"),
                                 fieldWithPath("title").description("The title of the board"),
@@ -129,6 +133,8 @@ class BoardControllerTest {
 //                    .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").value(boardDetailedResponseDto.getCreatedAt()))
 //                    .andExpect(MockMvcResultMatchers.jsonPath("$.modifiedAt").value(boardDetailedResponseDto.getModifiedAt()))
                     .andDo(MockMvcRestDocumentation.document("get-board",
+                            getRequestPreProcessor(),
+                            getResponsePreProcessor(),
                             pathParameters(
                                     parameterWithName("id").description("The id of the board to retrieve")
                                     ),
@@ -185,6 +191,8 @@ class BoardControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].likeCount").value(boardResponseDto.getLikeCount()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].replyCount").value(boardResponseDto.getReplyCount()))
                 .andDo(MockMvcRestDocumentation.document("get-all-boards",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("page").description("The page number (0-based)"),
                                 parameterWithName("size").description("The number of items per page")
@@ -229,6 +237,8 @@ class BoardControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.boardBody").value("Test content"))
                 .andDo(
                         MockMvcRestDocumentation.document("update-board",
+                                getRequestPreProcessor(),
+                                getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("id").description("The id of the board to update")
                         ),
@@ -258,6 +268,8 @@ class BoardControllerTest {
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/v1/community/boards/{id}", 1L))
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andDo(MockMvcRestDocumentation.document("delete-board",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("id").description("The id of the board to delete")
                         )));

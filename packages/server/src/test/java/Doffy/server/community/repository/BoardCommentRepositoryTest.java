@@ -21,6 +21,8 @@ public class BoardCommentRepositoryTest {
     public void testFindByUser() {
         // given
         User user = new User();
+        user.setUserId(1L);
+        user.setUsername("TEST");
 
         // when
         List<BoardComment> comments = boardCommentRepository.findByUser(user);
@@ -33,6 +35,8 @@ public class BoardCommentRepositoryTest {
     public void testFindByBoard() {
         // given
         Board board = new Board();
+        board.setBoardId(1L);
+        board.setBoardBody("TEST");
 
         // when
         List<BoardComment> comments = boardCommentRepository.findByBoard(board);

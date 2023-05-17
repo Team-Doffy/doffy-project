@@ -15,7 +15,6 @@ public class ReplyCommentMapper {
 
     public ReplyComment toComment(ReplyCommentPostDto commentPostDto){
         return ReplyComment.builder()
-                .replyCommentId(commentPostDto.getReplyId())
                 .replyCommentBody(commentPostDto.getReplyCommentBody())
                 .reply(replyService.findReply(commentPostDto.getReplyId()))
                 .build();

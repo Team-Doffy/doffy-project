@@ -21,7 +21,7 @@ public class BoardMapper {
                 .userId(board.getUser().getUserId())
                 .nickname(board.getUser().getNickname())
                 .title(board.getTitle())
-                .replyCount(board.getReplies().size())
+//                .replyCount(board.getReplies().size())
                 .createdAt(board.getCreatedAt())
                 .modifiedAt(board.getModifiedAt())
                 .build();

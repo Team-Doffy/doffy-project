@@ -23,6 +23,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+import static Doffy.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static Doffy.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -34,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ReplyCommentController.class)
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
 class ReplyCommentControllerTest {
 
     @Autowired
@@ -90,6 +92,8 @@ class ReplyCommentControllerTest {
                 .andExpect(jsonPath("$.modifiedAt").isNotEmpty())
                 .andDo(print())
                 .andDo(document("create-replyComment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         requestFields(
                                 fieldWithPath("userId").description("User ID"),
                                 fieldWithPath("replyCommentBody").description("Reply comment body"),
@@ -132,6 +136,8 @@ class ReplyCommentControllerTest {
                 .andExpect(jsonPath("$.replyCommentBody").value("Test reply comment content"))
                 .andDo(print())
                 .andDo(document("update-replyComment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("id").description("Reply comment ID")
                         ),
@@ -170,6 +176,8 @@ class ReplyCommentControllerTest {
                 .andExpect(jsonPath("$.modifiedAt").isNotEmpty())
                 .andDo(print())
                 .andDo(document("get-replyComment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("id").description("Reply comment ID")
                         ),
@@ -197,6 +205,8 @@ class ReplyCommentControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)))
                 .andDo(print())
                 .andDo(document("get-all-replyComments",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("replyId").description("The ID of the reply")
                         ),
@@ -222,6 +232,8 @@ class ReplyCommentControllerTest {
                 .andExpect(status().isNoContent())
                 .andDo(print())
                 .andDo(document("delete-replyComment",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("id").description("Reply comment ID")
                         )));

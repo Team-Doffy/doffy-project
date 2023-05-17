@@ -23,6 +23,8 @@ public class BoardRepositoryTest {
     public void testFindByUser() {
         // given
         User user = new User();
+        user.setUserId(1L);
+        user.setUsername("UserName");
 
         // when
         List<Board> boards = boardRepository.findByUser(user);

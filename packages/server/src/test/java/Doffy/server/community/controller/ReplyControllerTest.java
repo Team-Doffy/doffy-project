@@ -25,6 +25,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Doffy.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static Doffy.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doNothing;
@@ -36,7 +38,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(ReplyController.class)
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
 class ReplyControllerTest {
 
     @Autowired
@@ -97,6 +99,8 @@ class ReplyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.replyBody").value(replyResponseDto.getReplyBody()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.nickname").value(replyResponseDto.getNickname()))
                 .andDo(MockMvcRestDocumentation.document("create-reply",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         PayloadDocumentation.requestFields(
                                 fieldWithPath("boardId").description("Board ID"),
                                 fieldWithPath("userId").description("User ID"),
@@ -138,6 +142,8 @@ class ReplyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.modifiedAt").isNotEmpty())
                 .andDo(MockMvcRestDocumentation.document("get-reply",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("replyId").description("The ID of the reply to retrieve")
                         ),
@@ -186,6 +192,8 @@ class ReplyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.createdAt").isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.modifiedAt").isNotEmpty())
                 .andDo(MockMvcRestDocumentation.document("update-reply",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("replyId").description("The ID of the reply to update")
                         ),
@@ -250,6 +258,8 @@ class ReplyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].createdAt").isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].modifiedAt").isNotEmpty())
                 .andDo(MockMvcRestDocumentation.document("get-replies",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("page").description("The page number (0-based)"),
                                 parameterWithName("size").description("The number of items per page")
@@ -280,6 +290,8 @@ class ReplyControllerTest {
                         .param("userId", "1"))
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andDo(MockMvcRestDocumentation.document("delete-reply",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
                         pathParameters(
                                 parameterWithName("replyId").description("Reply ID")
                         ),

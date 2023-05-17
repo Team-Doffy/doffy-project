@@ -21,8 +21,8 @@ class BoardDetailedResponseDtoTest {
         // when
         BoardDetailedResponseDto dto = BoardDetailedResponseDto.builder()
                 .boardId(boardId)
-//                .userId(userId)
-//                .nickname(nickname)
+                .userId(userId)
+                .nickname(nickname)
                 .title(title)
                 .boardBody(boardBody)
                 .createdAt(createdAt)
@@ -31,8 +31,8 @@ class BoardDetailedResponseDtoTest {
 
         // then
         assertEquals(boardId, dto.getBoardId());
-//        assertEquals(userId, dto.getUserId());
-//        assertEquals(nickname, dto.getNickname());
+        assertEquals(userId, dto.getUserId());
+        assertEquals(nickname, dto.getNickname());
         assertEquals(title, dto.getTitle());
         assertEquals(boardBody, dto.getBoardBody());
         assertEquals(createdAt, dto.getCreatedAt());

@@ -47,8 +47,8 @@ class ReplyCommentTest {
     @Test
     public void testCommentAttributes(){
         //then
-        assertEquals(1L, replyComment1);
-        assertEquals(2L, replyComment2);
+        assertEquals(1L, replyComment1.getReplyCommentId());
+        assertEquals(2L, replyComment2.getReplyCommentId());
         assertEquals(2, reply.getReplyComments().size());
         assertEquals("test 1", replyComment1.getReplyCommentBody());
         assertEquals(reply, replyComment1.getReply());

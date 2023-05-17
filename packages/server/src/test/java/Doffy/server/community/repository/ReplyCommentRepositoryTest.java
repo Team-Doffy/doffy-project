@@ -21,6 +21,8 @@ public class ReplyCommentRepositoryTest {
     public void testFindByUser() {
         // given
         User user = new User();
+        user.setUserId(1L);
+        user.setUsername("TEST");
 
         // when
         List<ReplyComment> replyComments = replyCommentRepository.findByUser(user);
@@ -33,6 +35,8 @@ public class ReplyCommentRepositoryTest {
     public void testFindByReply() {
         // given
         Reply reply = new Reply();
+        reply.setReplyId(1L);
+        reply.setReplyBody("TEST");
 
         // when
         List<ReplyComment> replyComments = replyCommentRepository.findAllByReply(reply);
