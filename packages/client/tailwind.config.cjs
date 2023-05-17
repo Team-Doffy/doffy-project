@@ -44,6 +44,7 @@ module.exports = {
         "border-color": "#DDDDDD",
         "number-grey": "#999999",
         "number-real-grey": "F8F8F8",
+        "dark-blue": "#003192",
       },
       borderRadius: {
         40: "2.5rem",
