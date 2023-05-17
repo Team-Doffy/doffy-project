@@ -4,3 +4,8 @@ node_modules/
 packages/client/yarn-error.log
 packages/client/node_modules/
 packages/client/.next/
+
+
+### server ignore ###
+packages/server/src/main/resources/application.yml
+packages/server/src/main/resources/application.properties

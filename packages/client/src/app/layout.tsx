@@ -9,8 +9,10 @@ import "tailwindcss/tailwind.css"; // Tailwind CSS import
 
 export default function RootLayout({
   children,
+  pageProps,
 }: {
   children: React.ReactNode;
+  pageProps: AppProps;
 }) {
   return (
     <html>
@@ -21,5 +23,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    // </SessionProvider>
   );
 }
