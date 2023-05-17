@@ -68,7 +68,7 @@ export const Step3: FC = () => {
   };
 
   const handleFileInputCancel = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserImg(defaultUserImg);
+    setUserImg(defaultUserImg.src);
   };
 
   useEffect(() => {
@@ -103,20 +103,20 @@ export const Step3: FC = () => {
 
         {/* 프로필이미지 */}
         <div className="flex">
-          <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD] ring-[2px] relative">
+          <div className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] bg-[#DDDDDD] ring-[2px] border-x-2">
             <img
               src={userImg}
               alt="userprofileimg"
-              className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] ring"
+              className="w-[100px] h-[100px] mx-auto mb-[40px] rounded-[50%] ring relative "
             />
             <input
               type="file"
               ref={fileInput}
-              style={{ display: "none" }}
+              // style={{ display: "none" }}
               onChange={handleFileInput}
-              className="opacity-"
+              className="opacity-0"
             />
-            <div className="absolute opacity-1">
+            <div className="absolute">
               <img src={Edit.src} alt="fileInputCancel" />
             </div>
           </div>
@@ -153,7 +153,7 @@ export const Step3: FC = () => {
             <input
               type={isShowPw ? "password" : "text"}
               placeholder="영문, 숫자, 특수문자 포함 8~20자를 입력해주세요"
-              onChange={handlePw}
+              // onChange={handlePw}
               className="w-[350px] h-[40px] p-[12px]"
             />
             <div
