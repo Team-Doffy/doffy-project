@@ -21,7 +21,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/replies")
+@RequestMapping("/api/v1/community/replies")
 @RequiredArgsConstructor
 public class ReplyController {
 

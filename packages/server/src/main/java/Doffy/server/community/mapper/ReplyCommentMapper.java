@@ -2,30 +2,31 @@ package Doffy.server.community.mapper;
 
 import Doffy.server.community.dto.comment.ReplyCommentPostDto;
 import Doffy.server.community.dto.comment.ReplyCommentResponseDto;
-import Doffy.server.community.entity.Reply;
 import Doffy.server.community.entity.ReplyComment;
-import Doffy.server.user.entity.User;
+import Doffy.server.community.service.ReplyService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class ReplyCommentMapper {
-    Reply reply = new Reply();
-    User user = new User();
+
+    private final ReplyService replyService;
 
     public ReplyComment toComment(ReplyCommentPostDto commentPostDto){
         return ReplyComment.builder()
                 .replyCommentId(commentPostDto.getReplyId())
                 .replyCommentBody(commentPostDto.getReplyCommentBody())
-                .reply(reply)
+                .reply(replyService.findReply(commentPostDto.getReplyId()))
                 .build();
     }
 
     public ReplyCommentResponseDto toCommentResponseDto(ReplyComment replyComment){
         ReplyCommentResponseDto response = ReplyCommentResponseDto.builder()
                 .replyCommentId(replyComment.getReplyCommentId())
-                .userId(user.getUserId())
-                .nickname(user.getNickname())
-                .replyId(reply.getReplyId())
+                .userId(replyComment.getUser().getUserId())
+                .nickname(replyComment.getUser().getNickname())
+                .replyId(replyComment.getReply().getReplyId())
                 .replyCommentBody(replyComment.getReplyCommentBody())
                 .createdAt(replyComment.getCreatedAt())
                 .modifiedAt(replyComment.getModifiedAt())

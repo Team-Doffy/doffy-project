@@ -22,7 +22,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/api/v1/community/reply-comments")
+@RequestMapping("/api/v1/community/replycomments")
 @Slf4j
 @RequiredArgsConstructor
 @Api(value = "Community Comment API")
@@ -68,8 +68,7 @@ public class ReplyCommentController {
 
     @ApiOperation(value = "Get all comments by reply ID", response = List.class)
     @GetMapping("/reply/{replyId}")
-    public ResponseEntity<List<ReplyCommentResponseDto>> getCommentsByReply(
-            @ApiParam(value = "Reply ID", required = true) @PathVariable long replyId) {
+    public ResponseEntity<List<ReplyCommentResponseDto>> getComments(@PathVariable long replyId) {
         List<ReplyCommentResponseDto> comments = commentService.findReplyComments(replyId);
         return ResponseEntity.ok(comments);
     }

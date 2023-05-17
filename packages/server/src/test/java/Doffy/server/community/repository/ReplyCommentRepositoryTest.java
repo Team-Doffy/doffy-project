@@ -35,7 +35,7 @@ public class ReplyCommentRepositoryTest {
         Reply reply = new Reply();
 
         // when
-        List<ReplyComment> replyComments = replyCommentRepository.findByReply(reply);
+        List<ReplyComment> replyComments = replyCommentRepository.findAllByReply(reply);
 
         // then
         assertNotNull(replyComments);

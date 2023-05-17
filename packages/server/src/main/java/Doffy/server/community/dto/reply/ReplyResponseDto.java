@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class ReplyResponseDto {
     private Long replyId;
     private Long userId;
+    private Long boardId;
     private String nickname;
     private String replyBody;
     private Boolean isAccepted;

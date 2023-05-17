@@ -38,12 +38,11 @@ public class ReplyCommentService {
     }
 
     public List<ReplyCommentResponseDto> findReplyComments(long replyId){
-        Reply getReply = replyService.findReply(replyId);
-        List<ReplyComment> replyComments = replyCommentRepository.findByReply(getReply);
-        List<ReplyCommentResponseDto> responseDtos = replyComments.stream()
+        Reply verifiedReply = replyService.findReply(replyId);
+        List<ReplyComment> replyComments = replyCommentRepository.findAllByReply(verifiedReply);
+        return replyComments.stream()
                 .map(replyCommentMapper::toCommentResponseDto)
                 .collect(Collectors.toList());
-        return responseDtos;
     }
 
     public ReplyComment findComment(long commentId){

@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ echo '{"boardId":null,"userId":null,"replyBody":"Updated reply content","createdAt":null,"modifiedAt":null}' | http PUT 'http://localhost:8080/api/v1/community/replies/1' \
+    'Content-Type:application/json;charset=UTF-8'
+----
