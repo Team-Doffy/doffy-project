@@ -32,8 +32,7 @@ public class UserService {
         user.setTerms(true); //약관 동의 True로 변경
         List<String> roles = doffyAuthorityUtils.createRoles(user.getUsername());
         user.setRoles(roles);
-        User savedUser = userRepository.save(user);  // 회원정보 db 저장
-        return savedUser;
+        return userRepository.save(user);
     }
 
     //회원조회
@@ -82,7 +81,6 @@ public class UserService {
     //닉네임 수정
     public User updateNickname(User user){
         User findUser = findVerifyUser(user.getUsername());
-//        checkPassword(findUser.getUsername(),user.getPassword());
         if(!user.getNickname().equals(findUser.getNickname())) {
             verifyExistsNickname(user.getNickname());
         }

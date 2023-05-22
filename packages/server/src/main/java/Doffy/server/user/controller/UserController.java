@@ -52,9 +52,6 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //회원수정 - 비밀번호
-
-
     //회원삭제
     @DeleteMapping
     public ResponseEntity deleteUser(@AuthenticationPrincipal String username){
