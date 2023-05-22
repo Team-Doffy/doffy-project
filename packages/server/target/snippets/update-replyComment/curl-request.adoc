@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/v1/community/replycomments/1' -i -X PUT \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -d '{"replyId":null,"userId":1,"replyCommentBody":"Updated reply comment body"}'
+----

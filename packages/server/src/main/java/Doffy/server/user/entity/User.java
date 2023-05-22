@@ -1,5 +1,8 @@
 package Doffy.server.user.entity;
 
+import Doffy.server.community.entity.Board;
+import Doffy.server.community.entity.BoardComment;
+import Doffy.server.community.entity.Reply;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,6 +40,15 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<String>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Board> boards;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BoardComment> boardComments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reply> replies;
 
     public User(String username, String name, String nickname){
         this.username = username;

@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+boardId+`
+|`+Number+`
+|The id of the created board
+
+|`+userId+`
+|`+Number+`
+|The id of the user who created the board
+
+|`+title+`
+|`+String+`
+|The title of the created board
+
+|`+boardBody+`
+|`+String+`
+|The content of the created board
+
+|`+nickname+`
+|`+String+`
+|The nickname of the user who created the board
+
+|`+createdAt+`
+|`+String+`
+|The creation time of the board
+
+|`+modifiedAt+`
+|`+String+`
+|The modification time of the board
+
+|===

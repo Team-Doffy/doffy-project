@@ -1,0 +1,21 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Content-Length: 269
+
+{
+  "replyId" : 1,
+  "userId" : 1,
+  "boardId" : 1,
+  "nickname" : "Test Nickname",
+  "replyBody" : "Test reply content",
+  "isAccepted" : true,
+  "createdAt" : "2023-05-17T19:47:32.019752",
+  "modifiedAt" : "2023-05-17T19:47:32.019752",
+  "accepted" : true
+}
+----

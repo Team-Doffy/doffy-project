@@ -30,7 +30,7 @@ public class GlobalExceptionAdvice {
     //URI 변수 유효성 검증 예외처리
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse hadleConstraintViolationException(
+    public ErrorResponse handleConstraintViolationException(
             ConstraintViolationException e){
         final ErrorResponse response = ErrorResponse.of(e.getConstraintViolations());
 
@@ -39,7 +39,7 @@ public class GlobalExceptionAdvice {
 
     //비즈니스 로직 예외처리
     @ExceptionHandler
-    public ResponseEntity haldeBusinessLogicException(BusinessLogicException e){
+    public ResponseEntity handleBusinessLogicException(BusinessLogicException e){
         final ErrorResponse response = ErrorResponse.of(e.getExceptionCode());
         return new ResponseEntity<>(response, HttpStatus.valueOf(e.getExceptionCode().getStatus()));
     }

@@ -1,0 +1,40 @@
+|===
+|Path|Type|Description
+
+|`+[].replyId+`
+|`+Number+`
+|The ID of the reply
+
+|`+[].userId+`
+|`+Number+`
+|The ID of the user who created the reply
+
+|`+[].boardId+`
+|`+Null+`
+|Board ID
+
+|`+[].nickname+`
+|`+String+`
+|The nickname of the user who created the reply
+
+|`+[].replyBody+`
+|`+String+`
+|The body of the reply
+
+|`+[].isAccepted+`
+|`+Boolean+`
+|Whether the reply is accepted or not
+
+|`+[].accepted+`
+|`+Boolean+`
+|Whether the reply is accepted or not (deprecated)
+
+|`+[].createdAt+`
+|`+String+`
+|The creation time of the reply
+
+|`+[].modifiedAt+`
+|`+String+`
+|The modification time of the reply
+
+|===

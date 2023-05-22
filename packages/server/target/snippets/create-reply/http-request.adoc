@@ -1,0 +1,15 @@
+[source,http,options="nowrap"]
+----
+POST /api/v1/community/replies HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 124
+Host: localhost:8080
+
+{
+  "boardId" : 1,
+  "userId" : 1,
+  "replyBody" : "Test reply content",
+  "createdAt" : null,
+  "modifiedAt" : null
+}
+----

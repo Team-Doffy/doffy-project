@@ -1,0 +1,8 @@
+.+/api/v1/community/board-comments/{commentId}+
+|===
+|Parameter|Description
+
+|`+commentId+`
+|The id of the comment
+
+|===

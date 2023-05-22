@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+replyCommentId+`
+|`+Number+`
+|Reply comment ID
+
+|`+userId+`
+|`+Number+`
+|User ID
+
+|`+replyId+`
+|`+Null+`
+|The reply ID associated with the comment
+
+|`+replyCommentBody+`
+|`+String+`
+|Reply comment body
+
+|`+nickname+`
+|`+String+`
+|Nickname
+
+|`+createdAt+`
+|`+String+`
+|Time of creation
+
+|`+modifiedAt+`
+|`+String+`
+|Time of last modification
+
+|===

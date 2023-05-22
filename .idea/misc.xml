@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK" />
+<<<<<<< HEAD
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+=======
+>>>>>>> 427bbd8a7620f26f33ba6b1768f9ff3a1d062114
 </project>

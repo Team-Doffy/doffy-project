@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ echo '{"boardId":1,"userId":1,"boardCommentBody":"Updated content","createdAt":[2023,5,16,21,13,12,538600100],"modifiedAt":[2023,5,16,21,13,12,538600100]}' | http PUT 'http://localhost:8080/api/v1/community/board-comments/1' \
+    'Content-Type:application/json;charset=UTF-8'
+----

@@ -1,0 +1,24 @@
+|===
+|Path|Type|Description
+
+|`+boardId+`
+|`+Number+`
+|The id of the board
+
+|`+userId+`
+|`+Number+`
+|The id of the user
+
+|`+boardCommentBody+`
+|`+String+`
+|The body of the comment
+
+|`+createdAt+`
+|`+Array+`
+|The creation timestamp of the comment
+
+|`+modifiedAt+`
+|`+Array+`
+|The last modified timestamp of the comment
+
+|===

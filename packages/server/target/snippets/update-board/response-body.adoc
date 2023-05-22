@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"boardId":1,"userId":1,"nickname":"Test Nickname","title":"Test Title","boardBody":"Test content","createdAt":"2023-05-17T00:04:48.1345904","modifiedAt":"2023-05-17T00:04:48.1345904"}
+----

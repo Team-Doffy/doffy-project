@@ -27,4 +27,3 @@ include::{snippets}/signup-user/http-response.adoc[]
 
 .response-headers
 include::{snippets}/signup-user/response-headers.adoc[]
-

@@ -3,20 +3,26 @@
 import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import "../styles/globals.css";
+import { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+import "tailwindcss/tailwind.css"; // Tailwind CSS import
 
 export default function RootLayout({
   children,
+  pageProps,
 }: {
   children: React.ReactNode;
+  pageProps: AppProps;
 }) {
   return (
     <html>
       <head></head>
-      <body>
+      <body className="h-full">
         <Header />
         {children}
         <Footer />
       </body>
     </html>
+    // </SessionProvider>
   );
 }
