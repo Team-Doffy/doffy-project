@@ -5,7 +5,65 @@ packages/client/yarn-error.log
 packages/client/node_modules/
 packages/client/.next/
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+### Server ###
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+## log ##
+log/
+*.log
+
+## misc ##
+packages/server/*.yml
+packages/server/gradlew
+packages/server/gradlew.bat
+packages/server/src/main/resources/*.yml
+
 
 ### server ignore ###
 packages/server/src/main/resources/application.yml
 packages/server/src/main/resources/application.properties
+
+=======
+
+### server ignore ###
+packages/server/src/main/resources/application.yml
+packages/server/src/main/resources/application.properties
+>>>>>>> 427bbd8a7620f26f33ba6b1768f9ff3a1d062114

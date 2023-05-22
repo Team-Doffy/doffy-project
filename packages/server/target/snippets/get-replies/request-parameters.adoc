@@ -1,0 +1,10 @@
+|===
+|Parameter|Description
+
+|`+page+`
+|The page number (0-based)
+
+|`+size+`
+|The number of items per page
+
+|===

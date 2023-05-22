@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+[].replyCommentId+`
+|`+Null+`
+|Array of reply comment IDs
+
+|`+[].replyId+`
+|`+Null+`
+|Array of reply IDs
+
+|`+[].userId+`
+|`+Null+`
+|Array of user IDs
+
+|`+[].replyCommentBody+`
+|`+Null+`
+|Array of reply comment bodies
+
+|`+[].nickname+`
+|`+Null+`
+|Array of nicknames
+
+|`+[].createdAt+`
+|`+Null+`
+|Array of creation times
+
+|`+[].modifiedAt+`
+|`+Null+`
+|Array of last modification times
+
+|===

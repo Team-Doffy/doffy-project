@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"replyId":null,"userId":1,"replyCommentBody":"Updated reply comment body"}
+----

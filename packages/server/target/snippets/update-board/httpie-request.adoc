@@ -1,0 +1,5 @@
+[source,bash]
+----
+$ echo '{"userId":1,"title":"Updated Title","boardBody":"Updated content"}' | http PUT 'http://localhost:8080/api/v1/community/boards/1' \
+    'Content-Type:application/json;charset=UTF-8'
+----

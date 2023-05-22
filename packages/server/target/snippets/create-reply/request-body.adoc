@@ -1,0 +1,10 @@
+[source,options="nowrap"]
+----
+{
+  "boardId" : 1,
+  "userId" : 1,
+  "replyBody" : "Test reply content",
+  "createdAt" : null,
+  "modifiedAt" : null
+}
+----

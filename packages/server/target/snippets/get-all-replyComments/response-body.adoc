@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+[{"replyCommentId":null,"replyId":null,"userId":null,"nickname":null,"replyCommentBody":null,"createdAt":null,"modifiedAt":null},{"replyCommentId":null,"replyId":null,"userId":null,"nickname":null,"replyCommentBody":null,"createdAt":null,"modifiedAt":null}]
+----

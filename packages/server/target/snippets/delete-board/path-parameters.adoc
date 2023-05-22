@@ -1,0 +1,8 @@
+.+/api/v1/community/boards/{id}+
+|===
+|Parameter|Description
+
+|`+id+`
+|The id of the board to delete
+
+|===

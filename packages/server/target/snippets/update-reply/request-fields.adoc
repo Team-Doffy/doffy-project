@@ -1,0 +1,16 @@
+|===
+|Path|Type|Description
+
+|`+boardId+`
+|`+Null+`
+|Board ID
+
+|`+userId+`
+|`+Null+`
+|User ID
+
+|`+replyBody+`
+|`+String+`
+|Reply Body
+
+|===
