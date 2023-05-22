@@ -8,6 +8,7 @@ import Doffy.server.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class UserController {
     //회원 생성
     @PostMapping
     public ResponseEntity signupUser(@RequestBody @Valid UserDto.SignUp userSignUpDto){
-        User user = userMapper.userSignUpToUser(userSignUpDto);
+        User user = userMapper.SignUpToUser(userSignUpDto);
         User createdUser = userService.createUser(user);
         URI location = UriCreator.createUri(USER_DEFAULT_URL, createdUser.getUserId());
         return ResponseEntity.created(location).build();
@@ -34,49 +35,72 @@ public class UserController {
 
     //회원 조회
     @GetMapping
-    public ResponseEntity getUser(){
-        return new ResponseEntity("test",HttpStatus.OK);
+    public ResponseEntity getUser(@AuthenticationPrincipal String username){
+        User findUser = userService.findUser(username);
+        UserDto.GetUserResponse response = userMapper.userToGetUserResponse(findUser);
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 
-    //회원수정
-    @PutMapping
-    public ResponseEntity updateUser(){
-        return new ResponseEntity("test",HttpStatus.OK);
+    //회원수정 - 닉네임
+    @PatchMapping
+    public ResponseEntity updateNickname(@AuthenticationPrincipal String username,
+                                     @RequestBody @Valid UserDto.PatchNickname userPatchDto){
+        User findUser = userService.findUser(username);
+        userPatchDto.setUsername(findUser.getUsername());
+        User updatedUser = userMapper.patchNicknameToUser(userPatchDto);
+        userService.updateNickname(updatedUser);
+        return new ResponseEntity(HttpStatus.OK);
     }
+
     //회원삭제
     @DeleteMapping
-    public ResponseEntity deleteUser(){
-        return new ResponseEntity("test",HttpStatus.OK);
+    public ResponseEntity deleteUser(@AuthenticationPrincipal String username){
+        userService.deleteUser(username);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    //약관 및 개인정보 수집 동의
-    @PostMapping("/signup-terms")
-    public ResponseEntity termsAgreeUser() {
-        return new ResponseEntity<>("성공",HttpStatus.CREATED);
-    }
+//    //약관 및 개인정보 수집 동의
+//    @PostMapping("/signup-terms")
+//    public ResponseEntity termsAgreeUser() {
+//        return new ResponseEntity<>("성공",HttpStatus.CREATED);
+//    }
 
     //회원가입 시 이메일 인증 코드 전송
-    @PostMapping("/signup-email")
+    @PostMapping("/signup-send-code")
     public ResponseEntity signupEmail(){
         return new ResponseEntity<>("성공",HttpStatus.CREATED);
     }
 
     //회원가입 시 인증 확인
-    @PostMapping("signup/check-code")
+    @GetMapping("/signup-check-code")
     public ResponseEntity signupCheckCode(){
         return new ResponseEntity<>("test",HttpStatus.OK);
     }
 
     //이메일 중복확인
-    @GetMapping("signup/duplication-email")
-    public ResponseEntity duplicationEmail(){
-        return new ResponseEntity("test",HttpStatus.OK);
+    @GetMapping("duplication-email")
+    public ResponseEntity duplicationCheckEmail(@RequestBody @Valid UserDto.DuplicationCheckUsername checkUsernameDto){
+        User user = userMapper.duplicationCheckUsernameToUser(checkUsernameDto);
+        userService.verifyExistsUsername(user.getUsername());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     //닉네임 중복확인
-    @PostMapping("signup/duplication-nickname")
-    public ResponseEntity duplicationNickname(){
-        return new ResponseEntity<>("test",HttpStatus.OK);
+    @GetMapping("duplication-nickname")
+    public ResponseEntity duplicationCheckNickname(@RequestBody @Valid UserDto.DuplicationCheckNickname checkNicknameDto){
+        User user = userMapper.duplicationCheckNicknameToUser(checkNicknameDto);
+        userService.verifyExistsNickname(user.getNickname());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+    //비밀번호 확인
+    @GetMapping("check-password")
+    public ResponseEntity checkPassword(@AuthenticationPrincipal String username,
+                                        @RequestBody UserDto.CheckPassword checkPasswordDto){
+        User originUser = userService.findUser(username);
+        User checkPasswordUser = userMapper.checkPasswordToUser(checkPasswordDto);
+        userService.checkPassword(originUser.getUsername(), checkPasswordUser.getPassword());
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

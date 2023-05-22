@@ -8,6 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,10 +25,8 @@ public class User {
     @Email(message = "올바른 이메일이 아닙니다.")
     @NotBlank(message = "이메일은 공백이 아니여야 합니다.")
     private String username;
-
     @Column
     private String password;
-
     @Column
     private String name;
     @Column
@@ -39,6 +38,8 @@ public class User {
     @Column
     private int score;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<String>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Board> boards;
@@ -51,6 +52,12 @@ public class User {
 
     public User(String username, String name, String nickname){
         this.username = username;
+        this.name = name;
+        this.nickname = nickname;
+    }
+    public User(String username, String password, String name, String nickname) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.nickname = nickname;
     }

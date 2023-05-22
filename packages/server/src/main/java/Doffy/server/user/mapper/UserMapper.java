@@ -9,5 +9,13 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
 
-    User userSignUpToUser(UserDto.SignUp requestBody);
+    User SignUpToUser(UserDto.SignUp requestBody);
+    User patchNicknameToUser(UserDto.PatchNickname requestBody);
+    User duplicationCheckUsernameToUser(UserDto.DuplicationCheckUsername requestBody);
+    User duplicationCheckNicknameToUser(UserDto.DuplicationCheckNickname requestBody);
+    User checkPasswordToUser(UserDto.CheckPassword requestBody);
+    UserDto.GetUserResponse userToGetUserResponse(User user);
+    UserDto.DuplicationCheckUsernameResponse userToDuplicationCheckUsernameResponse (User user);
+    UserDto.DuplicationCheckNicknameResponse userToDuplicationCheckNicknameResponse (User user);
+    UserDto.CheckPasswordResponse userToCheckPasswordResponse (User user);
 }
