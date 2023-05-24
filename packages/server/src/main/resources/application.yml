@@ -1,10 +1,9 @@
 spring:
   config:
-    activate:
     import: 'aws-parameterstore:'
 aws:
   paramstore:
     enabled: true
     prefix: /spring-boot-aws
-    name: doffy-project
-    profile-separator: _
+    name: doffy-project # 리소스 이름을 작성합니다.
+    profileSeparator: _
