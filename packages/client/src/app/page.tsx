@@ -13,6 +13,36 @@ function Main() {
           width={1560}
           height={480}
         />
+        <ul className="flex gap-x-3 bg-deepblue">
+          <li className="w-9 h-3 rounded-full bg-white"></li>
+          <li className="w-3 h-3 opacity-30 rounded-full bg-white"></li>
+          <li className="w-3 h-3 opacity-30 rounded-full bg-white"></li>
+          <li className="w-3 h-3 opacity-30 rounded-full bg-white"></li>
+          <button>
+            <Image
+              src="/icons/left-arrow.svg"
+              alt="search_icon"
+              width={7}
+              height={12}
+            />
+          </button>
+          <button>
+            <Image
+              src="/icons/pause-icon.svg"
+              alt="search_icon"
+              width={6}
+              height={12}
+            />
+          </button>
+          <button>
+            <Image
+              src="/icons/right-arrow.svg"
+              alt="search_icon"
+              width={7}
+              height={12}
+            />
+          </button>
+        </ul>
       </div>
 
       <div className="flex space-x-96 items-center">
@@ -69,7 +99,7 @@ function Main() {
 
               <div className="p-2 border rounded-full">
                 <Image
-                  src="/icons/React-icon.svg"
+                  src="/icons/react-icon.svg"
                   alt="docs_logo"
                   width={28}
                   height={28}
@@ -93,7 +123,7 @@ function Main() {
 
               <div className="p-2 border rounded-full">
                 <Image
-                  src="/icons/React-icon.svg"
+                  src="/icons/react-icon.svg"
                   alt="docs_logo"
                   width={28}
                   height={28}
@@ -117,7 +147,7 @@ function Main() {
 
               <div className="p-2 border rounded-full">
                 <Image
-                  src="/icons/React-icon.svg"
+                  src="/icons/react-icon.svg"
                   alt="docs_logo"
                   width={28}
                   height={28}
@@ -141,7 +171,7 @@ function Main() {
 
               <div className="p-2 border rounded-full">
                 <Image
-                  src="/icons/React-icon.svg"
+                  src="/icons/react-icon.svg"
                   alt="docs_logo"
                   width={28}
                   height={28}
