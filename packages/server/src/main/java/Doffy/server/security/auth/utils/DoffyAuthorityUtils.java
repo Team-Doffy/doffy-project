@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DoffyAuthorityUtils {
-    @Value("${spring.username.admin}")
+//    @Value("${spring.username.admin}")
     private String adminUsername;
 
     private final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER");
