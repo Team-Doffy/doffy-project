@@ -5,13 +5,20 @@ import Link from "next/link";
 import Logo from "../../assets/images/doffylogo.svg";
 import noti from "../../assets/images/notification.svg";
 import Image from "next/image";
+import { NoticeModal } from "./noticeModal";
 
 const Header: React.FC = () => {
   const [isSignin, setIsSignin] = useState<boolean>(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const [darkmodeToggle, setDarkModeToggle] = useState<boolean>(false);
+
+  const isModalState = () => {
+    setIsModal(!isModal);
+  };
 
   return (
-    <header className="w-full h-[70px] sticky items-center bg-white dark:bg-gray-800 drop-shadow-md">
-      <div className="w-4/5 flex sticky justify-between mx-auto mt-[20px]">
+    <header className="w-full h-[70px] sticky items-center bg-white dark:bg-gray-800 drop-shadow-md fixed top-0">
+      <div className="w-4/5 flex justify-between left-[10%] mt-[15px] fixed">
         {/* 헤더 왼측에는 로고, 공식문서, 커뮤니티 */}
         <div className="flex items-center">
           <Link href="/">
@@ -31,39 +38,30 @@ const Header: React.FC = () => {
 
         {/* 헤더 오른쪽에는 알림버튼, 다크모드 토글, 로그인, 회원가입 */}
         <div className="flex items-center space-x-4">
-          <button className="mr-6">
+          <div className="mr-6 relative cursor-pointer" onClick={isModalState}>
             <img src={noti.src} alt="noti" />
-          </button>
-          {/* <button
-            className="w-20 h-10 rounded-full bg-white flex items-center transition duration-300 focus:outline-none shadow"
-            onclick="toggleTheme()"
-          >
-            <div
-              id="switch-toggle"
-              className="w-12 h-12 relative rounded-full transition duration-500 transform bg-yellow-500 -translate-x-2 p-1 text-white"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            {/* {isModal && <NoticeModal />} */}
+          </div>
+
+          {/* <div className=" flex flex-col items-center justify-center min-h-screen overflow-hidden">
+            <div className="flex">
+              <label className="inline-flex relative items-center mr-5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  checked={darkmodeToggle}
+                  readOnly
                 />
-                <Link href="/">
-                  <img
-                    src="profile.png"
-                    alt="profile"
-                    className="w-20 h-20 rounded-full hover: scale-50"
-                  />
-                </Link>
-              </svg>
+                <div
+                  onClick={() => {
+                    setDarkModeToggle(!darkmodeToggle);
+                  }}
+                  className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
+                ></div>
+              </label>
             </div>
-          </button> */}
+          </div> */}
+          <div className=""></div>
 
           <Link href="/signin">
             <span className="px-4 py-2 hover:text-blue-500 font-bold text-lg">

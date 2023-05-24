@@ -122,6 +122,34 @@ export const Step3: FC = () => {
           </div>
         </div>
 
+        {/* <div className="w-64 mx-auto mt-8">
+      {file ? (
+        <div className="relative">
+          <img src={URL.createObjectURL(file)} alt="Profile" className="w-full h-auto" />
+          <button
+            className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded"
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center" onClick={handleFileInput}>
+          {showUploader ? (
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="mt-2 appearance-none"
+            />
+          ) : (
+            <div className="bg-gray-200 p-4 rounded cursor-pointer">
+              Click to upload profile picture
+            </div>
+          )}
+        </div>
+      )}
+    </div> */}
+
         <div className="w-[400px] mb-[40px] mx-auto flex flex-col relative">
           <label className="mb-[8px]">이름(실명) *</label>
           <input
