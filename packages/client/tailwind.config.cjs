@@ -9,7 +9,9 @@ const colors = {
   burntorange: "#F4440C",
   charcoal: "#222222",
   grayish: "#666666",
-  lightgray: "#999999",
+  darkGrey: "#999999",
+  mideumGrey: "#CCCCCC",
+  lightGrey: "#D9D9D9",
   softgray: "#DDDDDD",
   offwhite: "#F4F4F4",
   snow: "#F8F8F8",
@@ -19,35 +21,36 @@ const colors = {
   royalblue: "#324F8D",
   paleblue: "#A8BBD4",
   coolgray: "#C8CFDA",
+  white: "#FFFFFF",
 };
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    spacing: {
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+    padding: {
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+    fontSize: {
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+    lineHeight: {
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+    gap: {
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+    borderRadius: {
+      none: "0px",
+      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+    },
+
     extend: {
       colors,
-      width: {
-        27: "1.688rem",
-        120: "7.5rem",
-        352: "22rem",
-      },
-      height: {
-        18: "1.125rem",
-        42: "2.625rem",
-        100: "6.25rem",
-        165: "10.313rem",
-        220: "13.75rem",
-        359: "22.438rem",
-      },
-      padding: {
-        40: "2.5rem",
-        180: "11.25rem",
-      },
-      margin: {
-        26: "1.6rem",
-      },
       gridTemplateColumns: {
-        "community-main": "14.75rem 82.2%",
+        "community-main": "236px 82.2%",
       },
       gridTemplateRows: {
         "community-main": "100%",
@@ -57,25 +60,13 @@ module.exports = {
         pretendard: "Pretendard",
         sans: ["Pretendard-Regular", "sans-serif"],
       },
-      fontSize: {
-        12: "0.75rem",
-        13: "0.813rem",
-        18: "1.125rem",
-        15: "0.938rem",
-        16: "1rem",
-      },
-      lineHeight: {
-        14: "0.875rem",
-        16: "1rem",
-        18: "1.125rem",
-        19: "1.188rem",
-        21: "1.313rem",
-      },
-      borderRadius: {
-        40: "2.5rem",
-      },
       margin: {
         "-10": "-0.625rem",
+      },
+      spacing: {
+        "93%": "93%",
+        "83.41%": "83.41%",
+        18: "1.125rem",
       },
     },
   },
