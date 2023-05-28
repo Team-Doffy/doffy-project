@@ -24,28 +24,22 @@ const colors = {
   white: "#FFFFFF",
 };
 
+const convertRemToPx = () => {
+  return { ...Array.from({ length: 2000 }, (_, i) => i + "px") };
+};
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    spacing: {
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
-    },
-    padding: {
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
-    },
-    fontSize: {
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
-    },
-    lineHeight: {
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
-    },
-    gap: {
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
-    },
+    spacing: convertRemToPx(),
+    fontSize: convertRemToPx(),
+    lineHeight: convertRemToPx(),
     borderRadius: {
       none: "0px",
-      ...Array.from({ length: 2000 }, (_, i) => i + "px"),
+      ...convertRemToPx(),
     },
+    translate: convertRemToPx(),
+    skew: convertRemToPx(),
 
     extend: {
       colors,
