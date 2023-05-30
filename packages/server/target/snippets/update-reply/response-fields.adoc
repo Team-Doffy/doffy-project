@@ -1,0 +1,40 @@
+|===
+|Path|Type|Description
+
+|`+replyId+`
+|`+Number+`
+|The ID of the updated reply
+
+|`+userId+`
+|`+Number+`
+|User ID
+
+|`+boardId+`
+|`+Number+`
+|Board ID
+
+|`+replyBody+`
+|`+String+`
+|Reply Body
+
+|`+nickname+`
+|`+String+`
+|Nickname
+
+|`+isAccepted+`
+|`+Boolean+`
+|Whether the reply is accepted or not
+
+|`+accepted+`
+|`+Boolean+`
+|Whether the reply is accepted or not (deprecated)
+
+|`+createdAt+`
+|`+String+`
+|Created At
+
+|`+modifiedAt+`
+|`+String+`
+|Modified At
+
+|===

@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"replyCommentId":1,"replyId":null,"userId":1,"nickname":"Test Nickname","replyCommentBody":"Test reply comment content","createdAt":"2023-05-17T18:47:05.1369979","modifiedAt":"2023-05-17T18:47:05.1369979"}
+----

@@ -1,0 +1,7 @@
+|===
+|Parameter|Description
+
+|`+boardId+`
+|The id of the board where the comment is posted
+
+|===

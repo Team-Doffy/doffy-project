@@ -1,0 +1,9 @@
+[source,http,options="nowrap"]
+----
+POST /api/v1/community/board-comments?boardId=1 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 145
+Host: localhost:8080
+
+{"boardId":1,"userId":1,"boardCommentBody":"Test content","createdAt":[2023,5,16,21,13,12,452599400],"modifiedAt":[2023,5,16,21,13,12,452599400]}
+----

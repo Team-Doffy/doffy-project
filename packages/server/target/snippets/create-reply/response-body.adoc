@@ -1,0 +1,14 @@
+[source,options="nowrap"]
+----
+{
+  "replyId" : 1,
+  "userId" : 1,
+  "boardId" : 1,
+  "nickname" : "Test Nickname",
+  "replyBody" : "Test reply content",
+  "isAccepted" : true,
+  "createdAt" : "2023-05-17T19:47:32.1507514",
+  "modifiedAt" : "2023-05-17T19:47:32.1507514",
+  "accepted" : true
+}
+----

@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+boardId+`
+|`+Number+`
+|The id of the updated board
+
+|`+userId+`
+|`+Number+`
+|The id of the user who updated the board
+
+|`+nickname+`
+|`+String+`
+|The nickname of the user who updated the board
+
+|`+title+`
+|`+String+`
+|The title of the updated board
+
+|`+boardBody+`
+|`+String+`
+|The content of the updated board
+
+|`+createdAt+`
+|`+String+`
+|The creation timestamp of the updated board
+
+|`+modifiedAt+`
+|`+String+`
+|The modification timestamp of the updated board
+
+|===

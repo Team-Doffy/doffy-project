@@ -1,0 +1,8 @@
+.+/api/v1/community/replycomments/{id}+
+|===
+|Parameter|Description
+
+|`+id+`
+|Reply comment ID
+
+|===

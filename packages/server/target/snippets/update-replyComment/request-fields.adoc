@@ -1,0 +1,16 @@
+|===
+|Path|Type|Description
+
+|`+userId+`
+|`+Number+`
+|User ID
+
+|`+replyCommentBody+`
+|`+String+`
+|Reply comment body
+
+|`+replyId+`
+|`+Null+`
+|The reply ID associated with the comment
+
+|===

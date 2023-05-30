@@ -1,0 +1,11 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 201 Created
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+Content-Length: 206
+
+{"replyCommentId":1,"replyId":null,"userId":1,"nickname":"Test Nickname","replyCommentBody":"Test reply comment content","createdAt":"2023-05-17T18:47:05.1369979","modifiedAt":"2023-05-17T18:47:05.1369979"}
+----
