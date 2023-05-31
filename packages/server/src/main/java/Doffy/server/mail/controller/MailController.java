@@ -18,14 +18,14 @@ public class MailController {
     private final MailService mailService;
 
     @PostMapping("/signup-auth-email")
-    public void signUpCheckEmailSend(@RequestBody MailDto.AuthEmail mailDto){
+    public void signUpCheckEmailSend(@RequestBody MailDto.AuthEmail mailDto) {
         MailDto.AuthEmail createEmail = mailService.createAuthMail(mailDto);
         mailService.sendAuthEmail(createEmail);
     }
 
     @PostMapping("signup-check-email")
-    public ResponseEntity signUpCheckEmail(@RequestBody MailDto.SignUpCheckEmail mailDto){
-        mailService.verifyEmailCode(mailDto.getEmail(),mailDto.getKey());
+    public ResponseEntity signUpCheckEmail(@RequestBody MailDto.SignUpCheckEmail mailDto) {
+        mailService.verifyEmailCode(mailDto.getEmail(), mailDto.getKey());
         return new ResponseEntity(HttpStatus.OK);
     }
 }
