@@ -102,4 +102,7 @@ public class UserService {
         }
         return userRepository.save(findUser);
     }
+
+    //비밀번호 변경 전 아이디 찾기
+
 }

@@ -14,14 +14,24 @@ public class MailDto {
         private String email;
         private String title;
         private String message;
-        private String createKey;
+        private String createCode;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class SignUpCheckEmail{
+    public static class FindEmail{
         private String email;
+        private String title;
+        private String message;
+        private String createCode;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Key{
         private String key;
+        private String value;
     }
 }
