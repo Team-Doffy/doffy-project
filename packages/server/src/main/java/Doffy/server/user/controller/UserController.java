@@ -41,14 +41,14 @@ public class UserController {
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
-    //회원수정 - 닉네임
+    //회원수정
     @PatchMapping
     public ResponseEntity updateNickname(@AuthenticationPrincipal String username,
-                                     @RequestBody @Valid UserDto.PatchNickname userPatchDto){
+                                     @RequestBody @Valid UserDto.Patch userPatchDto){
         User findUser = userService.findUser(username);
         userPatchDto.setUsername(findUser.getUsername());
-        User updatedUser = userMapper.patchNicknameToUser(userPatchDto);
-        userService.updateNickname(updatedUser);
+        User updatedUser = userMapper.patchToUser(userPatchDto);
+        userService.updateUser(updatedUser,userPatchDto.getNewPassword());
         return new ResponseEntity(HttpStatus.OK);
     }
 

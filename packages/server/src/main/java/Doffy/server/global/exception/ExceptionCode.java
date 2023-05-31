@@ -33,7 +33,11 @@ public enum ExceptionCode {
     NICKNAME_EXISTS(400, "Nick already exists"),
 
     // 패스워드 불일치
-    PASSWORD_MISMATCH(403, "Password Mismatch");
+    PASSWORD_MISMATCH(403, "Password Mismatch"),
+
+    // 회원가입 이메일 코드 불일치
+
+    CODE_MISMATCH(403,"Code MisMatch");
 
     @Getter
     private final int status;

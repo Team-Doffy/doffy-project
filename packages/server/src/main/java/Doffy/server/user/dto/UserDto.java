@@ -53,7 +53,7 @@ public class UserDto {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class PatchNickname{
+    public static class Patch{
 
         String username;
 
@@ -61,6 +61,11 @@ public class UserDto {
         @Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()]*$", message = "비밀번호는 영문 대소문자와 키패드 1~0까지의 특수문자만 가능합니다.")
         @Size(min = 8, max = 20, message = "비밀번호는 8~20자 사이여야 합니다.")
         String password;
+
+//        @NotBlank
+        @Pattern(regexp = "^[a-zA-Z0-9!@#$%^&*()]*$", message = "비밀번호는 영문 대소문자와 키패드 1~0까지의 특수문자만 가능합니다.")
+        @Size(min = 8, max = 20, message = "비밀번호는 8~20자 사이여야 합니다.")
+        String newPassword;
 
 
         @NotBlank(message = "닉네임은 공백이 아니여야 합니다.")

@@ -78,18 +78,31 @@ public class UserService {
         }
     }
 
-    //닉네임 수정
-    public User updateNickname(User user){
+    //회원수정
+    public User updateUser(User user,String newPassword){
         User findUser = findVerifyUser(user.getUsername());
         if(!user.getNickname().equals(findUser.getNickname())) {
             verifyExistsNickname(user.getNickname());
         }
-        String rawPassword = user.getPassword();
-        String encPassword = passwordEncoder.encode(rawPassword);
-        Optional.ofNullable(user.getNickname())
-                .ifPresent(nickname -> findUser.setNickname(nickname));
-        Optional.ofNullable(encPassword)
-                .ifPresent(password -> findUser.setPassword(password));
+        checkPassword(findUser.getUsername(),user.getPassword());
+        if(newPassword != null){
+            String rawPassword = newPassword;
+            String encPassword = passwordEncoder.encode(newPassword);
+            Optional.ofNullable(user.getNickname())
+                    .ifPresent(nickname -> findUser.setNickname(nickname));
+            Optional.ofNullable(encPassword)
+                    .ifPresent(password -> findUser.setPassword(password));
+        } else {
+            String rawPassword = user.getPassword();
+            String encPassword = passwordEncoder.encode(rawPassword);
+            Optional.ofNullable(user.getNickname())
+                    .ifPresent(nickname -> findUser.setNickname(nickname));
+            Optional.ofNullable(encPassword)
+                    .ifPresent(password -> findUser.setPassword(password));
+        }
         return userRepository.save(findUser);
     }
+
+    //비밀번호 변경 전 아이디 찾기
+
 }
