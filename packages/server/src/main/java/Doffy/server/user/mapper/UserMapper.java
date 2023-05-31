@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 public interface UserMapper {
 
     User SignUpToUser(UserDto.SignUp requestBody);
-    User patchNicknameToUser(UserDto.PatchNickname requestBody);
+    User patchToUser(UserDto.Patch requestBody);
     User duplicationCheckUsernameToUser(UserDto.DuplicationCheckUsername requestBody);
     User duplicationCheckNicknameToUser(UserDto.DuplicationCheckNickname requestBody);
     User checkPasswordToUser(UserDto.CheckPassword requestBody);
