@@ -65,22 +65,25 @@ public class UserService {
 
     //회원 삭제
     public void deleteUser(String username){
-        User findUser = findVerifyUser(username);
+        User findUser = findUser(username);
         userRepository.delete(findUser);
     }
 
     //비밀번호 검증
     public void checkPassword(String username, String password){
         User findUser = findUser(username);
-        String originPassword = findUser.getPassword();
-        if(!passwordEncoder.matches(password,originPassword)) {
+        String encodedPassword = findUser.getPassword();
+        if(password.equals(encodedPassword)){
+            return;
+        }
+        if(!passwordEncoder.matches(password,encodedPassword)) {
             throw new BusinessLogicException(ExceptionCode.PASSWORD_MISMATCH);
         }
     }
 
     //회원수정
     public User updateUser(User user,String newPassword){
-        User findUser = findVerifyUser(user.getUsername());
+        User findUser = findUser(user.getUsername());
         if(!user.getNickname().equals(findUser.getNickname())) {
             verifyExistsNickname(user.getNickname());
         }

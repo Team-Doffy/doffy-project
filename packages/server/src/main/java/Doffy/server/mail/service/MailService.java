@@ -72,12 +72,9 @@ public class MailService {
 
     @Transactional
     public MailDto.AuthEmail createFindPasswordMail(MailDto.AuthEmail mailDto){
-        User verifyUser = userService.findVerifyUser(mailDto.getEmail());
         String createdKey = createKey();
-        User findPasswordUser = userRepository.findByUsername(mailDto.getEmail());
-        String encodedNewPassword = passwordEncoder.encode(createdKey);
-        findPasswordUser.setPassword(encodedNewPassword);
-        userRepository.save(findPasswordUser);
+        User verifyUser = userService.findUser(mailDto.getEmail());
+        userService.updateUser(verifyUser,createdKey);
         MailDto.AuthEmail createdMail = new MailDto.AuthEmail();
         createdMail.setEmail(mailDto.getEmail());
         createdMail.setTitle("Doffy 임시 비밀번호 발송 메일입니다.");

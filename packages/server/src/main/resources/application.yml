@@ -7,3 +7,6 @@ aws:
     prefix: /spring-boot-aws
     name: doffy-project # 리소스 이름을 작성합니다.
     profileSeparator: _
+
+
+
