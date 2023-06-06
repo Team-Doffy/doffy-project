@@ -2,15 +2,16 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.reply.ReplyPostDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
+import Doffy.server.community.dto.reply.ReplyUpdateDto;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.community.mapper.ReplyMapper;
 import Doffy.server.community.service.ReplyService;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import Doffy.server.user.entity.User;
+import Doffy.server.user.repository.UserRepository;
+import Doffy.server.user.service.UserService;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,6 @@ import java.util.List;
 @RequestMapping("/api/v1/community/replies")
 @RequiredArgsConstructor
 public class ReplyController {
-
     private final ReplyService replyService;
     private final ReplyMapper replyMapper;
 
@@ -54,8 +54,8 @@ public class ReplyController {
 
     // Update a reply
     @PutMapping("/{replyId}")
-    public ResponseEntity<ReplyResponseDto> updateReply(@PathVariable long replyId, @Valid @RequestBody ReplyPostDto replyPostDto) {
-        Reply updatedReply = replyService.updateReply(replyId, replyPostDto);
+    public ResponseEntity<ReplyResponseDto> updateReply(@PathVariable long replyId, @Valid @RequestBody ReplyUpdateDto replyUpdateDto) {
+        Reply updatedReply = replyService.updateReply(replyId, replyUpdateDto);
         ReplyResponseDto replyResponseDto = replyMapper.toReplyResponseDto(updatedReply);
         return new ResponseEntity<>(replyResponseDto, HttpStatus.OK);
     }

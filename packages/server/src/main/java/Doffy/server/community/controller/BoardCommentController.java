@@ -2,11 +2,15 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.comment.BoardCommentPostDto;
 import Doffy.server.community.dto.comment.BoardCommentResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentUpdateDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.mapper.BoardCommentMapper;
 import Doffy.server.community.service.BoardCommentService;
 import Doffy.server.community.service.BoardService;
+import Doffy.server.user.entity.User;
+import Doffy.server.user.repository.UserRepository;
+import Doffy.server.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -28,15 +32,16 @@ import java.util.List;
 public class BoardCommentController {
     private final BoardCommentService commentService;
     private final BoardCommentMapper boardCommentMapper;
-
+    private final UserRepository userRepository;
     private final BoardService boardService;
 
     @ApiOperation(value = "Create a new comment", response = BoardCommentResponseDto.class)
     @PostMapping
     public ResponseEntity<BoardCommentResponseDto> createComment(
-            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentPostDto commentPostDto, Long boardId) {
-        Board board = boardService.findBoard(boardId);
-        BoardComment boardComment = commentService.createComment(commentPostDto, board);
+            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentPostDto commentPostDto) {
+        Board board = boardService.findVerifiedBoard(commentPostDto.getBoardId());
+        User user = userRepository.findByUserId(commentPostDto.getUserId());
+        BoardComment boardComment = commentService.createComment(commentPostDto, board, user);
         BoardCommentResponseDto response = boardCommentMapper.toCommentResponseDto(boardComment);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -54,8 +59,8 @@ public class BoardCommentController {
     @PutMapping("/{commentId}")
     public ResponseEntity<BoardCommentResponseDto> updateComment(
             @ApiParam(value = "Comment ID", required = true) @PathVariable long commentId,
-            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentPostDto commentPostDto) {
-        BoardComment boardComment = commentService.updateComment(commentId, commentPostDto);
+            @ApiParam(value = "Comment information", required = true) @RequestBody BoardCommentUpdateDto updateDto) {
+        BoardComment boardComment = commentService.updateComment(commentId, updateDto);
         BoardCommentResponseDto response = boardCommentMapper.toCommentResponseDto(boardComment);
         return ResponseEntity.ok(response);
     }

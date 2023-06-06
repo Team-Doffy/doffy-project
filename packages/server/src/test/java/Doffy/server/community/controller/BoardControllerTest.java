@@ -3,11 +3,13 @@ package Doffy.server.community.controller;
 import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
+import Doffy.server.community.dto.board.BoardUpdateDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.mapper.BoardCommentMapper;
 import Doffy.server.community.mapper.BoardMapper;
 import Doffy.server.community.service.BoardService;
 import Doffy.server.user.entity.User;
+import Doffy.server.user.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +50,9 @@ class BoardControllerTest {
     private BoardService boardService;
     @MockBean
     private BoardMapper boardMapper;
+
+    @MockBean
+    private UserRepository userRepository;
     private BoardPostDto boardPostDto;
     private BoardDetailedResponseDto boardDetailedResponseDto;
 
@@ -120,7 +125,7 @@ class BoardControllerTest {
             Board board = new Board();
             board.setBoardId(boardDetailedResponseDto.getBoardId());
 
-            when(boardService.findBoard(anyLong())).thenReturn(board);
+            when(boardService.findVerifiedBoard(anyLong())).thenReturn(board);
 
             // When & Then
             mockMvc.perform(RestDocumentationRequestBuilders.get("/api/v1/community/boards/{id}", 1L))
@@ -213,51 +218,55 @@ class BoardControllerTest {
     void testUpdateBoard() throws Exception {
         // Given
         Board updatedBoard = new Board();
-        updatedBoard.setBoardId(boardDetailedResponseDto.getBoardId());
+        updatedBoard.setBoardId(1L);
         updatedBoard.setTitle("Updated Title");
         updatedBoard.setBoardBody("Updated content");
 
-        BoardPostDto updateDto = BoardPostDto.builder()
-                .userId(1L)
+        BoardUpdateDto updateDto = BoardUpdateDto.builder()
                 .title(updatedBoard.getTitle())
                 .boardBody(updatedBoard.getBoardBody())
                 .build();
 
-        when(boardService.updateBoard(anyLong(), any(BoardPostDto.class))).thenReturn(updatedBoard);
+        when(boardService.updateBoard(anyLong(), any(BoardUpdateDto.class))).thenReturn(updatedBoard);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonRequest = objectMapper.writeValueAsString(updateDto);
+
+        System.out.println(updatedBoard.getBoardId());
+        System.out.println(updatedBoard.getTitle());
+        System.out.println(updatedBoard.getBoardBody());
+        System.out.println("값줘");
 
         // When & Then
         mockMvc.perform(RestDocumentationRequestBuilders.put("/api/v1/community/boards/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequest))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Test Title"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.boardBody").value("Test content"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Updated Title"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.boardBody").value("Updated content"))
                 .andDo(
                         MockMvcRestDocumentation.document("update-board",
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
-                        pathParameters(
-                                parameterWithName("id").description("The id of the board to update")
-                        ),
-                        PayloadDocumentation.requestFields(
-                                fieldWithPath("userId").description("The id of the user"),
-                                fieldWithPath("title").description("The updated title of the board"),
-                                fieldWithPath("boardBody").description("The updated content of the board")
-                        ),
-                        responseFields(
-                                fieldWithPath("boardId").description("The id of the updated board"),
-                                fieldWithPath("userId").description("The id of the user who updated the board"),
-                                fieldWithPath("nickname").description("The nickname of the user who updated the board"),
-                                fieldWithPath("title").description("The title of the updated board"),
-                                fieldWithPath("boardBody").description("The content of the updated board"),
-                                fieldWithPath("createdAt").description("The creation timestamp of the updated board"),
-                                fieldWithPath("modifiedAt").description("The modification timestamp of the updated board")
-                        )
-    ));
+                                pathParameters(
+                                        parameterWithName("id").description("The id of the board to update")
+                                ),
+                                PayloadDocumentation.requestFields(
+                                        fieldWithPath("title").description("The updated title of the board"),
+                                        fieldWithPath("boardBody").description("The updated content of the board")
+                                ),
+                                responseFields(
+                                        fieldWithPath("boardId").description("The id of the updated board"),
+                                        fieldWithPath("userId").description("The id of the user who updated the board"),
+                                        fieldWithPath("nickname").description("The nickname of the user who updated the board"),
+                                        fieldWithPath("title").description("The title of the updated board"),
+                                        fieldWithPath("boardBody").description("The content of the updated board"),
+                                        fieldWithPath("createdAt").description("The creation timestamp of the updated board"),
+                                        fieldWithPath("modifiedAt").description("The modification timestamp of the updated board")
+                                )
+                        ));
     }
+
 
     @Test
     void testDeleteBoard() throws Exception {

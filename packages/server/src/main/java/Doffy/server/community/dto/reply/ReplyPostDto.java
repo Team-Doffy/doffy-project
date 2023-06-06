@@ -13,6 +13,7 @@ public class ReplyPostDto {
     private Long boardId;
     private Long userId;
     private String replyBody;
+    private boolean isAccepted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

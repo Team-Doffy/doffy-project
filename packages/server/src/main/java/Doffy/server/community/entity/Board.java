@@ -1,6 +1,7 @@
 package Doffy.server.community.entity;
 
 import Doffy.server.global.audit.BaseEntity;
+import Doffy.server.like.entity.BoardLike;
 import Doffy.server.user.entity.User;
 import lombok.*;
 
@@ -32,6 +33,10 @@ public class Board extends BaseEntity {
     @Column(name = "board_body")
     private String boardBody;
 
+    @Builder.Default
+    @Column(name = "like_count", nullable = false)
+    private int likeCount = 0;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -43,6 +48,9 @@ public class Board extends BaseEntity {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<BoardLike> boardLikes;
 
 }
 

@@ -18,6 +18,7 @@ public class BoardDetailedResponseDto {
     private String nickname;
     private String title;
     private String boardBody;
+    private int likeCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

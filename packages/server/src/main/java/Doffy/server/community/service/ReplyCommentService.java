@@ -2,12 +2,14 @@ package Doffy.server.community.service;
 
 import Doffy.server.community.dto.comment.ReplyCommentPostDto;
 import Doffy.server.community.dto.comment.ReplyCommentResponseDto;
+import Doffy.server.community.dto.comment.ReplyCommentUpdateDto;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.community.entity.ReplyComment;
 import Doffy.server.community.mapper.ReplyCommentMapper;
 import Doffy.server.community.repository.ReplyCommentRepository;
 import Doffy.server.global.exception.BusinessLogicException;
 import Doffy.server.global.exception.ExceptionCode;
+import Doffy.server.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +22,16 @@ public class ReplyCommentService {
     private final ReplyCommentRepository replyCommentRepository;
     private final ReplyCommentMapper replyCommentMapper;
     private final ReplyService replyService;
+    private final UserRepository userRepository;
 
     public ReplyComment createComment(ReplyCommentPostDto commentPostDto){
         ReplyComment replyComment = replyCommentMapper.toComment(commentPostDto);
         return replyCommentRepository.save(replyComment);
     }
 
-    public ReplyComment updateComment(long commentId, ReplyCommentPostDto commentPostDto){
+    public ReplyComment updateComment(long commentId, ReplyCommentUpdateDto replyCommentUpdateDto){
         ReplyComment replyComment = findVerifiedComment(commentId);
-        replyComment.setReplyCommentBody(commentPostDto.getReplyCommentBody());
+        replyComment.setReplyCommentBody(replyCommentUpdateDto.getReplyCommentBody());
         return replyCommentRepository.save(replyComment);
     }
 

@@ -3,6 +3,8 @@ package Doffy.server.user.entity;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.entity.Reply;
+import Doffy.server.like.entity.BoardLike;
+import Doffy.server.like.entity.ReplyLike;
 import lombok.*;
 
 import javax.persistence.*;
@@ -48,6 +50,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Reply> replies;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BoardLike> boardLikes;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ReplyLike> replyLikes;
 
     public User(String username, String name, String nickname){
         this.username = username;

@@ -2,6 +2,7 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.reply.ReplyPostDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
+import Doffy.server.community.dto.reply.ReplyUpdateDto;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.community.mapper.ReplyMapper;
 import Doffy.server.community.service.ReplyService;
@@ -173,7 +174,7 @@ class ReplyControllerTest {
         updatedReply.setReplyId(replyId);
         updatedReply.setReplyBody(updateDto.getReplyBody());
 
-        when(replyService.updateReply(anyLong(), any(ReplyPostDto.class))).thenReturn(updatedReply);
+        when(replyService.updateReply(anyLong(), any(ReplyUpdateDto.class))).thenReturn(updatedReply);
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());

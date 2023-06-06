@@ -1,6 +1,7 @@
 package Doffy.server.community.entity;
 
 import Doffy.server.global.audit.BaseEntity;
+import Doffy.server.like.entity.ReplyLike;
 import Doffy.server.user.entity.User;
 import lombok.*;
 
@@ -20,11 +21,9 @@ public class Reply extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
     private long replyId;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
@@ -35,6 +34,10 @@ public class Reply extends BaseEntity {
     @Column(name = "is_accepted")
     private boolean isAccepted;
 
+    @Builder.Default
+    @Column(name = "like_count", nullable = false)
+    private int likeCount = 0;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -43,4 +46,7 @@ public class Reply extends BaseEntity {
 
     @OneToMany(mappedBy = "reply", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ReplyComment> replyComments;
+
+    @OneToMany(mappedBy = "reply", cascade = CascadeType.ALL)
+    private List<ReplyLike> replyLikes;
 }

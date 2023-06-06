@@ -1,9 +1,6 @@
 package Doffy.server.community.controller;
 
-import Doffy.server.community.dto.comment.BoardCommentPostDto;
-import Doffy.server.community.dto.comment.BoardCommentResponseDto;
-import Doffy.server.community.dto.comment.ReplyCommentPostDto;
-import Doffy.server.community.dto.comment.ReplyCommentResponseDto;
+import Doffy.server.community.dto.comment.*;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.entity.ReplyComment;
 import Doffy.server.community.mapper.ReplyCommentMapper;
@@ -22,7 +19,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/api/v1/community/replycomments")
+@RequestMapping("/api/v1/community/reply-comments")
 @Slf4j
 @RequiredArgsConstructor
 @Api(value = "Community Comment API")
@@ -52,8 +49,8 @@ public class ReplyCommentController {
     @PutMapping("/{commentId}")
     public ResponseEntity<ReplyCommentResponseDto> updateComment(
             @ApiParam(value = "Comment ID", required = true) @PathVariable long commentId,
-            @ApiParam(value = "Comment information", required = true) @RequestBody ReplyCommentPostDto commentPostDto) {
-        ReplyComment replyComment = commentService.updateComment(commentId, commentPostDto);
+            @ApiParam(value = "Comment information", required = true) @RequestBody ReplyCommentUpdateDto commentUpdateDto) {
+        ReplyComment replyComment = commentService.updateComment(commentId, commentUpdateDto);
         ReplyCommentResponseDto response = replyCommentMapper.toCommentResponseDto(replyComment);
         return ResponseEntity.ok(response);
     }

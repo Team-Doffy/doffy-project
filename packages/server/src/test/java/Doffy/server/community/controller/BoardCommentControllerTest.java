@@ -2,11 +2,13 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.comment.BoardCommentPostDto;
 import Doffy.server.community.dto.comment.BoardCommentResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentUpdateDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.mapper.BoardCommentMapper;
 import Doffy.server.community.service.BoardCommentService;
 import Doffy.server.community.service.BoardService;
+import Doffy.server.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,8 +89,8 @@ class BoardCommentControllerTest {
         boardComment.setBoard(board);
         boardComment.setBoardCommentId(1L);
 
-        when(boardService.findBoard(eq(boardCommentPostDto.getBoardId()))).thenReturn(board);
-        when(commentService.createComment(any(BoardCommentPostDto.class), any(Board.class))).thenReturn(boardComment);
+        when(boardService.findVerifiedBoard(eq(boardCommentPostDto.getBoardId()))).thenReturn(board);
+        when(commentService.createComment(any(BoardCommentPostDto.class), any(Board.class), any(User.class))).thenReturn(boardComment);
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -172,7 +174,7 @@ class BoardCommentControllerTest {
         BoardComment boardComment = new BoardComment();
         boardComment.setBoardCommentId(commentId);
 
-        when(commentService.updateComment(eq(commentId), any(BoardCommentPostDto.class))).thenReturn(boardComment);
+        when(commentService.updateComment(eq(commentId), any(BoardCommentUpdateDto.class))).thenReturn(boardComment);
         when(boardCommentMapper.toCommentResponseDto(boardComment)).thenReturn(boardCommentResponseDto);
 
         ObjectMapper objectMapper = new ObjectMapper();

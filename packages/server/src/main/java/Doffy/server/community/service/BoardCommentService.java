@@ -2,10 +2,13 @@ package Doffy.server.community.service;
 
 import Doffy.server.community.dto.comment.BoardCommentPostDto;
 import Doffy.server.community.dto.comment.BoardCommentResponseDto;
+import Doffy.server.community.dto.comment.BoardCommentUpdateDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.BoardComment;
 import Doffy.server.community.mapper.BoardCommentMapper;
 import Doffy.server.community.repository.BoardCommentRepository;
+import Doffy.server.user.entity.User;
+import Doffy.server.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +25,16 @@ public class BoardCommentService {
     private final BoardCommentRepository boardCommentRepository;
     private final BoardCommentMapper boardCommentMapper;
     private final BoardService boardService;
+    private final UserRepository userRepository;
 
-    public BoardComment createComment(BoardCommentPostDto commentPostDto, Board board) {
-        BoardComment boardComment = boardCommentMapper.toComment(commentPostDto, board);
+    public BoardComment createComment(BoardCommentPostDto commentPostDto, Board board, User user) {
+        BoardComment boardComment = boardCommentMapper.toComment(commentPostDto, board, user);
         return boardCommentRepository.save(boardComment);
     }
 
-    public BoardComment updateComment(long commentId, BoardCommentPostDto commentPostDto) {
+    public BoardComment updateComment(long commentId, BoardCommentUpdateDto updateDto) {
         BoardComment boardComment = findVerifiedComment(commentId);
-        boardComment.setBoardCommentBody(commentPostDto.getBoardCommentBody());
+        boardComment.setBoardCommentBody(updateDto.getBoardCommentBody());
         return boardCommentRepository.save(boardComment);
     }
 
@@ -40,7 +44,7 @@ public class BoardCommentService {
     }
 
     public List<BoardCommentResponseDto> findBoardComments(long boardId) {
-        Board getBoard = boardService.findBoard(boardId);
+        Board getBoard = boardService.findVerifiedBoard(boardId);
         List<BoardComment> boardComments = boardCommentRepository.findByBoard(getBoard);
         List<BoardCommentResponseDto> responseDtos = boardComments.stream()
                 .map(boardCommentMapper::toCommentResponseDto)

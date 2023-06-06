@@ -2,6 +2,8 @@ package Doffy.server.community.controller;
 
 import Doffy.server.community.dto.comment.ReplyCommentPostDto;
 import Doffy.server.community.dto.comment.ReplyCommentResponseDto;
+import Doffy.server.community.dto.comment.ReplyCommentUpdateDto;
+import Doffy.server.community.dto.reply.ReplyUpdateDto;
 import Doffy.server.community.entity.ReplyComment;
 import Doffy.server.community.service.ReplyCommentService;
 import Doffy.server.community.mapper.ReplyCommentMapper;
@@ -118,12 +120,11 @@ class ReplyCommentControllerTest {
         updatedReplyComment.setReplyCommentId(replyCommentResponseDto.getReplyCommentId());
         updatedReplyComment.setReplyCommentBody("Updated reply comment body");
 
-        ReplyCommentPostDto updateDto = ReplyCommentPostDto.builder()
-                .userId(1L)
+        ReplyCommentUpdateDto updateDto = ReplyCommentUpdateDto.builder()
                 .replyCommentBody(updatedReplyComment.getReplyCommentBody())
                 .build();
 
-        when(replyCommentService.updateComment(anyLong(), any(ReplyCommentPostDto.class))).thenReturn(updatedReplyComment);
+        when(replyCommentService.updateComment(anyLong(), any(ReplyCommentUpdateDto.class))).thenReturn(updatedReplyComment);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonRequest = objectMapper.writeValueAsString(updateDto);

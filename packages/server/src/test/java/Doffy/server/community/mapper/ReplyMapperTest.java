@@ -25,6 +25,12 @@ public class ReplyMapperTest {
     @Test
     public void testToReply() {
         // given
+
+        User user = User.builder()
+                .userId(1L)
+                .username("testName")
+                .build();
+
         Board board = Board.builder()
                 .boardId(1L)
                 .title("Test Board")
@@ -37,7 +43,7 @@ public class ReplyMapperTest {
                 .build();
 
         // when
-        Reply reply = replyMapper.toReply(replyPostDto, board);
+        Reply reply = replyMapper.toReply(replyPostDto, board, user);
 
         // then
         assertNotNull(reply);

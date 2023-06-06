@@ -3,6 +3,7 @@ package Doffy.server.community.service;
 
 import Doffy.server.community.dto.reply.ReplyPostDto;
 import Doffy.server.community.dto.reply.ReplyResponseDto;
+import Doffy.server.community.dto.reply.ReplyUpdateDto;
 import Doffy.server.community.entity.Board;
 import Doffy.server.community.entity.Reply;
 import Doffy.server.community.mapper.ReplyMapper;
@@ -32,16 +33,14 @@ public class  ReplyService {
 
     public Reply createReply(ReplyPostDto replyPostDto) {
         User user = userRepository.findById(replyPostDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Board board = new Board();
-        board.setBoardId(replyPostDto.getBoardId());
-        Reply reply = replyMapper.toReply(replyPostDto, board);
-        reply.setUser(user);
+        Board board = boardService.findVerifiedBoard(replyPostDto.getBoardId());
+        Reply reply = replyMapper.toReply(replyPostDto, board, user);
         return replyRepository.save(reply);
     }
 
-    public Reply updateReply(long replyId, ReplyPostDto replyPostDto) {
+    public Reply updateReply(long replyId, ReplyUpdateDto updateDto) {
         Reply reply = findVerifiedReply(replyId);
-        reply.setReplyBody(replyPostDto.getReplyBody());
+        reply.setReplyBody(updateDto.getReplyBody());
         return replyRepository.save(reply);
     }
 
@@ -59,7 +58,7 @@ public class  ReplyService {
     }
 
     public List<ReplyResponseDto> findRepliesByBoard(long boardId) {
-        Board getBoard = boardService.findBoard(boardId);
+        Board getBoard = boardService.findVerifiedBoard(boardId);
         List<Reply> replies = replyRepository.findByBoard(getBoard);
         List<ReplyResponseDto> responseDtos = replies.stream()
                 .map(reply -> replyMapper.toReplyResponseDto(reply))

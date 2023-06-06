@@ -3,12 +3,15 @@ package Doffy.server.community.controller;
 import Doffy.server.community.dto.board.BoardDetailedResponseDto;
 import Doffy.server.community.dto.board.BoardPostDto;
 import Doffy.server.community.dto.board.BoardResponseDto;
+import Doffy.server.community.dto.board.BoardUpdateDto;
 import Doffy.server.community.entity.Board;
 
 import Doffy.server.community.mapper.BoardMapper;
 
 import Doffy.server.community.service.BoardService;
 
+import Doffy.server.user.entity.User;
+import Doffy.server.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -29,6 +32,7 @@ import java.util.List;
 @RestController
 public class BoardController {
     private final BoardService boardService;
+    private final UserService userService;
     private final BoardMapper boardMapper;
 
     @ApiOperation(value = "Create a new board", response = BoardResponseDto.class)
@@ -53,7 +57,7 @@ public class BoardController {
     @GetMapping("/{boardId}")
     public ResponseEntity<BoardDetailedResponseDto> getBoard(
             @ApiParam(value = "Board ID", required = true) @PathVariable long boardId) {
-        Board board = boardService.findBoard(boardId);
+        Board board = boardService.findVerifiedBoard(boardId);
         BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board);
         return ResponseEntity.ok(response);
     }
@@ -62,10 +66,9 @@ public class BoardController {
     @PutMapping("/{boardId}")
     public ResponseEntity<BoardDetailedResponseDto> updateBoard(
             @ApiParam(value = "Board ID", required = true) @PathVariable long boardId,
-            @ApiParam(value = "Board information", required = true) @RequestBody BoardPostDto boardPostDto) {
-        Board board = boardService.updateBoard(boardId, boardPostDto);
-        BoardDetailedResponseDto response = boardMapper.toBoardDetailedResponseDto(board);
-        return ResponseEntity.ok(response);
+            @ApiParam(value = "Board information", required = true) @RequestBody BoardUpdateDto boardUpdateDto) {
+        Board board = boardService.updateBoard(boardId, boardUpdateDto);
+        return ResponseEntity.ok(boardMapper.toBoardDetailedResponseDto(board));
     }
 
     @ApiOperation(value = "Delete a board by ID")

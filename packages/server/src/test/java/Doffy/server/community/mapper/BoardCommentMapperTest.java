@@ -26,6 +26,11 @@ public class BoardCommentMapperTest {
                 .boardCommentBody("This is a test comment.")
                 .build();
 
+        User user = User.builder()
+                .userId(1L)
+                .nickname("Test User")
+                .build();
+
         Board board = Board.builder()
                 .boardId(1L)
                 .title("Test Board")
@@ -35,7 +40,7 @@ public class BoardCommentMapperTest {
                 .build();
 
         // when
-        BoardComment comment = boardCommentMapper.toComment(commentPostDto, board);
+        BoardComment comment = boardCommentMapper.toComment(commentPostDto, board, user);
         comment.setBoard(board);
 
         // then
