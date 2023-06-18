@@ -5,7 +5,6 @@ import Link from "next/link";
 import Logo from "../../assets/images/doffylogo.svg";
 import noti from "../../assets/images/notification.svg";
 import Image from "next/image";
-import { NoticeModal } from "./noticeModal";
 
 const Header: React.FC = () => {
   const [isSignin, setIsSignin] = useState<boolean>(false);
