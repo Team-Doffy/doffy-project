@@ -55,7 +55,7 @@ export const MyDoc: React.FC = () => {
         <div className="flex flex-col overflow-scroll"></div>
         {/* 하단 우측 */}
         <div className="">
-          <div className="w-[268pw] rounded-[8px] sticky">
+          <div className="w-[268pw] rounded-[8px] sticky border-x-2 border-y-2">
             <div className="flex">
               <span className="text-[13px] ml-[15px]">
                 드래그 & 드랍 기능을 사용해 보세요.

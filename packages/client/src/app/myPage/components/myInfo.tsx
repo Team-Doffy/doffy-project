@@ -55,18 +55,16 @@ export const MyInfo: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* 상단 타이틀 */}
-      <div className="p-[24px] border-b-2 mb-[24px]">
+      <div className="pt-[24px] pb-[24px] border-b-2 mb-[24px]">
         <span className="text-[28px] font-bold">나의 정보</span>
       </div>
       {/* 하단 컨텐츠 */}
-      <div className="flex">
+      <div className="flex mb-[40px]">
         {/* 하단 좌측 */}
         <div className="w-[70%] flex border-x-2 border-y-2 mr-[40px] rounded-[8px]">
           {/* 프로필 이미지 부분 */}
           <div className="flex flex-col p-[60px] mr-[40px] items-center">
-            <div className="w-[100px] h-[100px] rounded-full bg-[gray]">
-              asda
-            </div>
+            <div className="w-[100px] h-[100px] rounded-full bg-[gray]"></div>
             <span className="text-[13px] text-[400] text-[13px] text-[#999999] text-center mt-[20px]">
               5MB 이내의 이미지 <br /> 파일을 업로드 해주세요.
             </span>
@@ -256,6 +254,14 @@ export const MyInfo: React.FC = () => {
                   {/* <p>{}</p> */}
                 </div>
               )}
+              <div className="flex justify-between mt-[40px] mb-[40px]">
+                <div className="w-[120px] h-[40px] leading-[40px] border-x-2 border-y-2 text-center rounded-[8px] cursor-pointer">
+                  회원탈퇴
+                </div>
+                <div className="w-[120px] h-[40px] leading-[40px] bg-[#057FEF] text-white text-center rounded-[8px] cursor-pointer">
+                  정보저장
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -282,14 +288,14 @@ export const MyInfo: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-[100%] flex pl-[40px] mt-[30px]">
+          <div className="w-[100%] flex pl-[35px] mt-[30px]">
             <div className="flex flex-col">
               <div className="flex justify-between">
                 <p className="text-[15px] font-normal text-[#999999]">태그</p>
                 <p className="text-[15px] font-normal text-[#999999]">포인트</p>
               </div>
               {skillPoint.map((skill) => (
-                <div className="flex justify-between">
+                <div className="w-[265px] flex justify-between">
                   <span className="text-[#057FEF] bg-[#F0F8FF] text-[11px] font-normal mb-[10px] p-[5px] rounded-[8px]">
                     {skill.name}
                   </span>
